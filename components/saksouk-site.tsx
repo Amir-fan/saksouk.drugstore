@@ -1,82 +1,79 @@
 'use client';
 
-import { ArrowDown, ArrowRight, ArrowUpRight, Menu, X } from 'lucide-react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Check, Menu, Minus, Plus, X } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Lenis from 'lenis';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { siteContent as content } from '@/content/site';
+import { assetUrl, pageUrl } from '@/lib/site-paths';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-function BrandMark() {
-  return <a className="brand" href="#home" aria-label="Saksouk home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span className="brand-name">SAKSOUK<span>DRUGSTORE</span></span></a>;
+function Brand() {
+  return <a className="brand" href={pageUrl('/#home')} aria-label="Saksouk Drugstore home"><span className="brand-symbol"><i /><i /><i /></span><span>SAKSOUK<small>DRUGSTORE</small></span></a>;
 }
 
-function ArrowLink({ href, children, solid = false }: { href: string; children: React.ReactNode; solid?: boolean }) {
-  return <a href={href} className={solid ? 'arrow-link arrow-link-solid' : 'arrow-link'}><span>{children}</span><ArrowUpRight size={15} strokeWidth={1.6} /></a>;
+export function ArrowLink({ href, children, primary = false }: { href: string; children: React.ReactNode; primary?: boolean }) {
+  return <a href={pageUrl(href)} className={`button ${primary ? 'button-primary' : 'button-light'}`}><span>{children}</span><i><ArrowUpRight size={16} strokeWidth={1.8} /></i></a>;
 }
 
-function Nav() {
+export function SiteHeader() {
   const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false);
-  useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 24); onScroll(); window.addEventListener('scroll', onScroll, { passive: true }); return () => window.removeEventListener('scroll', onScroll); }, []);
+  useEffect(() => { const handle = () => setScrolled(window.scrollY > 18); handle(); window.addEventListener('scroll', handle, { passive: true }); return () => window.removeEventListener('scroll', handle); }, []);
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [open]);
-  return <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}><div className="nav-inner"><BrandMark /><nav className="nav-links" aria-label="Primary navigation">{content.navigation.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}</nav><div className="nav-contact"><ArrowLink href="#contact">Business inquiry</ArrowLink></div><button className="menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'}>{open ? <X /> : <Menu />}</button></div><motion.div id="mobile-menu" className="mobile-menu" initial={false} animate={{ clipPath: open ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)' }} transition={{ duration: .55, ease }} aria-hidden={!open}><div className="mobile-menu-inner">{content.navigation.map((item, index) => <a href={item.href} key={item.href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{item.label}</a>)}<p>{content.company.descriptor}<br />{content.company.location}</p></div></motion.div></header>;
-}
-
-function LineReveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const reduce = useReducedMotion();
-  return <span className="line-mask"><motion.span initial={reduce ? false : { y: '108%', opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .95, delay, ease }}>{children}</motion.span></span>;
+  return <header className={`header ${scrolled ? 'header-scrolled' : ''}`}><div className="nav-wrap"><Brand /><nav className="desktop-nav" aria-label="Primary navigation">{content.navigation.map((item) => <a href={pageUrl(item.href)} key={item.href}>{item.label}</a>)}</nav><div className="desktop-cta"><ArrowLink href="/#contact" primary>Business inquiry</ArrowLink></div><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button></div><AnimatePresence>{open && <motion.nav className="mobile-nav" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} aria-label="Mobile navigation">{content.navigation.map((item) => <a href={pageUrl(item.href)} onClick={() => setOpen(false)} key={item.href}>{item.label}<ArrowUpRight size={18} /></a>)}</motion.nav>}</AnimatePresence></header>;
 }
 
 function Reveal({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const reduce = useReducedMotion();
-  return <motion.div className={className} initial={reduce ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-8% 0px' }} transition={{ duration: .8, delay, ease }}>{children}</motion.div>;
+  return <motion.div className={className} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-8% 0px' }} transition={{ duration: .75, delay, ease }}>{children}</motion.div>;
 }
 
-function SectionLabel({ index, children }: { index: string; children: React.ReactNode }) {
-  return <div className="section-label"><span>{index}</span><p>{children}</p></div>;
+function ImageReveal({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
+  const reduce = useReducedMotion();
+  return <motion.div className={`image-reveal ${className}`} initial={reduce ? false : { opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-10%' }} transition={{ duration: .85, ease }}><motion.img src={assetUrl(src)} alt={alt} loading="lazy" decoding="async" whileHover={reduce ? undefined : { scale: 1.02 }} transition={{ duration: .55, ease }} /></motion.div>;
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return <p className="section-label"><span />{children}</p>;
 }
 
 function Hero() {
-  const reduce = useReducedMotion(); const { scrollYProgress } = useScroll(); const heroY = useTransform(scrollYProgress, [0, .16], [0, reduce ? 0 : 70]);
-  return <section className="hero section-grid" id="home"><div className="hero-wash" aria-hidden="true" /><div className="hero-content shell"><motion.div className="hero-copy" style={{ y: heroY }}><motion.p className="eyebrow" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .25, duration: .7, ease }}><span />{content.hero.eyebrow}</motion.p><h1>{content.hero.headline.map((line, index) => <LineReveal key={line} delay={.16 + index * .11}>{line}</LineReveal>)}</h1><motion.div className="hero-support" initial={reduce ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .62, duration: .8, ease }}><p>{content.hero.body}</p><div className="hero-actions"><ArrowLink href={content.hero.primaryCta.href} solid>{content.hero.primaryCta.label}</ArrowLink><ArrowLink href={content.hero.secondaryCta.href}>{content.hero.secondaryCta.label}</ArrowLink></div></motion.div></motion.div><motion.aside className="hero-aside" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .8, duration: .9 }}><p className="aside-label">Core operations</p>{content.hero.pillars.map((pillar, index) => <div key={pillar}><span>0{index + 1}</span><strong>{pillar}</strong></div>)}</motion.aside><a href="#proof" className="scroll-cue"><ArrowDown size={15} /><span>Scroll to explore</span></a><div className="hero-coordinate" aria-hidden="true">35.0°N&nbsp;&nbsp;38.0°E</div></div></section>;
-}
-
-function Metrics() {
-  return <section className="metrics section-grid" id="proof"><div className="shell"><Reveal className="metrics-head"><SectionLabel index="01">Company proof</SectionLabel><h2>Built around continuity.</h2><p>Confirmed company figures will live here—clear, verifiable and never inflated.</p></Reveal><div className="metric-row">{content.metrics.map((metric, index) => <Reveal className="metric" delay={index * .06} key={metric.label}><span className="metric-value">{metric.value}</span><div><strong>{metric.label}</strong><small>{metric.note}</small></div></Reveal>)}</div></div></section>;
+  const reduce = useReducedMotion();
+  return <section className="hero" id="home"><div className="hero-media"><motion.img src={assetUrl('/images/hero-warehouse.jpg')} alt="Organized warehouse shelving and palletized goods" fetchPriority="high" decoding="async" initial={reduce ? false : { scale: 1.045 }} animate={{ scale: 1 }} transition={{ duration: 1.8, ease }} /><div className="hero-overlay" /><div className="hero-content"><motion.p className="eyebrow" initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .15, duration: .7 }}>Pharmaceutical supply · Syria</motion.p><h1>{content.hero.headline.map((line, index) => <span className="line-mask" key={line}><motion.span initial={reduce ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ delay: .18 + index * .09, duration: .9, ease }}>{line}</motion.span></span>)}</h1><motion.div className="hero-lower" initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .55, duration: .75, ease }}><p>{content.hero.body}</p><div className="hero-actions"><ArrowLink href="#contact" primary>Contact our team</ArrowLink><ArrowLink href="#about">Discover Saksouk</ArrowLink></div></motion.div></div><div className="hero-tag"><span>Storage</span><i /><span>Supply</span><i /><span>Distribution</span></div><a className="hero-scroll" href="#about" aria-label="Scroll to about"><ArrowDownRight size={18} /></a></div></section>;
 }
 
 function About() {
-  return <section className="about section-grid" id="about"><div className="shell"><Reveal><SectionLabel index="02">{content.about.eyebrow}</SectionLabel></Reveal><div className="about-grid"><Reveal className="chapter-title"><h2>{content.about.title.map((line) => <span key={line}>{line}</span>)}</h2></Reveal><Reveal className="about-lead"><p>{content.about.lead}</p></Reveal><Reveal className="about-body" delay={.1}><span className="rule" /><p>{content.about.body}</p></Reveal></div></div></section>;
+  return <section className="about section" id="about"><div className="container"><Reveal className="about-heading"><SectionLabel>{content.about.eyebrow}</SectionLabel><h2>{content.about.title.map((line) => <span key={line}>{line}</span>)}</h2></Reveal><div className="about-composition"><ImageReveal className="about-image-small" src="/images/distribution.jpg" alt="Organized warehouse aisle" /><ImageReveal className="about-image-large" src="/images/storage.jpg" alt="Organized warehouse storage facility" /><Reveal className="about-copy"><p>{content.about.lead}</p><p>{content.about.body}</p><a href="#capabilities" className="text-link">Explore our capabilities <ArrowRight size={17} /></a></Reveal></div></div></section>;
 }
 
 function Capabilities() {
-  return <section className="capabilities section-grid" id="capabilities"><div className="shell"><Reveal className="cap-heading"><SectionLabel index="03">What we do</SectionLabel><h2>Capabilities</h2><p>Connected pharmaceutical operations, structured around dependable access and professional support.</p></Reveal><div className="cap-grid">{content.capabilities.map((item, index) => <Reveal key={item.index} delay={(index % 3) * .06}><article className="cap-card"><div className="cap-card-top"><span>{item.index}</span><ArrowUpRight size={18} strokeWidth={1.3} /></div><h3>{item.title}</h3><p className="cap-short">{item.short}</p><p className="cap-detail">{item.detail}</p><div className="cap-line" /></article></Reveal>)}</div></div></section>;
-}
-
-function Audiences() {
-  return <section className="audiences section-grid"><div className="shell audience-layout"><div className="audience-intro"><Reveal><SectionLabel index="04">Our network</SectionLabel><h2>Who we<br />serve</h2><p>Purpose-built relationships across the pharmaceutical supply chain.</p></Reveal></div><div className="audience-list">{content.audiences.map((item, index) => <Reveal key={item.index} delay={index * .06}><article className="audience-panel"><div className="audience-number">{item.index}</div><div><h3>{item.title}</h3><p>{item.text}</p></div><ArrowRight size={20} strokeWidth={1.2} /></article></Reveal>)}</div></div></section>;
+  return <section className="capabilities section" id="capabilities"><div className="container"><Reveal className="section-heading centered"><SectionLabel>What we do</SectionLabel><h2>Capabilities</h2><p>Pharmaceutical storage, supply and distribution support.</p></Reveal><div className="capability-grid">{content.capabilities.map((item, index) => <Reveal key={item.title} delay={index * .07}><article className="capability-card"><div className="capability-image"><img src={assetUrl(item.image)} alt={item.alt} loading="lazy" decoding="async" /></div><div className="capability-content"><div><h3>{item.title}</h3><p>{item.description}</p></div><a href="#contact" aria-label={`Inquire about ${item.title}`}><ArrowUpRight size={19} /></a></div></article></Reveal>)}</div></div></section>;
 }
 
 function Operations() {
-  const imageRef = useRef<HTMLDivElement>(null); const reduce = useReducedMotion(); const { scrollYProgress } = useScroll({ target: imageRef, offset: ['start end', 'end start'] }); const scale = useTransform(scrollYProgress, [0, .5, 1], [reduce ? 1 : 1.04, 1, reduce ? 1 : 1.02]);
-  return <section className="operations section-grid"><div className="shell"><Reveal><SectionLabel index="05">{content.operations.eyebrow}</SectionLabel></Reveal><div className="operations-head"><Reveal className="chapter-title"><h2>{content.operations.title.map((line) => <span key={line}>{line}</span>)}</h2></Reveal><Reveal className="operations-copy"><p>{content.operations.body}</p></Reveal></div><div className="operations-visual" ref={imageRef}><motion.div className="operations-surface" style={{ scale }} aria-label="Reserved area for future Saksouk operations photography"><span className="visual-code">OP / 01</span><div className="visual-axis axis-a" /><div className="visual-axis axis-b" /><div className="visual-core"><i /><i /><i /><i /><i /></div><p>Operations photography<br />reserved</p></motion.div><ol>{content.operations.stages.map((stage, index) => <li key={stage}><span>0{index + 1}</span>{stage}</li>)}</ol></div></div></section>;
+  const [active, setActive] = useState(0);
+  return <section className="operations section"><div className="container operations-panel"><div className="operations-copy"><Reveal><SectionLabel>{content.operations.eyebrow}</SectionLabel><h2>{content.operations.title.map((line) => <span key={line}>{line}</span>)}</h2><p className="operations-intro">{content.operations.body}</p></Reveal><div className="operation-rows">{content.operations.items.map((item, index) => <div className={`operation-row ${active === index ? 'active' : ''}`} key={item.title}><button onClick={() => setActive(index)} aria-expanded={active === index}><span>{item.title}</span>{active === index ? <Minus size={18} /> : <Plus size={18} />}</button><AnimatePresence initial={false}>{active === index && <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: .35, ease }}>{item.text}</motion.p>}</AnimatePresence></div>)}</div></div><div className="operations-images"><ImageReveal className="operations-main" src="/images/storage.jpg" alt="Wide view of an organized distribution warehouse" /><ImageReveal className="operations-overlap" src="/images/pharmaceutical.jpg" alt="Pharmaceutical blister packs and medicines" /></div></div></section>;
 }
 
-function Partners() {
-  return <section className="partners section-grid" id="partners"><div className="shell"><Reveal className="partners-head"><SectionLabel index="06">Industry relationships</SectionLabel><h2>Our partners</h2><p>Manufacturer and partner identities will be added once the approved logo set is supplied.</p></Reveal><div className="logo-grid" aria-label="Partner logo placeholders">{Array.from({ length: 6 }).map((_, index) => <Reveal key={index} delay={(index % 3) * .05}><div className="logo-placeholder"><span>Partner {String(index + 1).padStart(2, '0')}</span><small>Logo pending</small></div></Reveal>)}</div></div></section>;
+function Audiences() {
+  return <section className="audiences section"><div className="container"><Reveal className="audience-heading"><SectionLabel>Who we serve</SectionLabel><h2>Built around the<br />healthcare supply chain.</h2></Reveal><div className="audience-layout"><ImageReveal className="audience-image" src="/images/inventory.jpg" alt="Aerial view of an organized logistics facility and loading area" /><div className="audience-list">{content.audiences.map((audience, index) => <Reveal key={audience.title} delay={index * .06}><article><h3>{audience.title}</h3><p>{audience.text}</p><ArrowUpRight size={18} /></article></Reveal>)}</div></div></div></section>;
 }
 
 function Principles() {
-  return <section className="principles section-grid"><div className="shell"><Reveal className="principles-title"><SectionLabel index="07">Why Saksouk</SectionLabel><h2>What dependable<br />supply requires.</h2></Reveal><div className="principle-list">{content.principles.map((item, index) => <Reveal key={item.index} delay={index * .05}><article><span>{item.index}</span><h3>{item.title}</h3><p>{item.text}</p></article></Reveal>)}</div></div></section>;
+  return <section className="principles section"><div className="container principles-panel"><ImageReveal className="principles-image" src="/images/hero-warehouse.jpg" alt="Warehouse shelving prepared for reliable supply" /><div className="principles-copy"><Reveal><SectionLabel>Why Saksouk</SectionLabel><h2>Dependability is<br />built into the process.</h2><p>Professional pharmaceutical supply is shaped by the way each stage is handled—from clear coordination to consistent service.</p></Reveal><ul>{content.principles.map((principle, index) => <Reveal key={principle} delay={index * .05}><li><i><Check size={15} strokeWidth={2} /></i>{principle}</li></Reveal>)}</ul></div></div></section>;
 }
 
 function Contact() {
-  return <><section className="contact section-grid" id="contact"><div className="contact-glow" /><div className="shell contact-inner"><Reveal><SectionLabel index="08">Business inquiry</SectionLabel><h2>{content.contact.title.map((line) => <span key={line}>{line}</span>)}</h2><div className="contact-bottom"><p>{content.contact.body}</p><ArrowLink href="mailto:info@saksouk.example" solid>Contact our team</ArrowLink></div></Reveal></div></section><footer className="footer section-grid"><div className="shell"><div className="footer-main"><BrandMark /><p>{content.company.descriptor}.<br />Based in {content.company.location}.</p><nav aria-label="Footer navigation">{content.navigation.slice(1).map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}</nav><div className="footer-contact"><small>Contact details</small><span>{content.contact.phone}</span><span>{content.contact.email}</span></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Saksouk Drugstore</span><span>Content details pending client confirmation</span><a href="#home">Back to top <ArrowUpRight size={13} /></a></div></div></footer></>;
+  return <section className="contact section" id="contact"><div className="container"><div className="contact-banner"><img src={assetUrl('/images/distribution.jpg')} alt="Warehouse aisle supporting pharmaceutical distribution" loading="lazy" decoding="async" /><div className="contact-overlay" /><Reveal className="contact-content"><SectionLabel>Business inquiries</SectionLabel><h2>{content.contact.title.map((line) => <span key={line}>{line}</span>)}</h2><p>{content.contact.body}</p><ArrowLink href="mailto:info@saksouk.example" primary>Contact our team</ArrowLink></Reveal></div></div></section>;
+}
+
+export function SiteFooter() {
+  return <footer className="footer"><div className="container"><div className="footer-top"><Brand /><p>{content.company.descriptor}.<br />{content.company.location}.</p><nav aria-label="Footer navigation">{content.navigation.slice(1).map((item) => <a href={pageUrl(item.href)} key={item.href}>{item.label}</a>)}</nav><div className="footer-contact"><small>Contact</small><span>{content.contact.phone}</span><span>{content.contact.email}</span></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Saksouk Drugstore</span><span>Company details to be confirmed</span><a href={pageUrl('/#home')}>Back to top <ArrowUpRight size={13} /></a></div></div></footer>;
 }
 
 export function SaksoukSite() {
-  const reduce = useReducedMotion(); const { scrollYProgress } = useScroll();
-  useEffect(() => { if (reduce) return; const lenis = new Lenis({ duration: 1.05, smoothWheel: true }); let raf = 0; const frame = (time: number) => { lenis.raf(time); raf = requestAnimationFrame(frame); }; raf = requestAnimationFrame(frame); return () => { cancelAnimationFrame(raf); lenis.destroy(); }; }, [reduce]);
-  return <main><div className="scroll-progress" aria-hidden="true"><motion.div style={{ scaleX: scrollYProgress }} /></div><Nav /><Hero /><Metrics /><About /><Capabilities /><Audiences /><Operations /><Partners /><Principles /><Contact /></main>;
+  const reduce = useReducedMotion();
+  useEffect(() => { if (reduce) return; const lenis = new Lenis({ duration: 1, smoothWheel: true }); let frameId = 0; const frame = (time: number) => { lenis.raf(time); frameId = requestAnimationFrame(frame); }; frameId = requestAnimationFrame(frame); return () => { cancelAnimationFrame(frameId); lenis.destroy(); }; }, [reduce]);
+  return <main><SiteHeader /><Hero /><About /><Capabilities /><Operations /><Audiences /><Principles /><Contact /><SiteFooter /></main>;
 }

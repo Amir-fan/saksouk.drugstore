@@ -1,52 +1,71 @@
 export const siteContent = {
-  company: { name: 'Saksouk Drugstore', shortName: 'Saksouk', location: 'Syria', descriptor: 'Pharmaceutical storage, supply & distribution' },
+  company: { name: 'Saksouk Drugstore', location: 'Syria', descriptor: 'Pharmaceutical storage, supply & distribution' },
   navigation: [
-    { label: 'Home', href: '#home' }, { label: 'About', href: '#about' },
-    { label: 'Capabilities', href: '#capabilities' }, { label: 'Partners', href: '#partners' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/' }, { label: 'Products', href: '/products' },
+    { label: 'Expertise', href: '/expertise' }, { label: 'About', href: '/#about' },
+    { label: 'Contact', href: '/#contact' },
   ],
   hero: {
     eyebrow: 'Pharmaceutical supply · Syria',
     headline: ['Pharmaceutical supply,', 'built on reliability.'],
     body: 'Saksouk Drugstore supports the healthcare supply chain through dependable pharmaceutical storage, supply and distribution.',
-    primaryCta: { label: 'Discover Saksouk', href: '#about' }, secondaryCta: { label: 'Contact our team', href: '#contact' },
-    pillars: ['Storage', 'Supply', 'Distribution'],
   },
-  // TODO: replace each placeholder with client-confirmed data before publication.
-  metrics: [
-    { value: '—', label: 'Years of operation', note: 'Client data pending' },
-    { value: '—', label: 'Portfolio scale', note: 'Client data pending' },
-    { value: '—', label: 'Industry partners', note: 'Client data pending' },
-    { value: '—', label: 'Pharmacies & institutions', note: 'Client data pending' },
-  ],
   about: {
-    eyebrow: 'Who we are', title: ['Reliable supply', 'supports reliable care.'],
+    eyebrow: 'About Saksouk',
+    title: ['Reliable pharmaceutical supply', 'starts with responsible handling.'],
     lead: 'Saksouk Drugstore operates within the pharmaceutical supply chain, supporting healthcare providers with dependable access to medicines and healthcare products.',
-    body: 'Our work is grounded in responsible storage, careful handling, coordinated distribution and professional relationships across the healthcare sector.',
+    body: 'Our work is centered on responsible storage, careful handling, coordinated supply and professional relationships across the healthcare sector.',
   },
-  // TODO: confirm final service scope with the client.
+  // TODO: confirm final capability scope with the client.
   capabilities: [
-    { index: '01', title: 'Pharmaceutical Distribution', short: 'Dependable movement through the healthcare supply chain.', detail: 'Structured distribution support designed around consistency, communication and responsible handling.' },
-    { index: '02', title: 'Medicine Storage', short: 'Organized storage for pharmaceutical products.', detail: 'A disciplined operational approach that puts product care and continuity at the center.' },
-    { index: '03', title: 'Inventory Handling', short: 'Clear oversight from receipt to dispatch.', detail: 'Practical inventory coordination that helps healthcare customers plan with greater confidence.' },
-    { index: '04', title: 'Pharmacy Supply', short: 'Professional supply relationships for pharmacies.', detail: 'Responsive support centered on dependable access and straightforward service.' },
-    { index: '05', title: 'Institutional Supply', short: 'Structured support for healthcare organizations.', detail: 'A responsible supply approach for organizations that depend on consistency.' },
-    { index: '06', title: 'Partner Support', short: 'Local operating relationships built for continuity.', detail: 'Clear coordination for suppliers and pharmaceutical partners working in the market.' },
+    { title: 'Pharmaceutical Distribution', image: '/images/distribution.jpg', alt: 'Organized distribution warehouse aisle', description: 'Dependable movement of pharmaceutical products through the healthcare supply chain.' },
+    { title: 'Medicine Storage', image: '/images/storage.jpg', alt: 'Large organized warehouse with storage shelves', description: 'Organized storage and responsible handling for pharmaceutical products.' },
+    { title: 'Inventory & Supply Support', image: '/images/pharmaceutical.jpg', alt: 'Pharmaceutical products prepared for inventory and supply', description: 'Structured inventory coordination supporting pharmacies and healthcare organizations.' },
   ],
-  // TODO: confirm each audience with the client.
+  operations: {
+    eyebrow: 'Operations', title: ['From storage', 'to delivery.'],
+    body: 'Saksouk brings key stages of pharmaceutical supply together through organized storage, responsible handling and coordinated distribution.',
+    items: [
+      { title: 'Storage', text: 'Organized environments and careful product placement support dependable access.' },
+      { title: 'Handling', text: 'A responsible approach across receipt, inventory coordination and dispatch.' },
+      { title: 'Distribution', text: 'Coordinated movement that connects supply with pharmacies and healthcare organizations.' },
+    ],
+  },
   audiences: [
-    { index: '01', title: 'Pharmacies', text: 'Dependable access to pharmaceutical products backed by professional supply and distribution support.' },
-    { index: '02', title: 'Healthcare Institutions', text: 'Structured pharmaceutical supply for organizations that depend on consistency and responsible handling.' },
-    { index: '03', title: 'Industry Partners', text: 'A local operating relationship for pharmaceutical companies and suppliers seeking dependable market support.' },
+    { title: 'Pharmacies', text: 'Dependable access to pharmaceutical products backed by professional supply and distribution support.' },
+    { title: 'Healthcare Institutions', text: 'Structured pharmaceutical supply for organizations that depend on consistency and responsible handling.' },
+    { title: 'Industry Partners', text: 'Professional local support for pharmaceutical companies and suppliers.' },
   ],
-  operations: { eyebrow: 'Operations', title: ['From storage', 'to delivery.'], body: 'Pharmaceutical distribution depends on connected, disciplined operations. Saksouk brings the essential stages together with care and professional oversight.', stages: ['Storage', 'Handling', 'Inventory', 'Distribution', 'Continuity'] },
-  productCategories: [], // Intentionally hidden until real categories are supplied.
-  partners: [], // TODO: add client-supplied manufacturer and partner logos.
-  principles: [
-    { index: '01', title: 'Reliability', text: 'Consistent support for the people and organizations that depend on supply.' },
-    { index: '02', title: 'Responsibility', text: 'A careful, professional approach to every stage of pharmaceutical handling.' },
-    { index: '03', title: 'Continuity', text: 'Operations shaped around dependable access and long-term relationships.' },
-    { index: '04', title: 'Professional service', text: 'Clear communication and responsive support across the supply chain.' },
-  ],
-  contact: { email: 'Email to be confirmed', phone: 'Phone to be confirmed', location: 'Syria', title: ['Let’s move healthcare', 'forward, reliably.'], body: 'For partnership, supply or business inquiries, contact the Saksouk team.' },
+  partners: [], // Hidden until client-approved partner logos are supplied.
+  principles: ['Reliable Supply', 'Responsible Handling', 'Clear Communication', 'Long-Term Relationships'],
+  contact: {
+    title: ["Let's keep healthcare", 'moving.'],
+    body: 'For supply, distribution or partnership inquiries, speak with the Saksouk team.',
+    phone: 'Phone to be confirmed', email: 'Email to be confirmed',
+  },
+  products: {
+    eyebrow: 'Products',
+    title: ['A portfolio structured', 'around healthcare needs.'],
+    introduction: [
+      'Saksouk Drugstore supports pharmacies, healthcare institutions and health-sector partners with access to pharmaceutical and healthcare products.',
+      'The online catalogue is designed to help professional customers find products by category, manufacturer and name. Product availability and commercial details are confirmed directly by the Saksouk team.',
+    ],
+    categories: ['Pharmaceutical', 'Healthcare', 'All'],
+    // TODO: populate only with client-confirmed product records and manufacturers.
+    items: [] as Array<{ name: string; category: 'Pharmaceutical' | 'Healthcare'; manufacturer: string }>,
+  },
+  expertise: {
+    eyebrow: 'Expertise',
+    title: ['Operational expertise,', 'connected across the business.'],
+    introduction: 'Pharmaceutical distribution depends on more than product movement. Saksouk connects commercial, operational and organizational disciplines to support dependable service.',
+    areas: [
+      { key: 'business', title: 'Business Excellence', image: '/images/inventory.jpg', summary: 'Where direction meets disciplined execution.', body: ['We turn plans into practical action by improving processes, strengthening resilience and keeping teams aligned around dependable service.', 'Our approach values continuous learning, accountability and collaboration. Improvement is treated as an ongoing responsibility across the organization.', 'Risk-aware planning and business continuity support stability as needs, markets and operating conditions evolve.'] },
+      { key: 'distribution', title: 'Distribution', image: '/images/distribution.jpg', summary: 'Coordinated movement through the healthcare supply chain.', body: ['Distribution brings together product readiness, clear communication and organized dispatch.', 'Saksouk works to connect supply with pharmacies and healthcare organizations through responsive coordination and professional service.', 'Each stage is approached with the continuity of healthcare supply in mind.'] },
+      { key: 'facilities', title: 'Facilities Management', image: '/images/storage.jpg', summary: 'Organized environments that support responsible operations.', body: ['Facilities management supports the daily conditions required for orderly storage, handling and movement.', 'Clear workflows, planned maintenance and practical oversight help the wider operation work consistently.', 'Facility information and specific standards will be added when confirmed by Saksouk.'] },
+      { key: 'finance', title: 'Finance', image: '/images/inventory.jpg', summary: 'Disciplined planning behind sustainable service.', body: ['Financial planning supports responsible purchasing, operational continuity and clear commercial relationships.', 'The function connects day-to-day decisions with long-term stability and measured growth.', 'Accurate coordination helps teams plan resources and serve customers responsibly.'] },
+      { key: 'people', title: 'Human Resources', image: '/images/hero-warehouse.jpg', summary: 'People, capability and professional culture.', body: ['Professional service depends on capable people with clear responsibilities and shared standards.', 'Human resources supports development, communication and a culture of accountability.', 'The goal is a working environment where teams can contribute consistently and grow their expertise.'] },
+      { key: 'digital', title: 'IT & Digital', image: '/images/pharmaceutical.jpg', summary: 'Information that helps operations stay connected.', body: ['Digital systems can support inventory visibility, internal coordination and more responsive customer service.', 'Saksouk’s digital capability will be described in greater detail as confirmed systems and services are supplied.', 'Technology is treated as an operational tool—not a claim in itself.'] },
+      { key: 'legal', title: 'Legal & Compliance', image: '/images/storage.jpg', summary: 'Responsible operations within applicable requirements.', body: ['Legal and compliance oversight supports responsible decision-making and professional relationships.', 'The function helps teams understand applicable requirements and maintain clear internal practices.', 'Specific certifications, standards and regulatory claims will only be published after client confirmation.'] },
+    ],
+  },
 } as const;

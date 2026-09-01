@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amir-fan.github.io/saksouk.drugstore/sitemap.xml
