@@ -8,6 +8,11 @@ export default defineConfig({
   base: '/saksouk.drugstore/',
   css: { postcss: { plugins: [tailwindcss()] } },
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': resolve(process.cwd(), '.'),
+    },
+  },
   build: {
     rolldownOptions: {
       input: {
