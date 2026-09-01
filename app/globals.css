@@ -167,6 +167,7 @@ img { display:block; width:100%; }
   .metric-item:nth-child(2) { border-right:0; }
   .metric-item:nth-child(3) { border-right:1px solid rgba(255,255,255,.13); }
   .metric-item:nth-child(3),.metric-item:nth-child(4) { padding-top:clamp(20px,3vw,40px); border-top:1px solid rgba(255,255,255,.13); }
+  .metric-item { text-align:center; align-items:center; }
   .capability-image { height:270px; }
   .operations-panel { grid-template-columns:1fr; }
   .operations-copy { max-width:650px; }
@@ -190,7 +191,8 @@ img { display:block; width:100%; }
   .about-copy { max-width:100%; }
   .metric-row { grid-template-columns:1fr 1fr; }
   .metrics-strip { border-radius:22px; }
-  .metric-item { padding:clamp(20px,3vw,35px) clamp(18px,2.5vw,35px); }
+  .metric-item { padding:clamp(20px,3vw,35px) clamp(18px,2.5vw,35px); text-align:center; }
+  .metric-value { justify-content:center; }
   .capability-grid { grid-template-columns:1fr; }
   .capability-image { height:380px; }
   .capability-content { min-height:160px; }
@@ -217,10 +219,31 @@ img { display:block; width:100%; }
   .about-image-small { width:70%; height:200px; bottom:-25px; border-width:5px; }
   .about-copy p,.about-copy p:first-child { font-size:15px; }
   .metric-row { grid-template-columns:1fr; }
-  .metric-item { border-right:0!important; border-bottom:1px solid rgba(255,255,255,.13); padding:22px 0!important; }
   .metrics-strip { border-radius:18px; }
-  .metric-item { border-right:0!important; border-bottom:1px solid rgba(255,255,255,.13); padding:22px 0!important; }
+  .metrics-inner { padding:44px 0 32px; }
+  .metric-item {
+    border-right:0!important;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    padding:28px 32px!important;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    animation:metricFadeUp .55s ease both;
+  }
+  .metric-item:nth-child(1) { animation-delay:.05s; }
+  .metric-item:nth-child(2) { animation-delay:.13s; }
+  .metric-item:nth-child(3) { animation-delay:.21s; border-top:none!important; padding-top:28px!important; }
+  .metric-item:nth-child(4) { animation-delay:.29s; border-top:none!important; padding-top:28px!important; }
   .metric-item:last-child { border-bottom:0; }
+  .metric-value { justify-content:center; font-size:clamp(3.4rem,16vw,5rem); margin-bottom:10px; }
+  .metric-label { font-size:14px; }
+  .metric-detail { font-size:11.5px; max-width:220px; }
+  .metrics-footnote { text-align:center; margin:28px 24px 0; }
+  @keyframes metricFadeUp {
+    from { opacity:0; transform:translateY(22px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
   .capability-content { min-height:180px; padding-top:21px; }
   .operations-images { min-height:360px; }
   .operations-main { height:360px; }
