@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Check, Menu, Minus, Plus, X } from 'lucide-react';
+import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, Check, MapPin, Menu, Minus, Phone, Plus, X, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
@@ -22,7 +22,29 @@ export function SiteHeader() {
   const { scrollYProgress } = useScroll();
   useEffect(() => { const handle = () => setScrolled(window.scrollY > 18); handle(); window.addEventListener('scroll', handle, { passive: true }); return () => window.removeEventListener('scroll', handle); }, []);
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [open]);
-  return <header className={`header ${scrolled ? 'header-scrolled' : ''}`}><motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} /><div className="nav-wrap"><Brand /><nav className="desktop-nav" aria-label="Primary navigation">{content.navigation.map((item) => <a href={pageUrl(item.href)} key={item.href}>{item.label}</a>)}</nav><div className="desktop-cta"><ArrowLink href="/#contact" primary>Business inquiry</ArrowLink></div><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button></div><AnimatePresence>{open && <motion.nav className="mobile-nav" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} aria-label="Mobile navigation">{content.navigation.map((item) => <a href={pageUrl(item.href)} onClick={() => setOpen(false)} key={item.href}>{item.label}<ArrowUpRight size={18} /></a>)}</motion.nav>}</AnimatePresence></header>;
+  return <header className={`header ${scrolled ? 'header-scrolled' : ''}`}><motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} /><div className="nav-wrap"><Brand /><nav className="desktop-nav" aria-label="Primary navigation">{content.navigation.map((item) => {
+    if ('dropdown' in item && item.dropdown) {
+      return (
+        <div className="nav-dropdown-wrapper" key={item.label}>
+          <button className="nav-dropdown-trigger">{item.label} <ChevronDown size={14} /></button>
+          <div className="nav-dropdown">
+            {item.dropdown.map(sub => <a href={pageUrl(sub.href)} key={sub.label}>{sub.label}</a>)}
+          </div>
+        </div>
+      );
+    }
+    return <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>;
+  })}</nav><div className="desktop-cta"><ArrowLink href="/#contact" primary>Business inquiry</ArrowLink></div><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button></div><AnimatePresence>{open && <motion.nav className="mobile-nav" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} aria-label="Mobile navigation">{content.navigation.map((item) => {
+    if ('dropdown' in item && item.dropdown) {
+      return (
+        <div key={item.label} className="mobile-nav-group">
+          <span className="mobile-nav-label">{item.label}</span>
+          {item.dropdown.map(sub => <a href={pageUrl(sub.href)} onClick={() => setOpen(false)} key={sub.label} className="mobile-nav-sub">{sub.label}</a>)}
+        </div>
+      );
+    }
+    return <a href={pageUrl(item.href)} onClick={() => setOpen(false)} key={item.label}>{item.label}<ArrowUpRight size={18} /></a>;
+  })}</motion.nav>}</AnimatePresence></header>;
 }
 
 function Reveal({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -135,22 +157,29 @@ export function SiteFooter() {
     <footer className="footer">
       <div className="container">
         <div className="footer-top">
-          <div className="footer-intro">
-            <Brand />
-            <p>{content.company.descriptor}.<br />{content.company.location}.</p>
-            <a href="mailto:info@saksouk.example" className="footer-cta">Partner with Saksouk <ArrowRight size={18} /></a>
-          </div>
-          <div className="footer-grid">
-            <nav aria-label="Footer navigation">
-              <small>Navigation</small>
-              {content.navigation.slice(1).map((item) => (
-                <a href={pageUrl(item.href)} key={item.href}>{item.label}</a>
-              ))}
+          <div className="footer-grid-4">
+            <nav aria-label="Discover Saksouk">
+              <small>DISCOVER SAKSOUK</small>
+              {content.footer.discover.map(item => <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>)}
             </nav>
-            <div className="footer-contact">
-              <small>Contact</small>
-              <span>{content.contact.phone}</span>
-              <span>{content.contact.email}</span>
+            <nav aria-label="What We Do">
+              <small>WHAT WE DO</small>
+              {content.footer.whatWeDo.map(item => <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>)}
+            </nav>
+            <nav aria-label="Useful Links">
+              <small>USEFUL LINKS</small>
+              {content.footer.usefulLinks.map(item => <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>)}
+            </nav>
+            <div className="footer-contact-info">
+              <small>CONTACT US</small>
+              <div className="contact-row">
+                <Phone size={16} strokeWidth={2} />
+                <span>{content.contact.phone}</span>
+              </div>
+              <div className="contact-row">
+                <MapPin size={16} strokeWidth={2} />
+                <span style={{ whiteSpace: 'pre-line', lineHeight: 1.6 }}>{content.footer.address}</span>
+              </div>
             </div>
           </div>
         </div>

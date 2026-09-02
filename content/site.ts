@@ -1,20 +1,29 @@
 export const siteContent = {
   company: { name: 'Saksouk Drugstore', location: 'Syria', descriptor: 'Pharmaceutical storage, supply & distribution' },
   navigation: [
-    { label: 'Home', href: '/' }, { label: 'Products', href: '/products' },
-    { label: 'Expertise', href: '/expertise' }, { label: 'About', href: '/#about' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'Home', href: '/' },
+    { 
+      label: 'Products & Expertise', 
+      href: '#',
+      dropdown: [
+        { label: 'Pharmaceutical', href: '/products#pharmaceutical' },
+        { label: 'Cosmetic', href: '/products#cosmetic' },
+        { label: 'Expertise', href: '/expertise' }
+      ]
+    },
+    { label: 'About Us', href: '/#about' },
+    { label: 'Get in touch', href: '/#contact' },
   ],
   hero: {
     eyebrow: 'Pharmaceutical supply · Syria',
-    headline: ['Pharmaceutical supply,', 'built on reliability.'],
-    body: 'Saksouk Drugstore supports the healthcare supply chain through dependable pharmaceutical storage, supply and distribution.',
+    headline: ['The leader in delivering', 'valuable pharmaceutical services.'],
+    body: 'Saksouk collaborates with local and international partners to develop, launch, and expand pharmaceutical businesses in Syria and the wider region.',
   },
   about: {
-    eyebrow: 'About Saksouk',
-    title: ['Reliable pharmaceutical supply', 'starts with responsible handling.'],
-    lead: 'Saksouk Drugstore operates within the pharmaceutical supply chain, supporting healthcare providers with dependable access to medicines and healthcare products.',
-    body: 'Our work is centered on responsible storage, careful handling, coordinated supply and professional relationships across the healthcare sector.',
+    eyebrow: 'About Us',
+    title: ['Delivering essential pharmaceuticals,', 'efficiently and reliably.'],
+    lead: 'SAKSOUK is one of the fastest-growing companies in Syria\'s healthcare sector.',
+    body: 'We distribute and promote a wide range of high-quality generic medicines, in-licensed pharmaceutical products, and nutraceuticals. Driven by our mission to deliver essential healthcare products efficiently, we continuously enhance our capabilities to support better health outcomes.',
   },
   metrics: [
     { value: 3, label: 'Core supply stages', detail: 'Storage · Handling · Distribution' },
@@ -22,11 +31,11 @@ export const siteContent = {
     { value: 4, label: 'Operating principles', detail: 'Reliability · Responsibility · Clarity · Trust' },
     { value: 1, label: 'Connected operation', detail: 'From product receipt to dispatch' },
   ],
-  // TODO: confirm final capability scope with the client.
+  // Extracted from Core Services in PDF
   capabilities: [
-    { title: 'Pharmaceutical Distribution', image: '/images/pharma-cold-chain-v3.jpg', alt: 'Pharmaceutical cold-chain staff preparing a temperature-controlled dispatch', description: 'Dependable movement of pharmaceutical products through the healthcare supply chain.' },
-    { title: 'Medicine Storage', image: '/images/pharma-automation-v3.jpg', alt: 'Modern automated pharmaceutical storage and picking station', description: 'Organized storage and responsible handling for pharmaceutical products.' },
-    { title: 'Inventory & Supply Support', image: '/images/pharma-quality-v3.jpg', alt: 'Barcode verification of pharmaceutical products before distribution', description: 'Structured inventory coordination supporting pharmacies and healthcare organizations.' },
+    { title: 'Pharmaceutical Distribution', image: '/images/pharma-cold-chain-v3.jpg', alt: 'Pharmaceutical supply', description: 'Reliable supply chains for finished products, APIs, excipients & packaging materials.' },
+    { title: 'Business & Product Development', image: '/images/pharma-automation-v3.jpg', alt: 'Business strategy', description: 'Helping companies launch new products and grow their footprint with strategic business development.' },
+    { title: 'Regulatory Affairs', image: '/images/pharma-quality-v3.jpg', alt: 'Regulatory compliance', description: 'Simplifying regulatory processes with dossier preparation, local filings, and variation management.' },
   ],
   operations: {
     eyebrow: 'Operations', title: ['From storage', 'to delivery.'],
@@ -38,16 +47,33 @@ export const siteContent = {
     ],
   },
   audiences: [
-    { title: 'Pharmacies', text: 'Dependable access to pharmaceutical products backed by professional supply and distribution support.' },
-    { title: 'Healthcare Institutions', text: 'Structured pharmaceutical supply for organizations that depend on consistency and responsible handling.' },
-    { title: 'Industry Partners', text: 'Professional local support for pharmaceutical companies and suppliers.' },
+    { title: 'Local & Regional Manufacturers', text: 'Supporting pharmaceutical companies with distribution, raw material supply, and facility compliance.' },
+    { title: 'International Companies', text: 'Enabling global partners to establish operations in Syria through local representation and market entry support.' },
+    { title: 'Healthcare Distributors', text: 'Providing distributors and wholesalers with a broad range of high-quality generic medicines and nutraceuticals.' },
   ],
-  partners: [], // Hidden until client-approved partner logos are supplied.
-  principles: ['Reliable Supply', 'Responsible Handling', 'Clear Communication', 'Long-Term Relationships'],
+  partners: ['Ibn-Hayan', 'Medico', 'Almashreq', 'Elssad Pharma', 'Shifa', 'Kimi', 'Biomed', 'Mediotec'],
+  principles: ['Excellence', 'Integrity', 'Leadership', 'Passion'],
   contact: {
     title: ["Let's keep healthcare", 'moving.'],
-    body: 'For supply, distribution or partnership inquiries, speak with the Saksouk team.',
-    phone: 'Phone to be confirmed', email: 'Email to be confirmed',
+    body: 'For supply, distribution or partnership inquiries, get in touch with the Saksouk team.',
+    phone: '+961 1 396 000', email: 'info@saksouk.com',
+  },
+  footer: {
+    discover: [
+      { label: 'About Us', href: '/#about' },
+      { label: 'Partners', href: '/#partners' },
+    ],
+    whatWeDo: [
+      { label: 'Pharmaceutical', href: '/products#pharmaceutical' },
+      { label: 'Cosmetic', href: '/products#cosmetic' },
+      { label: 'Expertise', href: '/expertise' },
+    ],
+    usefulLinks: [
+      { label: 'News & Initiatives', href: '/news' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Get in touch', href: '/#contact' },
+    ],
+    address: 'Badaro, Sami El Solh Street, Jamil Kfoury Building\nP.O. Box: 11-9073 Riad El Solh\nPostal Code 1107 2280 Beirut-Lebanon',
   },
   products: {
     eyebrow: 'Products',
