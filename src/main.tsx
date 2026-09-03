@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { ExpertisePage } from '@/components/expertise-page';
 import { ProductsPage } from '@/components/products-page';
 import { SaksoukSite } from '@/components/saksouk-site';
+import { LanguageProvider } from '@/components/language-provider';
 import '@/app/globals.css';
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -24,5 +25,9 @@ if (route.startsWith('/products')) {
 document.title = title;
 
 createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>{page}</React.StrictMode>,
+  <React.StrictMode>
+    <LanguageProvider>
+      {page}
+    </LanguageProvider>
+  </React.StrictMode>,
 );
