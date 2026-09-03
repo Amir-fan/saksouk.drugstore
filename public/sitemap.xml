@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://amir-fan.github.io/saksouk.drugstore/</loc></url>
-  <url><loc>https://amir-fan.github.io/saksouk.drugstore/products/</loc></url>
+  <url><loc>https://amir-fan.github.io/saksouk.drugstore/products/medicine/</loc></url>
+  <url><loc>https://amir-fan.github.io/saksouk.drugstore/products/cosmetics/</loc></url>
+  <url><loc>https://amir-fan.github.io/saksouk.drugstore/products/supplements/</loc></url>
   <url><loc>https://amir-fan.github.io/saksouk.drugstore/expertise/</loc></url>
+  <url><loc>https://amir-fan.github.io/saksouk.drugstore/about/</loc></url>
+  <url><loc>https://amir-fan.github.io/saksouk.drugstore/news/</loc></url>
+  <url><loc>https://amir-fan.github.io/saksouk.drugstore/careers/</loc></url>
+  <url><loc>https://amir-fan.github.io/saksouk.drugstore/partners/</loc></url>
 </urlset>

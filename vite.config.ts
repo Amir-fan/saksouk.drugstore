@@ -17,8 +17,14 @@ export default defineConfig({
     rolldownOptions: {
       input: {
         home: resolve(process.cwd(), 'index.html'),
-        products: resolve(process.cwd(), 'products/index.html'),
+        medicine: resolve(process.cwd(), 'products/medicine/index.html'),
+        cosmetics: resolve(process.cwd(), 'products/cosmetics/index.html'),
+        supplements: resolve(process.cwd(), 'products/supplements/index.html'),
         expertise: resolve(process.cwd(), 'expertise/index.html'),
+        about: resolve(process.cwd(), 'about/index.html'),
+        news: resolve(process.cwd(), 'news/index.html'),
+        careers: resolve(process.cwd(), 'careers/index.html'),
+        partners: resolve(process.cwd(), 'partners/index.html'),
       },
     },
   },

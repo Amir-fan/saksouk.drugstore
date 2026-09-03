@@ -5,7 +5,8 @@ import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTra
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
-import { assetUrl, pageUrl } from '@/lib/site-paths';
+import { expandedPages } from '@/content/pages';
+import { assetUrl, pageUrl, WHATSAPP_URL } from '@/lib/site-paths';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -14,7 +15,8 @@ function Brand() {
 }
 
 export function ArrowLink({ href, children, primary = false }: { href: string; children: React.ReactNode; primary?: boolean }) {
-  return <a href={pageUrl(href)} className={`button ${primary ? 'button-primary' : 'button-light'}`}><span>{children}</span><i><ArrowUpRight size={16} strokeWidth={1.8} /></i></a>;
+  const external = /^https?:/i.test(href);
+  return <a href={pageUrl(href)} className={`button ${primary ? 'button-primary' : 'button-light'}`} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}><span>{children}</span><i><ArrowUpRight size={16} strokeWidth={1.8} /></i></a>;
 }
 
 function LanguageSelector() {
@@ -58,10 +60,11 @@ function LanguageSelector() {
 export function SiteHeader() {
   const { content } = useLanguage();
   const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false);
+  const contactItem = content.navigation.at(-1);
   const { scrollYProgress } = useScroll();
   useEffect(() => { const handle = () => setScrolled(window.scrollY > 18); handle(); window.addEventListener('scroll', handle, { passive: true }); return () => window.removeEventListener('scroll', handle); }, []);
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [open]);
-  return <header className={`header ${scrolled ? 'header-scrolled' : ''}`}><motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} /><div className="nav-wrap"><Brand /><nav className="desktop-nav" aria-label="Primary navigation">{content.navigation.map((item) => {
+  return <header className={`header ${scrolled ? 'header-scrolled' : ''}`}><motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} /><div className="nav-wrap"><Brand /><nav className="desktop-nav" aria-label="Primary navigation">{content.navigation.slice(0, -1).map((item) => {
     if ('dropdown' in item && item.dropdown) {
       return (
         <div className="nav-dropdown-wrapper" key={item.label}>
@@ -73,7 +76,7 @@ export function SiteHeader() {
       );
     }
     return <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>;
-  })}</nav><div className="desktop-cta"><LanguageSelector /><ArrowLink href="/#contact" primary>{content.navigation.find(n => n.href.includes('contact'))?.label || 'Contact'}</ArrowLink></div><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button></div><AnimatePresence>{open && <motion.nav className="mobile-nav" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} aria-label="Mobile navigation"><div className="mobile-language"><LanguageSelector /></div>{content.navigation.map((item) => {
+  })}</nav><div className="desktop-cta"><LanguageSelector /><ArrowLink href={WHATSAPP_URL} primary>{contactItem?.label || 'Contact'}</ArrowLink></div><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button></div><AnimatePresence>{open && <motion.nav className="mobile-nav" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} aria-label="Mobile navigation"><div className="mobile-language"><LanguageSelector /></div>{content.navigation.map((item) => {
     if ('dropdown' in item && item.dropdown) {
       return (
         <div key={item.label} className="mobile-nav-group">
@@ -166,7 +169,7 @@ function Metrics() {
 function Hero() {
   const { content } = useLanguage();
   const reduce = useReducedMotion();
-  return <section className="hero" id="home"><div className="hero-media"><motion.img src={assetUrl('/images/pharma-hero-v3.jpg')} alt="Modern pharmaceutical distribution center with automated medicine handling" fetchPriority="high" decoding="async" initial={reduce ? false : { scale: 1.045 }} animate={{ scale: 1 }} transition={{ duration: 1.8, ease }} /><div className="hero-overlay" /><div className="hero-content"><motion.p className="eyebrow" initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .15, duration: .7 }}>{content.hero.eyebrow}</motion.p><h1>{content.hero.headline.map((line, index) => <span className="line-mask" key={index}><motion.span initial={reduce ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ delay: .18 + index * .09, duration: .9, ease }}>{line}</motion.span></span>)}</h1><motion.div className="hero-lower" initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .55, duration: .75, ease }}><p>{content.hero.body}</p><div className="hero-actions"><ArrowLink href="#contact" primary>{content.navigation.find(n => n.href.includes('contact'))?.label || 'Contact'}</ArrowLink><ArrowLink href="#about">{content.navigation.find(n => n.href.includes('about'))?.label || 'About'}</ArrowLink></div></motion.div></div></div></section>;
+  return <section className="hero" id="home"><div className="hero-media"><motion.img src={assetUrl('/images/pharma-hero-v3.jpg')} alt="Modern pharmaceutical distribution center with automated medicine handling" fetchPriority="high" decoding="async" initial={reduce ? false : { scale: 1.045 }} animate={{ scale: 1 }} transition={{ duration: 1.8, ease }} /><div className="hero-overlay" /><div className="hero-content"><motion.p className="eyebrow" initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .15, duration: .7 }}>{content.hero.eyebrow}</motion.p><h1>{content.hero.headline.map((line, index) => <span className="line-mask" key={index}><motion.span initial={reduce ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ delay: .18 + index * .09, duration: .9, ease }}>{line}</motion.span></span>)}</h1><motion.div className="hero-lower" initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .55, duration: .75, ease }}><p>{content.hero.body}</p><div className="hero-actions"><ArrowLink href={WHATSAPP_URL} primary>{content.navigation.at(-1)?.label || 'Contact'}</ArrowLink><ArrowLink href="#about">{content.navigation.find(n => n.href.includes('about'))?.label || 'About'}</ArrowLink></div></motion.div></div></div></section>;
 }
 
 function About() {
@@ -176,7 +179,7 @@ function About() {
 
 function Capabilities() {
   const { content, lang } = useLanguage();
-  return <section className="capabilities section" id="capabilities"><div className="container"><Reveal className="section-heading centered"><SectionLabel>{lang === 'ar' ? 'ما نقوم به' : 'What we do'}</SectionLabel><ScrollHeading lines={[lang === 'ar' ? 'القدرات' : 'Capabilities']} /><p>{lang === 'ar' ? 'دعم تخزين وتوريد وتوزيع الأدوية.' : 'Pharmaceutical storage, supply and distribution support.'}</p></Reveal><div className="capability-grid">{content.capabilities.map((item, index) => <Reveal key={item.title} delay={index * .07}><motion.article className="capability-card" whileHover={{ y: -8 }} transition={{ duration: .35, ease }}><div className="capability-image"><motion.img src={assetUrl(item.image)} alt={item.alt} loading="lazy" decoding="async" whileHover={{ scale: 1.045 }} transition={{ duration: .6, ease }} /></div><div className="capability-content"><div><h3>{item.title}</h3><p>{item.description}</p></div><a href="#contact" aria-label={`Inquire about ${item.title}`}><ArrowUpRight size={19} /></a></div></motion.article></Reveal>)}</div></div></section>;
+  return <section className="capabilities section" id="capabilities"><div className="container"><Reveal className="section-heading centered"><SectionLabel>{lang === 'ar' ? 'ما نقوم به' : 'What we do'}</SectionLabel><ScrollHeading lines={[lang === 'ar' ? 'القدرات' : 'Capabilities']} /><p>{lang === 'ar' ? 'دعم تخزين وتوريد وتوزيع الأدوية.' : 'Pharmaceutical storage, supply and distribution support.'}</p></Reveal><div className="capability-grid">{content.capabilities.map((item, index) => <Reveal key={item.title} delay={index * .07}><motion.article className="capability-card" whileHover={{ y: -8 }} transition={{ duration: .35, ease }}><div className="capability-image"><motion.img src={assetUrl(item.image)} alt={item.alt} loading="lazy" decoding="async" whileHover={{ scale: 1.045 }} transition={{ duration: .6, ease }} /></div><div className="capability-content"><div><h3>{item.title}</h3><p>{item.description}</p></div><a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label={`Inquire about ${item.title}`}><ArrowUpRight size={19} /></a></div></motion.article></Reveal>)}</div></div></section>;
 }
 
 function Partners() {
@@ -194,7 +197,6 @@ function Partners() {
     { src: '/images/companies (6).jpeg', alt: 'Partner' },
     { src: '/images/companies (7).jpeg', alt: 'Partner' },
   ];
-  const row = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
     <section className="partners section" id="partners" aria-label="Our Partners">
       <div className="container">
@@ -204,12 +206,10 @@ function Partners() {
           <p>{lang === 'ar' ? 'نتعاون مع العلامات التجارية الرائدة في مجال الأدوية والمكملات الغذائية عبر المنطقة.' : 'We collaborate with leading pharmaceutical, nutraceutical and wellness brands across the region.'}</p>
         </Reveal>
       </div>
-      <div className="partners-track-wrap">
-        <div className="partners-fade-left" aria-hidden />
-        <div className="partners-fade-right" aria-hidden />
-        <div className="partners-track">
-          {row.map((logo, i) => (
-            <div className="partner-card" key={i}>
+      <div className="container">
+        <div className="partners-grid">
+          {PARTNER_LOGOS.map((logo) => (
+            <div className="partner-card" key={logo.src}>
               <img src={assetUrl(logo.src)} alt={logo.alt} loading="lazy" decoding="async" />
             </div>
           ))}
@@ -217,6 +217,12 @@ function Partners() {
       </div>
     </section>
   );
+}
+
+function Insights() {
+  const { lang } = useLanguage();
+  const posts = expandedPages[lang].news.posts;
+  return <section className="insights-preview section"><div className="container"><Reveal className="preview-heading"><div><SectionLabel>{lang === 'ar' ? 'رؤى صحية' : 'Health insights'}</SectionLabel><h2>{lang === 'ar' ? 'قراءات حول الأدوية والصحة.' : 'Reading medicine and health.'}</h2></div><a href={pageUrl('/news')} className="text-link">{lang === 'ar' ? 'كل الأخبار والرؤى' : 'All news & insights'} <ArrowRight size={17} /></a></Reveal><div className="news-grid news-grid-compact">{posts.map((post, index) => <Reveal key={post.href} delay={index * .07}><article className="news-card"><a className="news-cover" href={post.href} target="_blank" rel="noreferrer"><img src={assetUrl(post.image)} alt="" /><span>{post.category}</span></a><div className="news-card-copy"><div className="news-meta"><span>{post.date}</span><span>{post.source}</span></div><h2>{post.title}</h2><p>{post.excerpt}</p><a className="news-link" href={post.href} target="_blank" rel="noreferrer">{lang === 'ar' ? 'اقرأ من المصدر' : 'Read the source'} <ArrowUpRight size={16} /></a></div></article></Reveal>)}</div></div></section>;
 }
 
 function Operations() {
@@ -232,12 +238,12 @@ function Audiences() {
 
 function Principles() {
   const { content, lang } = useLanguage();
-  return <section className="principles section"><div className="container principles-panel"><ImageReveal className="principles-image" src="/images/pharma-hero-v3.jpg" alt="Modern pharmaceutical distribution team and automated conveyor" /><div className="principles-copy"><Reveal><SectionLabel>{lang === 'ar' ? 'لماذا سكسوك' : 'Why Saksouk'}</SectionLabel><ScrollHeading lines={[lang === 'ar' ? 'الموثوقية جزء أساسي' : 'Dependability is', lang === 'ar' ? 'من إجراءاتنا.' : 'built into the process.']} /><p>{lang === 'ar' ? 'يتشكل الإمداد الدوائي الاحترافي من خلال طريقة التعامل مع كل مرحلة — من التنسيق الواضح إلى الخدمة المتسقة.' : 'Professional pharmaceutical supply is shaped by the way each stage is handled—from clear coordination to consistent service.'}</p></Reveal><ul>{content.principles.map((principle, index) => <Reveal key={principle} delay={index * .06}><motion.li whileHover={{ y: -4, borderColor: '#cfd2ff' }} transition={{ duration: .25 }}><i><Check size={15} strokeWidth={2} /></i>{principle}</motion.li></Reveal>)}</ul></div></div></section>;
+  return <section className="principles section"><div className="container principles-panel"><ImageReveal className="principles-image" src="/images/business-trust.png" alt={lang === 'ar' ? 'شريكان في علاقة أعمال موثوقة' : 'Business partners building a trusted relationship'} /><div className="principles-copy"><Reveal><SectionLabel>{lang === 'ar' ? 'لماذا سكسوك' : 'Why Saksouk'}</SectionLabel><ScrollHeading lines={[lang === 'ar' ? 'الموثوقية جزء أساسي' : 'Dependability is', lang === 'ar' ? 'من إجراءاتنا.' : 'built into the process.']} /><p>{lang === 'ar' ? 'يتشكل الإمداد الدوائي الاحترافي من خلال طريقة التعامل مع كل مرحلة — من التنسيق الواضح إلى الخدمة المتسقة.' : 'Professional pharmaceutical supply is shaped by the way each stage is handled—from clear coordination to consistent service.'}</p></Reveal><ul>{content.principles.map((principle, index) => <Reveal key={principle} delay={index * .06}><motion.li whileHover={{ y: -4, borderColor: '#cfd2ff' }} transition={{ duration: .25 }}><i><Check size={15} strokeWidth={2} /></i>{principle}</motion.li></Reveal>)}</ul></div></div></section>;
 }
 
 function Contact() {
   const { content, lang } = useLanguage();
-  return <section className="contact section" id="contact"><div className="container"><div className="contact-banner"><motion.img src={assetUrl('/images/pharma-cold-chain-v3.jpg')} alt="Pharmaceutical cold-chain dispatch operation" loading="lazy" decoding="async" initial={{ scale: 1.08 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, ease }} /><div className="contact-overlay" /><Reveal className="contact-content"><SectionLabel>{lang === 'ar' ? 'استفسارات الأعمال' : 'Business inquiries'}</SectionLabel><ScrollHeading lines={content.contact.title} /><ScrollText text={content.contact.body} /><ArrowLink href={`mailto:${content.contact.email}`} primary>{lang === 'ar' ? 'تواصل مع فريقنا' : 'Contact our team'}</ArrowLink></Reveal></div></div></section>;
+  return <section className="contact section" id="contact"><div className="container"><div className="contact-banner"><motion.img src={assetUrl('/images/business-partnership.png')} alt={lang === 'ar' ? 'اجتماع شراكة أعمال مع فريق سكسوك' : 'Business partnership meeting with the Saksouk team'} loading="lazy" decoding="async" initial={{ scale: 1.08 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, ease }} /><div className="contact-overlay" /><Reveal className="contact-content"><SectionLabel>{lang === 'ar' ? 'استفسارات الأعمال' : 'Business inquiries'}</SectionLabel><ScrollHeading lines={content.contact.title} /><ScrollText text={content.contact.body} /><ArrowLink href={WHATSAPP_URL} primary>{lang === 'ar' ? 'تواصل مع فريقنا' : 'Contact our team'}</ArrowLink></Reveal></div></div></section>;
 }
 
 export function SiteFooter() {
@@ -266,10 +272,10 @@ export function SiteFooter() {
               <small>{lang === 'ar' ? 'تواصل معنا' : 'CONTACT US'}</small>
               <div className="contact-row">
                 <Phone size={16} strokeWidth={2} />
-                <span>
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
                   <span dir="ltr">{content.contact.phone}</span>
                   <span style={{ display: 'block', color: '#858da4', fontSize: '12px', marginTop: '4px' }}>{lang === 'ar' ? 'الهاتف وواتساب' : 'Phone & WhatsApp'}</span>
-                </span>
+                </a>
               </div>
               <div className="contact-row">
                 <MapPin size={16} strokeWidth={2} />
@@ -311,6 +317,7 @@ export function SaksoukSite() {
       <Metrics />
       <Capabilities />
       <Partners />
+      <Insights />
       <Operations />
       <Audiences />
       <Principles />
