@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, ArrowUpRight, Check, MapPin, Menu, Minus, Phone, Plus, X, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, Mail, MapPin, Menu, Minus, Phone, Plus, X, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
@@ -183,19 +183,10 @@ function Capabilities() {
 }
 
 function Partners() {
-  const { content, lang } = useLanguage();
+  const { lang } = useLanguage();
   const PARTNER_LOGOS = [
-    { src: '/images/companies (1).png',  alt: content.partners[0] || 'Partner' },
-    { src: '/images/companies (2).png',  alt: content.partners[1] || 'Partner' },
-    { src: '/images/companies (3).png',  alt: content.partners[5] || 'Partner' },
-    { src: '/images/companies (4).png',  alt: 'Partner' },
-    { src: '/images/companies (1).jpeg', alt: 'Partner' },
-    { src: '/images/companies (2).jpeg', alt: 'Partner' },
-    { src: '/images/companies (3).jpeg', alt: 'Partner' },
-    { src: '/images/companies (4).jpeg', alt: 'Partner' },
-    { src: '/images/companies (5).jpeg', alt: 'Partner' },
-    { src: '/images/companies (6).jpeg', alt: 'Partner' },
-    { src: '/images/companies (7).jpeg', alt: 'Partner' },
+    ...Array.from({ length: 5 }, (_, index) => `/images/companies (${index + 1}).png`),
+    ...Array.from({ length: 10 }, (_, index) => `/images/companies (${index + 1}).jpeg`),
   ];
   return (
     <section className="partners section" id="partners" aria-label="Our Partners">
@@ -208,9 +199,9 @@ function Partners() {
       </div>
       <div className="container">
         <div className="partners-grid">
-          {PARTNER_LOGOS.map((logo) => (
-            <div className="partner-card" key={logo.src}>
-              <img src={assetUrl(logo.src)} alt={logo.alt} loading="lazy" decoding="async" />
+          {PARTNER_LOGOS.map((logo, index) => (
+            <div className="partner-card" key={logo}>
+              <img src={assetUrl(logo)} alt={lang === 'ar' ? `شعار الشركة الشريكة ${index + 1}` : `Partner company logo ${index + 1}`} loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
@@ -280,6 +271,10 @@ export function SiteFooter() {
               <div className="contact-row">
                 <MapPin size={16} strokeWidth={2} />
                 <span style={{ whiteSpace: 'pre-line', lineHeight: 1.6 }}>{content.footer.address}</span>
+              </div>
+              <div className="contact-row">
+                <Mail size={16} strokeWidth={2} />
+                <a href={`mailto:${content.contact.email}`} dir="ltr">{content.contact.email}</a>
               </div>
             </div>
           </div>

@@ -59,7 +59,7 @@ export const siteContent = {
     contact: {
       title: ["Let's keep healthcare", 'moving.'],
       body: 'For supply, distribution or partnership inquiries, get in touch with the Saksouk team.',
-      phone: '+963 930 035 040', email: 'info@saksouk.com',
+      phone: '+963 930 035 040', email: 'kh.ph.dr777@gmail.com',
     },
     footer: {
       discover: [
@@ -77,7 +77,7 @@ export const siteContent = {
         { label: 'Careers', href: '/careers' },
         { label: 'Get in touch', href: 'https://wa.me/963930035040' },
       ],
-      address: 'Badaro, Sami El Solh Street, Jamil Kfoury Building\nP.O. Box: 11-9073 Riad El Solh\nPostal Code 1107 2280 Beirut-Lebanon',
+      address: 'Syria, Idlib, Qusour Street\nNear Cartoon Hotel',
     },
     products: {
       eyebrow: 'Products',
@@ -164,7 +164,7 @@ export const siteContent = {
     contact: {
       title: ["لنُبقِ الرعاية الصحية", 'في تقدم مستمر.'],
       body: 'للاستفسارات المتعلقة بالتوريد، التوزيع أو الشراكات، يرجى التواصل مع فريق سكسوك.',
-      phone: '+963 930 035 040', email: 'info@saksouk.com',
+      phone: '+963 930 035 040', email: 'kh.ph.dr777@gmail.com',
     },
     footer: {
       discover: [
@@ -182,7 +182,7 @@ export const siteContent = {
         { label: 'الوظائف', href: '/careers' },
         { label: 'تواصل معنا', href: 'https://wa.me/963930035040' },
       ],
-      address: 'بدارو، شارع سامي الصلح، بناية جميل خفوري\nص.ب: 11-9073 رياض الصلح\nالرمز البريدي 1107 2280 بيروت - لبنان',
+      address: 'سوريا، إدلب، شارع القصور\nقرب فندق كارتون',
     },
     products: {
       eyebrow: 'المنتجات',
