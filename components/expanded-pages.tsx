@@ -47,7 +47,7 @@ function PageCta({ variant = 'partner' }: { variant?: 'partner' | 'career' }) {
   return (
     <section className="page-cta section">
       <div className="container page-cta-panel">
-        <img className="page-cta-image" src={assetUrl(career ? '/images/business-team.png' : '/images/business-partnership.png')} alt={career ? (lang === 'ar' ? 'فريق سكسوك في بيئة عمل تعاونية' : 'Saksouk team in a collaborative workplace') : (lang === 'ar' ? 'اجتماع شراكة أعمال' : 'Business partnership meeting')} />
+        <img className="page-cta-image" style={{ objectPosition: career ? 'center' : 'center 60%' }} src={assetUrl(career ? '/images/business-team.png' : '/images/business-partnership.png')} alt={career ? (lang === 'ar' ? 'فريق سكسوك في بيئة عمل تعاونية' : 'Saksouk team in a collaborative workplace') : (lang === 'ar' ? 'مصافحة خلال اجتماع شراكة أعمال' : 'Business partners shaking hands during a meeting')} />
         <div className="page-cta-overlay" />
         <div>
           <p className="section-label"><span />{career ? (lang === 'ar' ? 'الخطوة التالية' : 'Your next step') : (lang === 'ar' ? 'لنبدأ' : 'Start a conversation')}</p>

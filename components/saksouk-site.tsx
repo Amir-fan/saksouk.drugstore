@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, ArrowUpRight, Check, Mail, MapPin, Menu, Minus, Phone, Plus, X, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Award, Check, Compass, Heart, Mail, MapPin, Menu, Minus, Phone, Plus, ShieldCheck, X, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
@@ -229,7 +229,8 @@ function Audiences() {
 
 function Principles() {
   const { content, lang } = useLanguage();
-  return <section className="principles section"><div className="container principles-panel"><ImageReveal className="principles-image" src="/images/business-trust.png" alt={lang === 'ar' ? 'شريكان في علاقة أعمال موثوقة' : 'Business partners building a trusted relationship'} /><div className="principles-copy"><Reveal><SectionLabel>{lang === 'ar' ? 'لماذا سكسوك' : 'Why Saksouk'}</SectionLabel><ScrollHeading lines={[lang === 'ar' ? 'الموثوقية جزء أساسي' : 'Dependability is', lang === 'ar' ? 'من إجراءاتنا.' : 'built into the process.']} /><p>{lang === 'ar' ? 'يتشكل الإمداد الدوائي الاحترافي من خلال طريقة التعامل مع كل مرحلة — من التنسيق الواضح إلى الخدمة المتسقة.' : 'Professional pharmaceutical supply is shaped by the way each stage is handled—from clear coordination to consistent service.'}</p></Reveal><ul>{content.principles.map((principle, index) => <Reveal key={principle} delay={index * .06}><motion.li whileHover={{ y: -4, borderColor: '#cfd2ff' }} transition={{ duration: .25 }}><i><Check size={15} strokeWidth={2} /></i>{principle}</motion.li></Reveal>)}</ul></div></div></section>;
+  const principleIcons = [Award, ShieldCheck, Compass, Heart];
+  return <section className="principles section"><div className="container principles-panel"><ImageReveal className="principles-image" src="/images/business-trust.png" alt={lang === 'ar' ? 'شريكان في علاقة أعمال موثوقة' : 'Business partners building a trusted relationship'} /><div className="principles-copy"><Reveal><SectionLabel>{lang === 'ar' ? 'لماذا سكسوك' : 'Why Saksouk'}</SectionLabel><ScrollHeading lines={[lang === 'ar' ? 'الموثوقية جزء أساسي' : 'Dependability is', lang === 'ar' ? 'من إجراءاتنا.' : 'built into the process.']} /><p>{lang === 'ar' ? 'يتشكل الإمداد الدوائي الاحترافي من خلال طريقة التعامل مع كل مرحلة — من التنسيق الواضح إلى الخدمة المتسقة.' : 'Professional pharmaceutical supply is shaped by the way each stage is handled—from clear coordination to consistent service.'}</p></Reveal><ul>{content.principles.map((principle, index) => { const Icon = principleIcons[index] || Check; return <Reveal key={principle} delay={index * .06}><motion.li whileHover={{ y: -4, borderColor: '#cfd2ff' }} transition={{ duration: .25 }}><i><Icon size={16} strokeWidth={1.9} aria-hidden /></i>{principle}</motion.li></Reveal>; })}</ul></div></div></section>;
 }
 
 function Contact() {
