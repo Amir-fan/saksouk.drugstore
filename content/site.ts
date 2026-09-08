@@ -77,7 +77,7 @@ export const siteContent = {
         { label: 'Careers', href: '/careers' },
         { label: 'Get in touch', href: 'https://wa.me/963930035040' },
       ],
-      address: 'Syria, Idlib, Qusour Street\nNear Cartoon Hotel',
+      address: 'Syria, Idlib, Qusour Street\nNear Carlton Hotel',
     },
     products: {
       eyebrow: 'Products',
@@ -182,7 +182,7 @@ export const siteContent = {
         { label: 'الوظائف', href: '/careers' },
         { label: 'تواصل معنا', href: 'https://wa.me/963930035040' },
       ],
-      address: 'سوريا، إدلب، شارع القصور\nقرب فندق كارتون',
+      address: 'سوريا، إدلب، شارع القصور\nقرب فندق كارلتون',
     },
     products: {
       eyebrow: 'المنتجات',

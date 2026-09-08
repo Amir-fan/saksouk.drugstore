@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
+  ArrowDownAZ,
   ArrowRight,
   ArrowUpRight,
   BriefcaseBusiness,
   Building2,
   Check,
+  ChevronDown,
   Eye,
   Handshake,
   HeartPulse,
@@ -20,8 +22,10 @@ import {
   Sparkles,
   Target,
   Users,
+  X,
 } from 'lucide-react';
-import { motion, useReducedMotion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from './language-provider';
 import { ArrowLink, SiteFooter, SiteHeader } from './saksouk-site';
 import { expandedPages } from '../content/pages';
@@ -110,40 +114,158 @@ export function PartnerPage() {
 type ProductKind = keyof typeof expandedPages.en.products;
 const productIcons = { medicine: Pill, cosmetics: Sparkles, supplements: Leaf };
 
+type CatalogProduct = {
+  id: string;
+  name: string;
+  officialName?: string;
+  company: { en: string; ar: string };
+  category: 'medicine' | 'cosmetics';
+  group: 'national' | 'cosmetics';
+  description?: string;
+  composition?: string;
+  indication?: string;
+  image?: string;
+};
+
+const PRODUCTS_PER_PAGE = 24;
+
+type CatalogueOption = { value: string; label: string };
+
+function CatalogueFilter({
+  label,
+  value,
+  options,
+  icon: Icon,
+  onChange,
+  menuClassName = '',
+}: {
+  label: string;
+  value: string;
+  options: CatalogueOption[];
+  icon: LucideIcon;
+  onChange: (value: string) => void;
+  menuClassName?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const filterRef = useRef<HTMLDivElement>(null);
+  const selected = options.find((option) => option.value === value) ?? options[0];
+
+  useEffect(() => {
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!filterRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('pointerdown', closeOnOutsideClick);
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutsideClick);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, []);
+
+  return (
+    <div className={`catalogue-filter ${open ? 'is-open' : ''}`} ref={filterRef}>
+      <button type="button" className="catalogue-filter-trigger" aria-haspopup="true" aria-expanded={open} onClick={() => setOpen((current) => !current)}>
+        <span className="catalogue-filter-icon"><Icon size={17} /></span>
+        <span className="catalogue-filter-copy"><small>{label}</small><strong>{selected.label}</strong></span>
+        <ChevronDown className="catalogue-filter-chevron" size={16} />
+      </button>
+      <AnimatePresence>
+        {open && <motion.fieldset className={`catalogue-filter-menu ${menuClassName}`} aria-label={label} initial={{ opacity: 0, y: 7, scale: .98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 5, scale: .98 }} transition={{ duration: .16 }}>
+          {options.map((option) => <button type="button" aria-pressed={option.value === value} className={option.value === value ? 'is-selected' : ''} key={option.value} onClick={() => { onChange(option.value); setOpen(false); }}><span>{option.label}</span>{option.value === value && <Check size={15} />}</button>)}
+        </motion.fieldset>}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function ProductCatalogue({ kind, category }: { kind: ProductKind; category: string }) {
   const { lang } = useLanguage();
   const [query, setQuery] = useState('');
   const [company, setCompany] = useState('all');
-  const [availability, setAvailability] = useState('all');
   const [letter, setLetter] = useState('all');
+  const [sort, setSort] = useState<'name' | 'company'>('name');
+  const [page, setPage] = useState(1);
+  const [products, setProducts] = useState<CatalogProduct[]>([]);
+  const [loading, setLoading] = useState(true);
   const copy = lang === 'ar' ? {
-    eyebrow: 'كتالوج المنتجات', title: `استكشف ${category}`, intro: 'استخدم البحث والفلاتر للوصول إلى المنتجات عند إضافتها إلى الكتالوج.',
-    search: 'ابحث باسم المنتج', company: 'جميع الشركات', local: 'شركات محلية', international: 'شركات دولية',
-    availability: 'كل حالات التوفر', available: 'متوفر', soon: 'قريباً', all: 'الكل',
-    emptyTitle: 'سيتم إضافة المنتجات قريباً', emptyText: 'نعمل حالياً على تجهيز هذا الكتالوج. تواصل مع فريقنا للاستفسار عن المنتجات المتوفرة حالياً.', reset: 'إعادة ضبط الفلاتر', inquire: 'استفسر عن المنتجات',
+    eyebrow: 'كتالوج المنتجات', title: `استكشف ${category}`, intro: 'ابحث في الأصناف الواردة من الشركات، وصفِّ النتائج حسب الشركة أو الحرف الأول.',
+    search: 'ابحث باسم المنتج أو الشركة', clearSearch: 'مسح البحث', companyLabel: 'الشركة', company: 'جميع الشركات', initialLabel: 'الحرف الأول', allLetters: 'كل الحروف', sortLabel: 'الترتيب', sort: 'حسب الاسم', sortCompany: 'حسب الشركة', all: 'الكل',
+    national: 'الشركات الوطنية', cosmetics: 'الكوزمتك', products: 'صنف', reset: 'إعادة ضبط الفلاتر', inquire: 'استفسر عن هذا الصنف',
+    noResults: 'لا توجد نتائج مطابقة', noResultsText: 'جرّب تغيير عبارة البحث أو إزالة أحد الفلاتر.',
+    emptyTitle: 'لم تتم إضافة أصناف لهذه الفئة', emptyText: 'لم تتضمن الملفات المرفقة قائمة مستقلة لهذه الفئة. تواصل مع فريقنا للاستفسار عن الأصناف المتوفرة.',
+    previous: 'السابق', next: 'التالي', page: 'صفحة', of: 'من', composition: 'التركيب', indication: 'الاستخدام', loading: 'جارٍ تحميل الأصناف…',
   } : {
-    eyebrow: 'Product catalogue', title: `Explore ${category}`, intro: 'Use search and filters to find products as they are added to the catalogue.',
-    search: 'Search by product name', company: 'All companies', local: 'Local companies', international: 'International companies',
-    availability: 'All availability', available: 'Available', soon: 'Coming soon', all: 'All',
-    emptyTitle: 'Products will be added soon', emptyText: 'We are currently preparing this catalogue. Contact our team to ask about products available today.', reset: 'Reset filters', inquire: 'Ask about products',
+    eyebrow: 'Product catalogue', title: `Explore ${category}`, intro: 'Search the supplied product lists and filter the catalogue by company or initial letter.',
+    search: 'Search by product or company', clearSearch: 'Clear search', companyLabel: 'Company', company: 'All companies', initialLabel: 'Initial', allLetters: 'All letters', sortLabel: 'Sort by', sort: 'Product name', sortCompany: 'Company name', all: 'All',
+    national: 'National companies', cosmetics: 'Cosmetics', products: 'products', reset: 'Reset filters', inquire: 'Ask about this product',
+    noResults: 'No matching products', noResultsText: 'Try a different search term or clear one of the filters.',
+    emptyTitle: 'No products were supplied for this category', emptyText: 'The provided files did not include a separate list for this category. Contact our team to ask what is currently available.',
+    previous: 'Previous', next: 'Next', page: 'Page', of: 'of', composition: 'Composition', indication: 'Use', loading: 'Loading products…',
   };
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  const reset = () => { setQuery(''); setCompany('all'); setAvailability('all'); setLetter('all'); };
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(assetUrl(`/data/products-${kind}.json`), { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Unable to load ${kind} products`);
+        return response.json() as Promise<CatalogProduct[]>;
+      })
+      .then((data) => setProducts(data))
+      .catch((error: unknown) => { if (!(error instanceof DOMException && error.name === 'AbortError')) setProducts([]); })
+      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
+  }, [kind]);
+  const companies = useMemo(() => Array.from(new Map(products.map((product) => [product.company.en, product.company])).values()).sort((a, b) => a[lang].localeCompare(b[lang], lang)), [lang, products]);
+  const alphabet = useMemo(() => Array.from(new Set(products.map((product) => product.name.trim().charAt(0).toLocaleUpperCase()).filter(Boolean))).sort((a, b) => a.localeCompare(b, lang)), [lang, products]);
+  const filteredProducts = useMemo(() => {
+    const normalizedQuery = query.trim().toLocaleLowerCase();
+    return products
+      .filter((product) => company === 'all' || product.company.en === company)
+      .filter((product) => letter === 'all' || product.name.trim().charAt(0).toLocaleUpperCase() === letter)
+      .filter((product) => !normalizedQuery || [product.name, product.officialName, product.company.en, product.company.ar, product.description, product.composition, product.indication].filter(Boolean).some((value) => value!.toLocaleLowerCase().includes(normalizedQuery)))
+      .sort((a, b) => sort === 'company' ? a.company[lang].localeCompare(b.company[lang], lang) || a.name.localeCompare(b.name, lang) : a.name.localeCompare(b.name, lang));
+  }, [company, lang, letter, products, query, sort]);
+  const pageCount = Math.max(1, Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE));
+  const currentPage = Math.min(page, pageCount);
+  const visibleProducts = filteredProducts.slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE);
+  const reset = () => { setQuery(''); setCompany('all'); setLetter('all'); setSort('name'); setPage(1); };
+  const companyOptions = useMemo<CatalogueOption[]>(() => [{ value: 'all', label: copy.company }, ...companies.map((item) => ({ value: item.en, label: item[lang] }))], [companies, copy.company, lang]);
+  const letterOptions = useMemo<CatalogueOption[]>(() => [{ value: 'all', label: copy.allLetters }, ...alphabet.map((item) => ({ value: item, label: item }))], [alphabet, copy.allLetters]);
+  const sortOptions = useMemo<CatalogueOption[]>(() => [{ value: 'name', label: copy.sort }, { value: 'company', label: copy.sortCompany }], [copy.sort, copy.sortCompany]);
+  const selectedCompany = companyOptions.find((option) => option.value === company)?.label;
+  const hasActiveFilters = Boolean(query || company !== 'all' || letter !== 'all' || sort !== 'name');
   return (
     <section className={`catalogue-section section catalogue-${kind}`}>
       <div className="container">
         <div className="catalogue-heading"><div><p className="section-label"><span />{copy.eyebrow}</p><h2>{copy.title}</h2></div><p>{copy.intro}</p></div>
         <div className="catalogue-shell">
           <div className="catalogue-toolbar">
-            <label className="catalogue-search"><Search size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={copy.search} aria-label={copy.search} /></label>
-            <label className="catalogue-select"><SlidersHorizontal size={17} /><select value={company} onChange={(event) => setCompany(event.target.value)} aria-label={copy.company}><option value="all">{copy.company}</option><option value="local">{copy.local}</option><option value="international">{copy.international}</option></select></label>
-            <label className="catalogue-select"><select value={availability} onChange={(event) => setAvailability(event.target.value)} aria-label={copy.availability}><option value="all">{copy.availability}</option><option value="available">{copy.available}</option><option value="soon">{copy.soon}</option></select></label>
+            <label className="catalogue-search"><Search size={18} /><input type="search" autoComplete="off" enterKeyHint="search" value={query} onChange={(event) => { setQuery(event.target.value); setPage(1); }} placeholder={copy.search} aria-label={copy.search} />{query && <button type="button" aria-label={copy.clearSearch} onClick={() => { setQuery(''); setPage(1); }}><X size={15} /></button>}</label>
+            <div className="catalogue-filter-controls">
+              <CatalogueFilter label={copy.companyLabel} value={company} options={companyOptions} icon={Building2} onChange={(value) => { setCompany(value); setPage(1); }} />
+              <CatalogueFilter label={copy.initialLabel} value={letter} options={letterOptions} icon={ArrowDownAZ} onChange={(value) => { setLetter(value); setPage(1); }} menuClassName="catalogue-letter-menu" />
+              <CatalogueFilter label={copy.sortLabel} value={sort} options={sortOptions} icon={SlidersHorizontal} onChange={(value) => { setSort(value as 'name' | 'company'); setPage(1); }} />
+            </div>
           </div>
-          <div className="catalogue-alphabet" aria-label={lang === 'ar' ? 'التصفية حسب الحرف' : 'Filter by letter'}><button className={letter === 'all' ? 'active' : ''} onClick={() => setLetter('all')}>{copy.all}</button>{alphabet.map((item) => <button key={item} className={letter === item ? 'active' : ''} onClick={() => setLetter(item)}>{item}</button>)}</div>
-          <div className="catalogue-empty">
-            <i><PackageSearch /></i><p className="section-label"><span />{category}</p><h3>{copy.emptyTitle}</h3><p>{copy.emptyText}</p>
-            <div><button type="button" className="catalogue-reset" onClick={reset}><RotateCcw size={15} />{copy.reset}</button><ArrowLink href={WHATSAPP_URL} primary>{copy.inquire}</ArrowLink></div>
-          </div>
+          {hasActiveFilters && <div className="catalogue-active-filters" aria-label={lang === 'ar' ? 'الفلاتر النشطة' : 'Active filters'}>
+            <div>
+              {query && <button type="button" onClick={() => { setQuery(''); setPage(1); }}><Search size={13} /><span dir="auto">{query}</span><X size={13} /></button>}
+              {company !== 'all' && <button type="button" onClick={() => { setCompany('all'); setPage(1); }}><Building2 size={13} /><span>{selectedCompany}</span><X size={13} /></button>}
+              {letter !== 'all' && <button type="button" onClick={() => { setLetter('all'); setPage(1); }}><ArrowDownAZ size={13} /><span>{letter}</span><X size={13} /></button>}
+              {sort !== 'name' && <button type="button" onClick={() => { setSort('name'); setPage(1); }}><SlidersHorizontal size={13} /><span>{copy.sortCompany}</span><X size={13} /></button>}
+            </div>
+            <button type="button" className="catalogue-reset-all" onClick={reset}><RotateCcw size={14} />{copy.reset}</button>
+          </div>}
+          {loading ? <div className="catalogue-loading"><span /><span /><span /><p>{copy.loading}</p></div> : products.length === 0 ? <div className="catalogue-empty"><i><PackageSearch /></i><p className="section-label"><span />{category}</p><h3>{copy.emptyTitle}</h3><p>{copy.emptyText}</p><div><ArrowLink href={WHATSAPP_URL} primary>{lang === 'ar' ? 'استفسر عن الأصناف' : 'Ask about products'}</ArrowLink></div></div> : <div className="catalogue-results">
+            <div className="product-results-head"><div><strong>{filteredProducts.length.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong><span>{copy.products}</span><em>{kind === 'medicine' ? copy.national : copy.cosmetics}</em></div></div>
+            {visibleProducts.length > 0 ? <div className="catalogue-product-grid">{visibleProducts.map((product) => { const Icon = productIcons[kind]; const detail = lang === 'ar' ? (product.indication || product.composition || product.description) : (product.composition || product.indication || product.description); const inquiryUrl = `${WHATSAPP_URL}?text=${encodeURIComponent(lang === 'ar' ? `مرحباً، أود الاستفسار عن الصنف: ${product.name}` : `Hello, I would like to ask about: ${product.name}`)}`; return <article className={`catalogue-product-card ${product.image ? 'has-image' : 'no-image'}`} key={product.id}>
+              <div className={`product-card-image ${product.image ? '' : 'placeholder'}`}>{product.image ? <img src={assetUrl(product.image)} alt={product.name} loading="lazy" decoding="async" /> : <Icon aria-hidden />}</div>
+              <div className="product-card-copy"><div className="product-card-meta"><span>{product.company[lang]}</span><em>{product.group === 'national' ? copy.national : copy.cosmetics}</em></div><h3 dir="auto">{product.name}</h3>{detail && <p dir="auto">{detail}</p>}<a className="product-inquire" href={inquiryUrl} target="_blank" rel="noreferrer">{copy.inquire}<ArrowUpRight size={15} /></a></div>
+            </article>; })}</div> : <div className="catalogue-no-results"><i><PackageSearch /></i><h3>{copy.noResults}</h3><p>{copy.noResultsText}</p><button type="button" className="catalogue-reset" onClick={reset}><RotateCcw size={15} />{copy.reset}</button></div>}
+            {pageCount > 1 && <nav className="catalogue-pagination" aria-label={lang === 'ar' ? 'صفحات المنتجات' : 'Product pages'}><button type="button" onClick={() => { setPage((current) => Math.max(1, current - 1)); window.scrollTo({ top: (document.querySelector('.catalogue-results')?.getBoundingClientRect().top || 0) + window.scrollY - 110, behavior: 'smooth' }); }} disabled={currentPage === 1}>{copy.previous}</button><span>{copy.page} <strong>{currentPage.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong> {copy.of} {pageCount.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</span><button type="button" onClick={() => { setPage((current) => Math.min(pageCount, current + 1)); window.scrollTo({ top: (document.querySelector('.catalogue-results')?.getBoundingClientRect().top || 0) + window.scrollY - 110, behavior: 'smooth' }); }} disabled={currentPage === pageCount}>{copy.next}</button></nav>}
+          </div>}
         </div>
       </div>
     </section>

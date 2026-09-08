@@ -1,0 +1,2545 @@
+{
+  "sources": [
+    {
+      "source": "أصناف أدفانس النهائي.xlsx",
+      "category": "cosmetics",
+      "extractedRows": 16
+    },
+    {
+      "source": "اصناف المشرق.xlsx",
+      "category": "medicine",
+      "extractedRows": 4
+    },
+    {
+      "source": "جميع اصناف ابن حيان.xlsx",
+      "category": "medicine",
+      "extractedRows": 116
+    },
+    {
+      "source": "جميع اصناف انفليس كوزمتك.xlsx",
+      "category": "cosmetics",
+      "extractedRows": 10
+    },
+    {
+      "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
+      "category": "cosmetics",
+      "extractedRows": 60
+    },
+    {
+      "source": "جميع اصناف بيوميد.xlsx",
+      "category": "medicine",
+      "extractedRows": 102
+    },
+    {
+      "source": "جميع اصناف تانيوم.docx",
+      "category": "cosmetics",
+      "extractedRows": 24
+    },
+    {
+      "source": "جميع اصناف راشا.pdf.xlsx",
+      "category": "medicine",
+      "extractedRows": 42
+    },
+    {
+      "source": "جميع اصناف زاروزا كوزمتك.xlsx",
+      "category": "cosmetics",
+      "extractedRows": 38
+    },
+    {
+      "source": "جميع اصناف زين فارما.xlsx",
+      "category": "medicine",
+      "extractedRows": 79
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "category": "medicine",
+      "extractedRows": 199
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "category": "medicine",
+      "extractedRows": 893
+    },
+    {
+      "source": "جميع اصناف شفا.xlsx",
+      "category": "medicine",
+      "extractedRows": 55
+    },
+    {
+      "source": "جميع اصناف كيمي.xlsx",
+      "category": "medicine",
+      "extractedRows": 37
+    }
+  ],
+  "rawExtractedRows": 1675,
+  "duplicateRowsRemoved": 492,
+  "uniqueProducts": 1183,
+  "categoryCounts": {
+    "medicine": 1041,
+    "cosmetics": 142,
+    "supplements": 0
+  },
+  "productsWithImages": 122,
+  "duplicates": [
+    {
+      "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
+      "name": "BIOXCIN BLACK GARLIC SHAMPOO",
+      "keptId": "97d050862c68"
+    },
+    {
+      "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
+      "name": "BIOXCIN FORTE SHAMPOO",
+      "keptId": "5b2fedd23298"
+    },
+    {
+      "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
+      "name": "BIOXCIN KERATIN-ARGAN SHAMPOO",
+      "keptId": "82e6b9c80dac"
+    },
+    {
+      "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
+      "name": "BIOXCIN SUNCARE ACNE-PRONE SKIN CREAM SPF 50",
+      "keptId": "6d515602a252"
+    },
+    {
+      "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
+      "name": "BIOXCIN SUNCARE BLEMISH-PRONE SKIN CREAM SPF 50",
+      "keptId": "d84b903a271d"
+    },
+    {
+      "source": "جميع اصناف تانيوم.docx",
+      "name": "Tanium Sun",
+      "keptId": "f74e0182be2d"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "باراسيتامول 500",
+      "keptId": "0ad4c5c9a2ca"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "باراسيتامول ادفانس",
+      "keptId": "6a54e25e31cd"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "بليكسادول100",
+      "keptId": "ee3a31a83bbd"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "بليكسادول50",
+      "keptId": "27430e8b9e9b"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "بليكسادول75",
+      "keptId": "72db57f98dcb"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "ديفورس 10/160/12.5",
+      "keptId": "d0866e2e76a5"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "ديفورس 10/160/25",
+      "keptId": "35e365be792c"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "ديفورس 10/320/25",
+      "keptId": "0d85837c56c2"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "ديفورس 5/160/12.5",
+      "keptId": "b501aa94246e"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "ديفورس 5/160/25",
+      "keptId": "63c702c5cab4"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "روفالترو10",
+      "keptId": "593094cecc56"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "روفالترو15",
+      "keptId": "641089d42494"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "روفالترو2.5",
+      "keptId": "f5421efebe13"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "روفالترو20",
+      "keptId": "37d1bb665a61"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "سبروفلوكساسين250",
+      "keptId": "dfd21b7cb151"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "سبروفلوكساسين500",
+      "keptId": "9027b92fd522"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "سبروفلوكساسين750",
+      "keptId": "3a148264eec5"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "فارديترا10",
+      "keptId": "4be8fae52f19"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "فارديترا2.5",
+      "keptId": "b5352686c835"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "فارديترا20",
+      "keptId": "1b7dfe5c24ee"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "فارديترا5",
+      "keptId": "55986abea388"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "فام ريليف 5/500",
+      "keptId": "b4b71b3d1a88"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "فولوكولد",
+      "keptId": "f2b1c769e313"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "نوديمنت150",
+      "keptId": "5f10179e59c4"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "نوديمنت250",
+      "keptId": "f8c7d4f9fd3d"
+    },
+    {
+      "source": "جميع اصناف شركة حماه فارما.xlsx",
+      "name": "نوديمنت50",
+      "keptId": "f6b5025e2b53"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولتراديكس ج ULTRADEX G",
+      "keptId": "789b6a248b20"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "براندكس BRANDEX",
+      "keptId": "831da6194fa3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بروكتوسينولون PROCTO - CINOLONE",
+      "keptId": "d659294a4399"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سالي سينولون SALI ’CINOLONE",
+      "keptId": "9dab35f010cb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سينولون . ن CINOLONE. N",
+      "keptId": "32ea73a34119"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فوسي-كلير FUCI CLEAR 2%",
+      "keptId": "8b6d59ceaad0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيوكورتين VIOCORTINE",
+      "keptId": "9a004949315b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي مع ملعقة NAZOMED GEL",
+      "keptId": "459e36b76731"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي بدون ملعقة NAZOMED GEL",
+      "keptId": "2cf70fa11b1a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي مع ملعقة NAZOMED GEL",
+      "keptId": "459e36b76731"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي بدون ملعقة NAZOMED GEL",
+      "keptId": "2cf70fa11b1a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد NYSTAMED",
+      "keptId": "a710c35cd755"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد بلس NYSTAMED PLUS",
+      "keptId": "15fcf35d89f3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولترامول كبار ULTRAMOL Adults",
+      "keptId": "a87e0673f3ef"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بروكتوسينولون PROCTO CINOLONE",
+      "keptId": "d659294a4399"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سوبراكام SUPRACAM",
+      "keptId": "be1d133e16d0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فورتيكام FORTICAM",
+      "keptId": "2e8619b7e394"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 فولتاميد VOLTAMED 100",
+      "keptId": "b3ddae10dc4e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 فولتاميد VOLTAMED 50",
+      "keptId": "25b278e444c1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كيتوفين KETOPHEN",
+      "keptId": "9ba02aed78ef"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي-فلو شراب جاف MEDI-FLU",
+      "keptId": "b182eafed23d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلوريد البوتاسيوم ميديكو محلول معد للحقن Potassium Chloride medico",
+      "keptId": "73b5f026bc4a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250سيفيبرول CEFEPROL 250",
+      "keptId": "f1869379745a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 سيفبوميد CEFPOMED 100",
+      "keptId": "2d436904da7f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "125زيناميد ZENNAMED 125",
+      "keptId": "694ad008035d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250زيناميد ZENNAMED 250",
+      "keptId": "9758351264c6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250سيفادروكس CIFADROX 250",
+      "keptId": "716c55a58e57"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500سيفادروكس CIFADROX 500",
+      "keptId": "d2e968dd78fd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250ميداكلور MEDACLOR 250",
+      "keptId": "460d0a63e118"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بانتوميد PANTHOMED",
+      "keptId": "25ae6f133c26"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كينزو-هير شامبو KENZO-HAIR Shampoo",
+      "keptId": "0828c2436c13"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديثرين شامبو MEDITHRIN Shampoo",
+      "keptId": "2a752a8ac110"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "مولتيتار شامبو MULTITAR Shampoo",
+      "keptId": "f51b02d0b94b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيرت شامبو VERT Shampoo",
+      "keptId": "953f07f087bd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "الليرجيكس فورت ALLERGEX FORT",
+      "keptId": "f5f302f26bfc"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديكو– أمبروكسول AMBROXOL-MEDICO",
+      "keptId": "74f4213f7f21"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "باراثريم فورت PARATHRIM FORT",
+      "keptId": "5cacafd079a0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بوسكوميد BUSCOMED",
+      "keptId": "d98ffe8583df"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيتافرين BETAFRINE",
+      "keptId": "f0abf7b57cc6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 ترانكوميد TRANCOMED 5",
+      "keptId": "d0ed570ed6f9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 ترانكوميد TRANCOMED 10",
+      "keptId": "e656723697b0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "تولوكس Tolux",
+      "keptId": "4493b8c8abe4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "تيموبكتول THYMOPECTOL",
+      "keptId": "f1b08f8dec2e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دياريكس DIARRHEX",
+      "keptId": "20a33230174f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دولوبسكوميد DOLO BUSCOMED",
+      "keptId": "a6adebff5293"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "0.5 ديكساميد DEXAMED 0.5",
+      "keptId": "eaaeffebd177"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "1.5 ديكساميد DEXAMED 1.5",
+      "keptId": "2233841abd8d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "2 ديكساميد DEXAMED 2",
+      "keptId": "2e9d5e375c51"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "4 ديكساميد DEXAMED 4",
+      "keptId": "135a235554a4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "6 ديكساميد DEXAMED 6",
+      "keptId": "0635e19502b1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديمنهيدرينات ميديكو DIMENHYDRINATE Medico",
+      "keptId": "5083230a154a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديبريميد DEBRIMED",
+      "keptId": "6c5c46f8ec92"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دي-نيدازول DI-NIDAZOLE",
+      "keptId": "fe8bfed15842"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دي-نيدازول فورت DI-NIDAZOLE FORT",
+      "keptId": "48ddafc2fd88"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "2 ريسبيردين RISPERDINE 2",
+      "keptId": "72334dbfc618"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "4 ريسبيردين RISPERDINE 4",
+      "keptId": "8ed7e2c5d8af"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500 سيبروميد CIPROMED 500",
+      "keptId": "548768cd2001"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "750 سيبروميد CIPROMED 750",
+      "keptId": "8aa46fb0a229"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سبارافلوكس SPARAFLOX",
+      "keptId": "ee8379f7e25a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سوبراكام SUPRACAM",
+      "keptId": "be1d133e16d0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "2 سولتامول SULTAMOL 2",
+      "keptId": "0919d3b202bf"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "4 سولتامول SULTAMOL 4",
+      "keptId": "76be95b252eb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "25 سينارين CINNARINE 25",
+      "keptId": "9e8f979e58a6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "75 سينارين CINNARINE 75",
+      "keptId": "0f3fa1961c8f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 سينغوميد SINGOMED 10",
+      "keptId": "a20c9d97ba16"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 سينغوميد SINGOMED 5",
+      "keptId": "616154b2e958"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "4 سينغوميد SINGOMED 4",
+      "keptId": "9a08e5d1ac8b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "200 فالبروميد VALPROMED 200",
+      "keptId": "33673f8fdb2f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500 فالبروميد VALPROMED 500",
+      "keptId": "3d441320c8b6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 فاري سترونغ VARI STRONG 5",
+      "keptId": "2d0d235ef5e3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 فاري سترونغ VARI STRONG 10",
+      "keptId": "57434e20784f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "20 فاري سترونغ VARI STRONG 20",
+      "keptId": "53a81f91c960"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فايت- سموك FIGHT-SMOKE",
+      "keptId": "d509fa8ce4f2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 فولتاميد VOLTAMED 50",
+      "keptId": "25b278e444c1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فولتاميد بلس VOLTAME PLUS",
+      "keptId": "13aba3c3bd2a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فولميد FOLMED",
+      "keptId": "7ef4af961f63"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "200 فيراميد VIRAMED 200",
+      "keptId": "12b480773d05"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "400 فيراميد VIRAMED 400",
+      "keptId": "06ef28f37332"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "800 فيراميد VIRAMED 800",
+      "keptId": "d71596e786be"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيلدا كروس VILDA CROSS",
+      "keptId": "1af32e3919ad"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 كابتوزيد CAPTOZIDE 50",
+      "keptId": "213dd1d6e973"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "25 كابتوميد CAPTOMED 25",
+      "keptId": "167cf4886728"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 كابتوميد CAPTOMED 50",
+      "keptId": "5e0031fcae15"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلارامكس CLARAMIX",
+      "keptId": "a4e053022abb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلوبي-هيلث CLOPI-HEALTH",
+      "keptId": "db6a3b94e6fe"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "( 6.25 – 5 ) كونوزيد CONOZID ( 5 - 6.25 )",
+      "keptId": "b45a45a150a2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "2.5 كونو-فاكت CONO-FACT 2.5",
+      "keptId": "675ceb47022e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 كونو-فاكت CONO-FACT 5",
+      "keptId": "f824f8903289"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 كونو-فاكت CONO-FACT 10",
+      "keptId": "d52c6b10edd0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كيتوفين KETOPHEN",
+      "keptId": "9ba02aed78ef"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "لاكزاميد LAXAMID",
+      "keptId": "959d8e59e9cf"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "لوتان LOTAN",
+      "keptId": "4f87621c8506"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليبيتو-ميد 10",
+      "keptId": "bb36cfbe99d7"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليبيتو-ميد 20",
+      "keptId": "f82c20106638"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليبيتو-ميد 40",
+      "keptId": "ae427c30625c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "LIPITO-MED 40",
+      "keptId": "77571640f10d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليبوفارما LIPOPHARMA",
+      "keptId": "95a03b4de231"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي-غريل 5",
+      "keptId": "b09566f0a2e9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "MEDI-GREL 5",
+      "keptId": "981168652c03"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي-غريل 10",
+      "keptId": "b0f363b716d1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "MEDI-GREL 10",
+      "keptId": "151b173d7d8f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250 ميترونيدازول-ميديكو METRONIDAZOLE-MEDICO 250",
+      "keptId": "5fbb18d6f7d9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500 ميترونيدازول-ميديكو METRONIDAZOLE-MEDICO 500",
+      "keptId": "aadde23db47a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميداجيزيك MEDAGESIC",
+      "keptId": "0ef41aa8f2de"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كروس جيزيك CROSS GESIC",
+      "keptId": "b4ab29f2fb94"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميداكس MEDAX",
+      "keptId": "4e62d4cb3fe4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 ميما MEMA 5",
+      "keptId": "d83a11a44f53"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 ميما MEMA 10",
+      "keptId": "788b79675129"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نورفيتان NEURO-VITAN",
+      "keptId": "e5e047e535e3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد NYSTAMED",
+      "keptId": "a710c35cd755"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "0.5 هالوميد HALOMED 0.5",
+      "keptId": "e39a4a16a1d3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "1.5 هالوميد HALOMED 1.5",
+      "keptId": "af7c2dc2f15d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 هالوميد HALOMED 5",
+      "keptId": "7ee16749b670"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 هالوميد HALOMED 10",
+      "keptId": "bb756cd41d69"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "20 هالوميد HALOMED 20",
+      "keptId": "f450447d323e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 يوريزول URIZOL 100",
+      "keptId": "cd79152830e8"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "300 يوريزول URIZOL 300",
+      "keptId": "bfdfe6e1e036"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "15 زنك ميديكو Zinc medico 25",
+      "keptId": "b706a32604ae"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "25 زنك ميديكو Zinc medico 25",
+      "keptId": "c6e5ab2d20c3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 زنك ميديكو Zinc medico 25",
+      "keptId": "c52dda9ec52d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10/5 لينافلوزين LINAFLOZIN 10",
+      "keptId": "a095664ef633"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "25/5 لينافلوزين LINAFLOZIN 25",
+      "keptId": "b259d58ee11b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيتامين سي ميديكو Vitamin C Medico",
+      "keptId": "822952bd680b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "120 ايتوسيب ETOCIB 120",
+      "keptId": "f8e733447315"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "60 ايتوسيب ETOCIB 60",
+      "keptId": "4c2d195115c1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "90 ايتوسيب ETOCIB 90",
+      "keptId": "262279f25dd2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250 ليلي سام LILY SAM 250",
+      "keptId": "d80b939bc02b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500 ليلي سام LILY SAM 500",
+      "keptId": "2aabf72402f6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "1000 ليلي سام LILY SAM 1000",
+      "keptId": "7e17712d3d67"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 روسوليبيد RUSOLIPED 5",
+      "keptId": "b84986564580"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 روسوليبيد RUSOLIPED 10",
+      "keptId": "95fec35b8494"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "20 روسوليبيد RUSOLIPED 20",
+      "keptId": "7c0f7d98195d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "40 روسوليبيد RUSOLIPED 40",
+      "keptId": "c909a2680aac"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "غليساج بلس 500 / 50 GLISAGE PLUS 500/50",
+      "keptId": "acfd492b04b8"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "غليساج بلس 850 / 50 GLISAGE PLUS 850/50",
+      "keptId": "90d2fb2ce410"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "غليساج بلس 1000 / 50 GLISAGE PLUS 500/50",
+      "keptId": "72f18468b094"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "1000 غليساج GLISAGE 1000",
+      "keptId": "a905c5cb4647"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500 غليساج GLISAGE 500",
+      "keptId": "423ecc10be6a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "850 غليساج GLISAGE 850",
+      "keptId": "68cb3cb0c508"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "1000 غليساج مديد GLISAGE XR 1000",
+      "keptId": "c017275a3cd4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500 غليساج مديد GLISAGE XR 500",
+      "keptId": "d5eafd6827c5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "750 غليساج مديد GLISAGE XR750",
+      "keptId": "0ad2bae4813d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "81 اسبيريكس ASPIREX 81",
+      "keptId": "bebee1612604"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "25 اندوميد ENDOMED 25",
+      "keptId": "7a04b85b4805"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 اندوميد ENDOMED 50",
+      "keptId": "6376261c5362"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "75 اندوميد ENDOMED 75",
+      "keptId": "f3df53f8e7ab"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بروستامكس PROSTAMAX",
+      "keptId": "7fef934d18e2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكافيتامين DECA VITAMIN",
+      "keptId": "d0a3c0f76276"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "زينيستات XENISTAT",
+      "keptId": "f3340ef68277"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "60 زينيستات XENISTAT",
+      "keptId": "70f9b8f856bf"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سيبال SEBBAL",
+      "keptId": "4977db7441c3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 غاباميد GABAMED 100",
+      "keptId": "88cdc6d96a4a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "300 غاباميد GABAMED 300",
+      "keptId": "3ef110a28931"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "400 غاباميد GABAMED 400",
+      "keptId": "f079a44da4f7"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فورتيكام FORTICAM",
+      "keptId": "2e8619b7e394"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 فولتاميد VOLTAMED 100",
+      "keptId": "b3ddae10dc4e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فولميد-بلس FOLMED-PLUS",
+      "keptId": "aa1d10a8cc32"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيولانزو-ميد NewLANZO-MED",
+      "keptId": "4b28efb039b2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي-فلو MEDI-FLU",
+      "keptId": "0f40471faf58"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أمبروكسول –ميديكو 75",
+      "keptId": "dfdbce5ff147"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100دوكسيسيكلين- ميديكو DOXYCYCLIN MEDICO 100",
+      "keptId": "005a6c8a1f35"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250 أزيترومايسين-ميديكو AZITHROMYCIN- MEDICO 250",
+      "keptId": "e3b29569cb16"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "60 غاستري هيل GASTRI HEAL 60",
+      "keptId": "47df46f02418"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "30 غاستري هيل GASTRI HEAL 30",
+      "keptId": "46ca6ed0a650"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديكو فيجن Medico Vision",
+      "keptId": "32e080d2541d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكافيتامين مينيرال Decavitamin mineral",
+      "keptId": "094080dcee1b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "جاف أزيترومايسين-ميديكو 002شراب AZITHROMYCIN- MEDICO 200",
+      "keptId": "d6c04b741315"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولتراديكس ج ULTRADEX G",
+      "keptId": "789b6a248b20"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولتراديكس ج ULTRADEX G",
+      "keptId": "789b6a248b20"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بانتوميد PANTHOMED",
+      "keptId": "25ae6f133c26"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "براندكس BRANDEX",
+      "keptId": "831da6194fa3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "براندكس BRANDEX",
+      "keptId": "831da6194fa3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "براندكس -ب BRANDEX-P",
+      "keptId": "5a25580a0d34"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "براندكس بلس BRANDEX PLUS",
+      "keptId": "4c2d2fb79341"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "برونتو نسائي BRUNTO",
+      "keptId": "cb29a4de7243"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بروكتوسينولون PROCTO- CINOLONE",
+      "keptId": "d659294a4399"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بروكتوسينولون PROCTO - CINOLONE",
+      "keptId": "d659294a4399"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بلسم الآلام- جديد BAUM ALGINE",
+      "keptId": "e37375518a9e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بلسم الآلام- اكسترا BAUM ALGINE EXTRA",
+      "keptId": "0a1df943c905"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "%0.05 ميديكو– بيتاميتازون BETAMETHASONE Medico",
+      "keptId": "20857e0bf325"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بولي ديرم POLYDERM",
+      "keptId": "c416086b3e11"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "تينيا هيل Tinea Heal",
+      "keptId": "9c03e40bb004"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "جنتاميسين -ميديكو GENTAMICIN- Medico",
+      "keptId": "f8d752db60ba"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديكو – جنتاميسين GENTAMICIN- Midico",
+      "keptId": "a97d7745138f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "جينوميد –م كريم نسائي GYNOMED-M",
+      "keptId": "391cacdacc1f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سالي سينولون SALI’ CINOLONE",
+      "keptId": "9dab35f010cb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سالي سينولون SALI ’CINOLONE",
+      "keptId": "9dab35f010cb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سينولون تار CINOLON TAR",
+      "keptId": "bf68e8932604"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سينولون . ن CINOLONE. N",
+      "keptId": "32ea73a34119"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سينولون . ن CINOLONE. N",
+      "keptId": "32ea73a34119"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فولتاميد جل استحلابي VOLTAMED – EMULGEL",
+      "keptId": "b0b44131222c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فولتاميد فورت جل استحلابي VOLTAMED FORT EMULGEL",
+      "keptId": "f4f7e842b226"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيراميد VIRAMED",
+      "keptId": "e4377ec28e3f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فوسي-كلير بلس FUCI CLEAR PLUS",
+      "keptId": "2668307028e8"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فوسي-كلير FUCI CLEAR 2%",
+      "keptId": "8b6d59ceaad0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فوسي-كلير FUCI CLEAR 2%",
+      "keptId": "8b6d59ceaad0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيوسينولون VIO’ CINOLONE",
+      "keptId": "fb46532a0ee3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيوكورتين VIOCORTINE",
+      "keptId": "9a004949315b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيوكورتين VIOCORTINE",
+      "keptId": "9a004949315b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "%2 ليدوجل LIDOGEL 2%",
+      "keptId": "67740bcb9452"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "%5 ليدوجل LIDOGEL 5%",
+      "keptId": "aece26af27e2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "%10 كروتا هيل CROTA HEAL 10%",
+      "keptId": "a28a82c6c80b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلوبيتاكورت كريم Clobitacort cream",
+      "keptId": "11e696fc9d75"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلوبيتاكورت مرهم Clobitacort oint",
+      "keptId": "777ead667528"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كليندامايسين - ميديكو CLINDAMYCIN -Medico",
+      "keptId": "b042b8597a91"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "% 2.5 كيتوفين KETOPHEN 2.5 %",
+      "keptId": "0f98cb94ef9a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "مافيميد كريم MAFMED CREAM",
+      "keptId": "6c880cde3c6c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "%2 فنت – ميدي MEDI-FENT 2%",
+      "keptId": "0e17f40a1671"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميكوميد MYCOMED",
+      "keptId": "1dbaf6f5fc1b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد NAZOMED",
+      "keptId": "302ed595d37e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي مع ملعقة NAZOMED GEL",
+      "keptId": "459e36b76731"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي بدون ملعقة NAZOMED GEL",
+      "keptId": "2cf70fa11b1a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي مع ملعقة NAZOMED GEL",
+      "keptId": "459e36b76731"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي بدون ملعقة NAZOMED GEL",
+      "keptId": "2cf70fa11b1a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي مع ملعقة NAZOMED GEL",
+      "keptId": "459e36b76731"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نازوميد جل فموي بدون ملعقة NAZOMED GEL",
+      "keptId": "2cf70fa11b1a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد NYSTAMED",
+      "keptId": "a710c35cd755"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد نسائي NYSTAMED",
+      "keptId": "368a2f9184a1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد بلس NYSTAMED PLUS",
+      "keptId": "15fcf35d89f3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد بلس NYSTAMED PLUS",
+      "keptId": "15fcf35d89f3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيو الليرجيكس NEW ALLERGEX",
+      "keptId": "30f8c4585d79"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولترامول أطفال ULTRAMOL Child",
+      "keptId": "ddbe3280312a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولترامول رضع ULTRAMOL Infants",
+      "keptId": "f62a4b2989f9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولترامول كبار ULTRAMOL Adults",
+      "keptId": "a87e0673f3ef"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اندوميتاسين - ميديكو INDOMETHACINE - Medico",
+      "keptId": "6148e60038f3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اوندا فوم Onda VOM",
+      "keptId": "c5439d6dadb6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "باسبيران أطفال PASPERAN Children",
+      "keptId": "3b36888a7ce8"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "باسبيران كبار PASPERAN Adults",
+      "keptId": "01fdc01e2aec"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بروكتوسينولون PROCTO CINOLONE",
+      "keptId": "d659294a4399"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بوسكوميد أطفال BUSCOMED Child",
+      "keptId": "fc71c82091e8"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بوسكوميد كبار BUSCOMED Adults",
+      "keptId": "1ce9cf69f72c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 جينوميد GYNOMED 100",
+      "keptId": "d986809bf2ad"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "200 جينوميد GYNOMED 200",
+      "keptId": "0dc982d69c58"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "جينوميد -م GYNOMED-M",
+      "keptId": "b4e8fd708f73"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دولوبسكوميد أطفال DOLO BUSCOMED Child",
+      "keptId": "c2d9abc58390"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دولوبسكوميد كبار DOLO BUSCOMED Adults",
+      "keptId": "3dd9c822c304"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سوبراكام SUPRACAM",
+      "keptId": "be1d133e16d0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فورتيكام FORTICAM",
+      "keptId": "2e8619b7e394"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 فولتاميد VOLTAMED 100",
+      "keptId": "b3ddae10dc4e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 فولتاميد VOLTAMED 50",
+      "keptId": "25b278e444c1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "25 فولتاميد VOLTAMED 25",
+      "keptId": "f3c8e27b9133"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "12.5 فولتاميد VOLTAMED 12.5",
+      "keptId": "52a0e7d05bac"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كيتوفين KETOPHEN",
+      "keptId": "9ba02aed78ef"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "5 لاكزاميد LAXAMID 5",
+      "keptId": "9051bdcca346"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 لاكزاميد LAXAMID 10",
+      "keptId": "1eafdc7ce92b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميترونيدازول-ميديكو METRONIDAZOLE -MEDICO",
+      "keptId": "3898b77d949f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 ميدي-فنت MEDI-FENT 100",
+      "keptId": "7d7b8b20dc60"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "200 ميدي-فنت MEDI-FENT 200",
+      "keptId": "930ebb05d0bc"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميداكس أطفال MEDAX Children",
+      "keptId": "91fdaae13a82"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميداكس رضع MEDAX Infants",
+      "keptId": "0c27e17defe9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميداكس كبار MEDAX Adults",
+      "keptId": "05d28d3b195f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 نازوميد NAZOMED 100",
+      "keptId": "ef9c07687e90"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "200 نازوميد NAZOMED 200",
+      "keptId": "43159f248da3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "400 نازوميد NAZOMED 400",
+      "keptId": "ed895460149a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أسـتوميـد ASTOMED",
+      "keptId": "63770d6b5a55"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "الليرجيكس ALLERGEX",
+      "keptId": "706981beef35"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "الكتون معلق فموي ALCTONE Suspe",
+      "keptId": "8fb794554e3c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نيستاميد معلق فموي NYSTAMED Suspe",
+      "keptId": "36d7bf7cdd6f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "امبروكسول-ميديكو AMBROXOL MEDICO",
+      "keptId": "2c0762202523"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أولترامول-كولد ULTRAMOL-COLD Suspension",
+      "keptId": "69a131c66424"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أولترامول أطفال ULTRAMOL children",
+      "keptId": "bcd271cd73e7"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "6+ أولترامول ULTRAMOL +6",
+      "keptId": "e165364f84c0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أولترامول فلو شراب ULTRAMOL FLU",
+      "keptId": "9d50a5b02246"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "باراثريم PARATHRIM",
+      "keptId": "d8cb733b54e9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "باسبيران PASPERAN",
+      "keptId": "024e98170923"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "باسبيران PASPERAN oral drops",
+      "keptId": "b2301af93d2b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بانتوميد محلول PANTHOMED Solution",
+      "keptId": "587a1545c730"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "برومكسين BROMHEXIN",
+      "keptId": "02352903e211"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بسكوميد BUSCOMED",
+      "keptId": "bf79c0a704e6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيبي كول BEBE COL",
+      "keptId": "9c100929f488"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيتافرين شراب BETAFRINE",
+      "keptId": "d99f063cf036"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اوندا فوم شراب Onda Vom Syrup",
+      "keptId": "a299abab0006"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دياريكس شراب معلق DIARRHEX",
+      "keptId": "5022330ddf55"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكساميد شراب DEXAMED",
+      "keptId": "0dc8308f7096"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكافيتامين شراب DECAVITAMIN",
+      "keptId": "54606af7f669"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "دي-نيدازول شراب معلق DI-NIDAZOLE",
+      "keptId": "229c2c9370b2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ريسبيردين محلول فموي RISPERIDINE",
+      "keptId": "cf950cf920d9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "رينو كير شراب RHINO CARE",
+      "keptId": "f5497f21ebb2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ساليدكس محلول SALIDEX Solution",
+      "keptId": "5cf6587a31eb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيتاديب-س محلول جلدي BETADIP – S Solution",
+      "keptId": "87ecf978b669"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سولتامول شراب SULTAMOL",
+      "keptId": "57a2edd8094a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلارامكس شراب CLARAMIX",
+      "keptId": "62619c213c92"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فالبروميد شراب VALPROMED",
+      "keptId": "fc4da8f11f7b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فالبروميد نقط فموية VALPROMED Oral drops",
+      "keptId": "d30174ce9d8d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيراميد VIRAMED Suspention",
+      "keptId": "df68ddc7c769"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "مزوري شراب MZURI Syrup",
+      "keptId": "8870a310ed6c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي-فلو شراب جاف MEDI-FLU",
+      "keptId": "b182eafed23d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي-فلو شراب جاف MEDI-FLU",
+      "keptId": "b182eafed23d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديلاكت شراب MEDILACT Syrup",
+      "keptId": "94327b2641d5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بكتو كير شراب PECTO CARE",
+      "keptId": "48b381a8d4e4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيبي ريليف شراب BEBY RELIEF",
+      "keptId": "3f887ea88b86"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بوفيميد محلول مائي 4% %4 POVIMED",
+      "keptId": "b7fd3d8f9dd3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بوفيميد محلول مائي 10% %10 POVIMED",
+      "keptId": "1cb304829e57"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميكوميد محلول MYCOMED Solution",
+      "keptId": "eceb8b5eb9a2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بنزوات البنزيل ميديكو BENZYL BENZOATE MEDICO",
+      "keptId": "fdb2ac6b2b6b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كينزو-هير شامبو KENZO-HAIR Shampoo",
+      "keptId": "0828c2436c13"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "مولتيتار شامبو MULTITAR Shampoo",
+      "keptId": "f51b02d0b94b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيرت شامبو VERT Shampoo",
+      "keptId": "953f07f087bd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديثرين شامبو MEDITHRIN Shampoo",
+      "keptId": "2a752a8ac110"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي كلين صابون سائل ومعقم الأيدي",
+      "keptId": "b91219b753e4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أتروبين 5.0 % قطرة عينية 01مل ATROPINE 0.5% Eye drops",
+      "keptId": "401e05fda46b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أتروبين 1% قطرة عينية 5-01 مل ATROPINE 1 % Eye drops",
+      "keptId": "182ea41e4b6e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أستوميد 520.0 % قطرة عينية 5 مل ASTOMED 0.025 % Eye drops",
+      "keptId": "cb82f51eb647"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أوفتازين قطرة عينية 01 مل OPHTA-ZINE Eye drops",
+      "keptId": "67d02179df9c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أوفتاسينس 04 قطرة عينية 01مل OPHTASENSE 40 Eye drops",
+      "keptId": "835315987e57"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أوفتاسينس 02 قطرة عينية 01مل OPHTASENSE 20 Eye drops",
+      "keptId": "3db3f2753013"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولترافلوكس قطرة عينية 10 مل ULTRAFLOX Eye drops",
+      "keptId": "14d8571aeda7"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولو دروب1.0% قطرة عينية 5مل OLO DROP 0.1% Eye drops",
+      "keptId": "e3f960bec9cf"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولو دروب2.0% قطرة عينية 5مل OLO DROP 0.2% Eye drops",
+      "keptId": "2ac48b8844a1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بريدنيسيد قطرة عينية -01 مل PREDNICID Eye drops",
+      "keptId": "170c50829a88"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بريدنيفرين قطرة عينية 5-01 مل PREDNIFRIN Eye drops",
+      "keptId": "426bee959c88"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بولي سيد قطرة ثلاثية 01 مل POLYCID Eye,Nose,Ear drops",
+      "keptId": "3bbd7c43b5f6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "توبراميد 3.0% قطرة عينية 01مل TOBRAMED 0.3% Eye drops",
+      "keptId": "aa6e784abe29"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ترافا-ماكس قطرة عينية 2.5-5 مل TRAVA-MAX Eye",
+      "keptId": "43b00745fc57"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ترافا بلس قطرة عينية 2.5-5 مل TRAVA PLUS Eye",
+      "keptId": "28d57a05d9e1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "تروزو-ميد قطرة عينية 5 مل-10مل TRUSO-MED Eye",
+      "keptId": "ef4e653abe19"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "تيرز قطرة عينية 5 مل-01 مل TEARS Eye drops",
+      "keptId": "5a51d7ce0654"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "جنتادكس قطرة عينية 5-01 مل GENTADEX Eye drops",
+      "keptId": "0e79d594d9b4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "جنتاميسين-ميديكو 5-10 مل قطرة ثلاثية GENTAMYCINE - Medico",
+      "keptId": "3b73364eb6b3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكسابوليسيد قطرة ثلاثية 5مل-01 مل DEXAPOLYCID Eye,Nose,Ear drops 5ml",
+      "keptId": "f747bdab9fc8"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكساميد قطرة ثلاثية 5-01 مل DEXAMED Eye,Nose,Ear drops",
+      "keptId": "a2d5fd165399"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكساميد.ن قطرة عينيةأذنية 01مل DEXAMED .N Eye,Ear drops",
+      "keptId": "084a870571b7"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكساكلور قطرة عينية-01 مل DEXACHLOR Eye drops",
+      "keptId": "2536a0812dae"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سلفاسيتاميد قطرة عينية -01مل SULPHACETAMIDE Eye drops",
+      "keptId": "f6e7344258a6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلورامفينيكول ميديكو قطرة عينية 01مل CHLORAMPHENICOL MEDICO Eye drops",
+      "keptId": "d5c0c996198c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كوزبتول قطرة عينية 5 مل COSOPTOOL Eye drops",
+      "keptId": "3c4ea434936c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فرينوسيد قطرة عينية 5-01 مل FRINOCID Eye drops",
+      "keptId": "5161ad8ddadc"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فرينوميد قطرة عينية 5-01 مل FRINOMED Eye drops",
+      "keptId": "36ecf770e3d1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فرينوميد01% قطرة عينية 5مل-01مل FRINOMED Eye drops",
+      "keptId": "dc149d4dc260"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10-5 ميدرياميد 5.0%قطرة عينية MYDRIAMED 0.5% Eye drops",
+      "keptId": "1abfd031cf82"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10-5 ميدرياميد 1% قطرة عينية MYDRIAMED 1% Eye drops",
+      "keptId": "98f15e0c21d4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديكائين 4.0% قطرة عينية 5 مل MEDICAIN 0.4% Eye drops",
+      "keptId": "baab437150da"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديول 5.0% قطرة عينية 01مل MEDYOL 0.5 % Eye drops",
+      "keptId": "913d156717ad"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "موكسي دروب قطرة عينية 5 مل MOXI DROP Eye drops",
+      "keptId": "5f3f6e4263ef"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "نافانتان قطرة عينية 01 مل NAPHANTAN Eye drops",
+      "keptId": "750f30beff70"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فولتاميد قطرة عينية 5-01 مل VOLTAMED Eye drops",
+      "keptId": "890e5d1e7057"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليفو أكت 5.0% قطرة عينية LEVO ACT 0.5% Eye drops",
+      "keptId": "836bc9571dd1"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليفو أكت 5.1% قطرة عينية LEVO ACT 1.5% Eye drops",
+      "keptId": "aa012958da45"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سيكلوميد 5.0% قطرة عينية CYCLOMED 0.5% Eye drops",
+      "keptId": "adbe412961cb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سيكلوميد 1% قطرة عينية CYCLOMED 1% Eye drops",
+      "keptId": "ff0dfe58d51e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10-5 سيبروميد 3.0% قطرة عينية CIPROMED 0.3% Eye drops",
+      "keptId": "fae20a10aecf"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فلورا – ج قطرة عينية معلقة 10مل FLORA – G Eye drops",
+      "keptId": "13a12d80153b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بروباستار محلول عيني عقيم-5مل PROPASTAR Eye drops",
+      "keptId": "c2054f7daf5b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بريدني-ف قطرة عينية معلقة 10مل PREDNY-F Eye drops",
+      "keptId": "1cb0802ac8e5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بريدني-م قطرة عينية معلقة 10 مل PREDNY-M Eye drops",
+      "keptId": "15ac490f80e2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بريد ديل قطرة عينية معلقة 5-10 مل PRED DEAL Eye drops",
+      "keptId": "36d2c574f1b8"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "توبراميد-د قطرة عينية معلقة 10مل TOBRAMED -D Eye",
+      "keptId": "4701d421a8c2"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ريفاميد قطرة عينية -01 مل RIFAMED Eye drops",
+      "keptId": "2ec0782d80a0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فلورا – ت قطرة عينية معلقة - 10 مل FLORA – T Eye drops",
+      "keptId": "2ef37b0b7e50"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيلوكاربين 1% قطرة عينية 5مل PILOCARPINE 1% Eye drops",
+      "keptId": "b27875b8fb19"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيلوكاربين 2% قطرة عينية 5مل PILOCARPINE 2% Eye drops",
+      "keptId": "cbe5088b8766"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيلوكاربين 4% قطرة عينية 5مل PILOCARPINE 4% Eye drops",
+      "keptId": "4025ea881417"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فلورا %1.0 قطرة عينية معلقة 01 مل FLORA 0.1% Eye drops",
+      "keptId": "519f81f60258"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "برومو كير قطرة عينية- 5مل BROMO CARE Eye drops",
+      "keptId": "1685584d3e9d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أوكيوتين قطرة عينية 5 - 01 مل OCUTEAN Eye drops",
+      "keptId": "b8a4e938593d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديول 52.0% قطرة عينية 01مل MEDYOL 0.25% Eye drops",
+      "keptId": "cbd08f70987f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بريمو بريس قطرة عينية 5-01 مل BRIMO PRESS drops",
+      "keptId": "b16bf55fb031"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديفلوسين قطرة عينية معلقة 10 مل BRIMO PRESS drops",
+      "keptId": "2874628fffbc"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "غاتي كير قطرة عينية 2.5 مل GATI CARE drops",
+      "keptId": "bc7e32311348"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اوتيكلور قطرة أذنية OTICHLOR OTIC drops",
+      "keptId": "787efefa2ddb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اوتيكول قطرة أذنية OTICOL OTIC drops",
+      "keptId": "ecc74d585f74"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اوتيكورت قطرة أذنية OTECORT OTIC drops",
+      "keptId": "c04e4f36aa7f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "مل 10 – 5 فيوكورتين قطرة أذنية VIOCORTINE OTIC drops",
+      "keptId": "f0607c264d1f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سلفدرين أطفال قطرة أنفية SULPHEDRIN Children nose drops",
+      "keptId": "56cc1701d255"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سلفدرين كبار قطرة أنفية SULPHEDRIN Adults nose drops",
+      "keptId": "e7283a23b3ee"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اوكسي سوفت قطرة أنفية-01 مل OXY SOFT Nose drops",
+      "keptId": "a6f66e931df0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "15 ml اوكسي سوفت بخاخ أنفي OXY SOFT NAZAL SPRAY",
+      "keptId": "9b79e8933000"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اكزيلو كلير 5.0/05 بخاخ انفي 01 مل XELO CLEAR 0.5/50",
+      "keptId": "890280de1084"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اكزيلو كلير1/05 بخاخ انفي 01 مل XELO CLEAR 0.5/50",
+      "keptId": "bf8d7d7576de"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سالين ميديكو 9.0% بخاخ انفي 51 مل SALINE MEDICO 0.9%",
+      "keptId": "00a58355faf3"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سيبروميد أتش قطرة أذنية معلقة 10ml CIPROMED H / Otic drops",
+      "keptId": "513067fb40ee"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليدوكائين ميديكو 1% محلول معد للحقن LIDOCAINE MEDICO 1% for injection",
+      "keptId": "698054a04db4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "والحقن الوريدي فولتاميد/محلول معد للتسريب الوريدي VOLTAMED/Solution for I.V. infusion &IM injection in plastic amp",
+      "keptId": "b5235f58f42e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "والحقن الوريدي بوسكوميد/محلول معد للتسريب الوريدي BUSCOMED/Solution for I.V. infusion &IM injection in plastic amp",
+      "keptId": "44393acea3db"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أمبول بلاستيكي سولتامول 1.0%/محلول استنشاقي ضمن SULTAMOL 0.1% /Solution for inhalation in plastic amp",
+      "keptId": "9820ae1b7683"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "أمبول بلاستيكي سولتامول 2.0%/محلول استنشاقي ضمن SULTAMOL 0.2% /Solution for inhalation in plastic amp",
+      "keptId": "84fc522a213f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ماء معد للحقن STERILE WATER for injection",
+      "keptId": "6e3d8abf30fd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "غلوكونات الكالسيوم ميديكو محلول معد للحقن Calcium Gluoconate medico",
+      "keptId": "cf21b41c6512"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اوندا فوم محلول معد للحقن Onda Vom",
+      "keptId": "6397eab222e9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلوريد البوتاسيوم ميديكومحلول معد للحقن Potassium Chloride medico",
+      "keptId": "73b5f026bc4a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلوريد البوتاسيوم ميديكو محلول معد للحقن Potassium Chloride medico",
+      "keptId": "73b5f026bc4a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "صوديوم كلورايد ميديكو 20% محلول معد للحقن Sodium Chloride medico %20",
+      "keptId": "1208c7bbc20e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "تروبيسول 250 امبول – محلول للاستنشاق / حبابات TROPISOL – 250 AMP",
+      "keptId": "e324ac8ab858"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "تروبيسول 500 امبول – محلول للاستنشاق / حبابات TROPISOL – 500 AMP",
+      "keptId": "f5f6470316d9"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "مغنزيوم سلفات ميديكو – محلول للحقن / حبابات MAGNESIUM SULFATE medico",
+      "keptId": "8478074e95b5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سولتامول بلس - محلول للاستنشاق / حبابات SULTAMOL PLUS",
+      "keptId": "846f4b89e7ec"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 – أتروبين 1% محلول عيني عقيم 30 ATROPINE 1 % Eye drops",
+      "keptId": "d0136dc30c11"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 سيكلوميد 5.0%محلول عيني عقيم 30 CYCLOMED 0.5%",
+      "keptId": "956046e6863d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سيكلوميد 1% محلول عيني عقيم 10-30 %1 CYCLOMED",
+      "keptId": "78f31c291754"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 ميديكائين 4.0% محلول عيني عقيم 30 MEDICAIN 0.4%",
+      "keptId": "fd9ac148bf7b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "10 ميدرياميد 5.0%محلول عيني عقيم 30 MYDRIAMED 0.5%",
+      "keptId": "3ffbb13094d5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدرياميد 1% محلول عيني عقيم 10-30 %1 MYDRIAMED",
+      "keptId": "03fba2b862ef"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليفو أكت 0.5% محلول عيني عقيم %0.5 LEVO ACT",
+      "keptId": "4aa751503484"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فريش-دروب FRESH-DROP Eye drops",
+      "keptId": "e6d0a789b239"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "هايبرولينز HYPROLENSE",
+      "keptId": "3583164f8355"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "لورا كير LURA CARE",
+      "keptId": "8e3d65ea111e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اولتراديكس ULTRADEX",
+      "keptId": "05a0a60b85b6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بريدنيسيد PREDNICID",
+      "keptId": "6d7edb13ac59"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بولي ثري POLY – THREE",
+      "keptId": "f56d081e4afa"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيوميسين BIOMYCINE",
+      "keptId": "4eb2d0510d4f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "توبراميد TOBRAMED",
+      "keptId": "e6b4fe43a6a7"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "توبراميد-د TOBRAMED -D",
+      "keptId": "277c732b87bd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "جنتادكس GENTADEX",
+      "keptId": "12e6f75b0081"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "%0.3 جنتاميسين- ميديكو GENTAMYCIN- Medico 0.3%",
+      "keptId": "5de65be20b36"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ديكسابوليسيد DEXAPOLYCID",
+      "keptId": "2014e8aa15fb"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "سيبروميد CIPROMED 0.3%",
+      "keptId": "3fe10c1e6000"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ريفاميد RIFAMED",
+      "keptId": "c788b9a7a5cf"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيتامين أ- ميديكو VITAMIN-A-MEDICO",
+      "keptId": "b4045efc8a58"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فوسي كلير 1% جل عيني FUCI CLEAR 1%",
+      "keptId": "57dffb0a0bb5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "%3 فيراميد VIRAMED 3%",
+      "keptId": "c06b4a788a1f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كاربوجل 2.0% جل عيني سائل CARBOGEL 0.2%",
+      "keptId": "cce91bb2000a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كلوراميكسين CHLORAMYXIN",
+      "keptId": "497c8a7d42ae"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فلورا- ج FLORA – G",
+      "keptId": "7ce015644cbe"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "200سوبراكسيميد SOPRAXYMED 200",
+      "keptId": "38f0f501fbc5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "400سوبراكسيميد SOPRAXYMED 400",
+      "keptId": "f103d98a01e7"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100سوبراكسي ميد SOPRAXYMED 100",
+      "keptId": "96ac896fa76b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250سيفيبرول CEFEPROL 250",
+      "keptId": "f1869379745a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "125 سيفيبرول CEFEPROL 125",
+      "keptId": "cdc72a1de86b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250سيفيبرول CEFEPROL 250",
+      "keptId": "f1869379745a"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500سيفيبرول CEFEPROL 500",
+      "keptId": "c7dcb220a78d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "شراب – 125 جاف سيفالكسين ميديكو CEPHALEXIN MEDICO 125- DRY SYRUP",
+      "keptId": "011df5c78aac"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "شراب – 250 جاف سيفالكسين ميديكو CEPHALEXIN MEDICO 250- DRY SYRUP",
+      "keptId": "5202fbe68f49"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كبسول– 250 سيفالكسين ميديكو CEPHALEXIN MEDICO 250- CAPSULE",
+      "keptId": "8a7edbab740b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كبسول– 500 سيفالكسين ميديكو CEPHALEXIN MEDICO 250- CAPSULE",
+      "keptId": "62416ed30815"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "300 ميديسيف Medicef 300",
+      "keptId": "6cb4ee0a0e53"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "125 ميديسيف Medicef 125",
+      "keptId": "5842dbe8db31"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250 ميديسيف Medicef 250",
+      "keptId": "f0b8cfcd8862"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 سيفبوميد CEFPOMED 100",
+      "keptId": "2d436904da7f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "200 سيفبوميد CEFPOMED 200",
+      "keptId": "e36afb1972a0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "50 سيفبوميد CEFPOMED 50",
+      "keptId": "a83e843bc4ad"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "100 سيفبوميد CEFPOMED 100",
+      "keptId": "2d436904da7f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250زيناميد ZENNAMED 250",
+      "keptId": "9758351264c6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "125زيناميد ZENNAMED 125",
+      "keptId": "694ad008035d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "125زيناميد ZENNAMED 125",
+      "keptId": "694ad008035d"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250زيناميد ZENNAMED 250",
+      "keptId": "9758351264c6"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500زيناميد ZENNAMED 500",
+      "keptId": "c21be42f4772"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "125 سيفادروكس CIFADROX 125",
+      "keptId": "53f9aa0bbdb4"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250 سيفادروكس CIFADROX 250",
+      "keptId": "716c55a58e57"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500سيفادروكس CIFADROX 500",
+      "keptId": "d2e968dd78fd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250سيفادروكس CIFADROX 250",
+      "keptId": "716c55a58e57"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500سيفادروكس CIFADROX 500",
+      "keptId": "d2e968dd78fd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "1000سيفادروكس CIFADROX 1000",
+      "keptId": "071f53f1692e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250ميداكلور MEDACLOR 250",
+      "keptId": "460d0a63e118"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "500ميداكلور MEDACLOR 500",
+      "keptId": "94776df34d37"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "250ميداكلور MEDACLOR 250",
+      "keptId": "460d0a63e118"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "125 ميداكلور MEDACLOR 125",
+      "keptId": "ff73b97667a0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بانتوميد PANTHOMED",
+      "keptId": "25ae6f133c26"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "كينزو-هير شامبو KENZO-HAIR Shampoo",
+      "keptId": "0828c2436c13"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديثرين شامبو MEDITHRIN Shampoo",
+      "keptId": "2a752a8ac110"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "POVIMED 4% %4 بوفيميد محلول",
+      "keptId": "3e919e7fb18f"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "POVIMED 10% %10 بوفيميد محلول",
+      "keptId": "d1dd8859b210"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "مولتيتار شامبو MULTITAR Shampoo",
+      "keptId": "f51b02d0b94b"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "فيرت شامبو VERT Shampoo",
+      "keptId": "953f07f087bd"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "بيور كير – جل معقم أيدي PURE CARE GEL",
+      "keptId": "8ce777b29eb0"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ليسترا-سيبتك مضمضة فموية LISTRA SEPTIC Mouth Gargle",
+      "keptId": "b7770a2c0b0e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "اورال سيبت مضمضة فموية ORAL sept",
+      "keptId": "4e6e62145adc"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميدي كلين صابون سائل",
+      "keptId": "c0230d8731b5"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديكو كير مطهر للأيدي Medico Care Solution",
+      "keptId": "a1d5006fc94e"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ستيريل أكتيف – محلول معقم أيدي STERILE ACTIVE SOLU",
+      "keptId": "fac491960f6c"
+    },
+    {
+      "source": "جميع اصناف شركة ميديكو.xlsx",
+      "name": "ميديكو سيبت محلول MEDICO SEPT Solution",
+      "keptId": "499e84ad9c75"
+    }
+  ]
+}
