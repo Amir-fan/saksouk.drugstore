@@ -1,0 +1,891 @@
+{
+  "generatedAt": "2026-09-11",
+  "coverage": {
+    "total": 1041,
+    "manufacturerVerified": 279,
+    "catalogueVerified": 415,
+    "underVerification": 347
+  },
+  "byManufacturer": {
+    "Almashreq": {
+      "total": 4,
+      "manufacturerVerified": 0,
+      "catalogueVerified": 0,
+      "underVerification": 4
+    },
+    "Biomed": {
+      "total": 102,
+      "manufacturerVerified": 27,
+      "catalogueVerified": 0,
+      "underVerification": 75
+    },
+    "Hama Pharma": {
+      "total": 173,
+      "manufacturerVerified": 142,
+      "catalogueVerified": 0,
+      "underVerification": 31
+    },
+    "Ibn Hayan": {
+      "total": 116,
+      "manufacturerVerified": 0,
+      "catalogueVerified": 0,
+      "underVerification": 116
+    },
+    "Kimi": {
+      "total": 37,
+      "manufacturerVerified": 16,
+      "catalogueVerified": 0,
+      "underVerification": 21
+    },
+    "Medico": {
+      "total": 433,
+      "manufacturerVerified": 0,
+      "catalogueVerified": 415,
+      "underVerification": 18
+    },
+    "Rasha": {
+      "total": 42,
+      "manufacturerVerified": 0,
+      "catalogueVerified": 0,
+      "underVerification": 42
+    },
+    "Shifa": {
+      "total": 55,
+      "manufacturerVerified": 23,
+      "catalogueVerified": 0,
+      "underVerification": 32
+    },
+    "Zein Pharma": {
+      "total": 79,
+      "manufacturerVerified": 71,
+      "catalogueVerified": 0,
+      "underVerification": 8
+    }
+  },
+  "officialSourceRecords": {
+    "Biomed": 28,
+    "Hama Pharma": 91,
+    "Kimi": 201,
+    "Zein Pharma": 78,
+    "Shifa": 189
+  },
+  "sourceErrors": {},
+  "manualReviewCandidates": [
+    {
+      "id": "05e5cadc1dd4",
+      "product": "Alpha-Lipoic 50 mg-60 Cap",
+      "manufacturer": "Biomed",
+      "candidate": "Alpha Lipoic Biomed 300 mg",
+      "score": 0.578,
+      "runnerUp": 0.316
+    },
+    {
+      "id": "c741166cecd8",
+      "product": "B-TOTAL - 50 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "B-TOTAL extra",
+      "score": 0.767,
+      "runnerUp": 0.707
+    },
+    {
+      "id": "6a74246bb751",
+      "product": "BioC - 30 Ch. Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Bio C",
+      "score": 0.707,
+      "runnerUp": 0.54
+    },
+    {
+      "id": "36e0439df55f",
+      "product": "BioDical - 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Bio C",
+      "score": 0.611,
+      "runnerUp": 0.566
+    },
+    {
+      "id": "4725b5e13d68",
+      "product": "BioDical -60 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Bio C",
+      "score": 0.611,
+      "runnerUp": 0.566
+    },
+    {
+      "id": "21152852d2fe",
+      "product": "Biogabalin Solution",
+      "manufacturer": "Biomed",
+      "candidate": "bio c zink",
+      "score": 0.556,
+      "runnerUp": 0.526
+    },
+    {
+      "id": "d986c3156c6e",
+      "product": "Clindamycin 150 - 20 Cap",
+      "manufacturer": "Biomed",
+      "candidate": "clindamicine",
+      "score": 0.754,
+      "runnerUp": 0.342
+    },
+    {
+      "id": "128ffcb6d90b",
+      "product": "Clindamycin 300 - 20 Cap",
+      "manufacturer": "Biomed",
+      "candidate": "clindamicine",
+      "score": 0.754,
+      "runnerUp": 0.356
+    },
+    {
+      "id": "873b57e54599",
+      "product": "Daily Vit Woman - 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Daily Vit Maternal",
+      "score": 0.75,
+      "runnerUp": 0.373
+    },
+    {
+      "id": "589d7216c3c2",
+      "product": "Daily-Vit - 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Daily Vit Maternal",
+      "score": 0.73,
+      "runnerUp": 0.373
+    },
+    {
+      "id": "5a881c271d47",
+      "product": "Deferiprone-syrup",
+      "manufacturer": "Biomed",
+      "candidate": "Tempofen syr",
+      "score": 0.559,
+      "runnerUp": 0.406
+    },
+    {
+      "id": "9e6e64f1da18",
+      "product": "Duloxetine 20 - 20 Cap",
+      "manufacturer": "Biomed",
+      "candidate": "Duloxetine Biomed",
+      "score": 0.707,
+      "runnerUp": 0.457
+    },
+    {
+      "id": "f95f8ce7adc6",
+      "product": "Duloxetine 30 - 20 Cap",
+      "manufacturer": "Biomed",
+      "candidate": "Duloxetine Biomed",
+      "score": 0.707,
+      "runnerUp": 0.457
+    },
+    {
+      "id": "50a0ce89961b",
+      "product": "Duloxetine 60 - 20 Cap",
+      "manufacturer": "Biomed",
+      "candidate": "Duloxetine Biomed",
+      "score": 0.707,
+      "runnerUp": 0.457
+    },
+    {
+      "id": "f9925a986595",
+      "product": "Folic Acid 5 mg - 60 tab",
+      "manufacturer": "Biomed",
+      "candidate": "Folic Acid Biomed",
+      "score": 0.73,
+      "runnerUp": 0.457
+    },
+    {
+      "id": "29725e724a08",
+      "product": "Harvomed - 28 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Crestomed",
+      "score": 0.566,
+      "runnerUp": 0.44
+    },
+    {
+      "id": "588367662682",
+      "product": "Levelipsi 1000- 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "LEVILEPSI",
+      "score": 0.623,
+      "runnerUp": 0.373
+    },
+    {
+      "id": "52c8075afe9e",
+      "product": "Medscon SYR",
+      "manufacturer": "Biomed",
+      "candidate": "Tempofen syr",
+      "score": 0.611,
+      "runnerUp": 0.547
+    },
+    {
+      "id": "37cb3040e3c2",
+      "product": "Ramithiazide 10/12.5- 30Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Ramithiazid",
+      "score": 0.707,
+      "runnerUp": 0.569
+    },
+    {
+      "id": "d79d15e71e0c",
+      "product": "Telmitiazed 12.5/40 - 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "telmithiazid",
+      "score": 0.707,
+      "runnerUp": 0.523
+    },
+    {
+      "id": "0e6bf4c69bd4",
+      "product": "Telmitiazed 25/80 - 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "telmithiazid",
+      "score": 0.73,
+      "runnerUp": 0.54
+    },
+    {
+      "id": "88bb0132cc97",
+      "product": "Telmitiazed 80/12.5 - 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "telmithiazid",
+      "score": 0.707,
+      "runnerUp": 0.523
+    },
+    {
+      "id": "39c40f68e567",
+      "product": "Tempofen 200 - 20 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Tempofen syr",
+      "score": 0.642,
+      "runnerUp": 0.397
+    },
+    {
+      "id": "f5c4c584b6b8",
+      "product": "Tempofen 400 - 20 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Tempofen syr",
+      "score": 0.642,
+      "runnerUp": 0.397
+    },
+    {
+      "id": "da496410340b",
+      "product": "Tempofen 600 - 20 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Tempofen syr",
+      "score": 0.642,
+      "runnerUp": 0.397
+    },
+    {
+      "id": "3affcf5d73eb",
+      "product": "Tempofen 800 - 20 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Tempofen syr",
+      "score": 0.642,
+      "runnerUp": 0.397
+    },
+    {
+      "id": "17f0da897004",
+      "product": "Vildagliptin - 30 Tab",
+      "manufacturer": "Biomed",
+      "candidate": "Visalgine",
+      "score": 0.562,
+      "runnerUp": 0.388
+    },
+    {
+      "id": "0ad4c5c9a2ca",
+      "product": "باراسيتامول 500",
+      "manufacturer": "Hama Pharma",
+      "candidate": "PARACETAMOL ADVANCE HAMA PHARMA",
+      "score": 0.71,
+      "runnerUp": 0.71
+    },
+    {
+      "id": "27461b7075c6",
+      "product": "تراكنزا325/37.5",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRAKINZA",
+      "score": 0.667,
+      "runnerUp": 0.381
+    },
+    {
+      "id": "f94598bf5bc0",
+      "product": "تراكنزا650/75",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRAKINZA",
+      "score": 0.7,
+      "runnerUp": 0.4
+    },
+    {
+      "id": "2f7d2448e02e",
+      "product": "تريوديف10/2.5/10",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRI DIAB 10/5/1000",
+      "score": 0.741,
+      "runnerUp": 0.7
+    },
+    {
+      "id": "3bfc9cbfca1b",
+      "product": "تريوديف10/2.5/5",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRIODEF",
+      "score": 0.737,
+      "runnerUp": 0.615
+    },
+    {
+      "id": "4d8f44cd11b7",
+      "product": "تريوديف2.5/0.625/5",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRIODEF",
+      "score": 0.667,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "706f9ddcb770",
+      "product": "تريوديف5/1.25/10",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRIODEF",
+      "score": 0.7,
+      "runnerUp": 0.667
+    },
+    {
+      "id": "d470d403939b",
+      "product": "تريوديف5/1.25/5",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRIODEF",
+      "score": 0.737,
+      "runnerUp": 0.538
+    },
+    {
+      "id": "0e5255df7a28",
+      "product": "توبويد300",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TUBOZID",
+      "score": 0.75,
+      "runnerUp": 0.471
+    },
+    {
+      "id": "f734f2fab8eb",
+      "product": "تووزيد100",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TUBOZID",
+      "score": 0.75,
+      "runnerUp": 0.375
+    },
+    {
+      "id": "41292f3bb4fa",
+      "product": "ريفموكس750/400",
+      "manufacturer": "Hama Pharma",
+      "candidate": "REVMOX",
+      "score": 0.7,
+      "runnerUp": 0.455
+    },
+    {
+      "id": "d134a3e77a0c",
+      "product": "زيبياكس12/25",
+      "manufacturer": "Hama Pharma",
+      "candidate": "ZYBIAX",
+      "score": 0.778,
+      "runnerUp": 0.421
+    },
+    {
+      "id": "4226879f2fe7",
+      "product": "زيبياكس12/50",
+      "manufacturer": "Hama Pharma",
+      "candidate": "ZYBIAX",
+      "score": 0.778,
+      "runnerUp": 0.421
+    },
+    {
+      "id": "dfd21b7cb151",
+      "product": "سبروفلوكساسين250",
+      "manufacturer": "Hama Pharma",
+      "candidate": "CIPROFLOXACIN HAMA PARMA",
+      "score": 0.667,
+      "runnerUp": 0.519
+    },
+    {
+      "id": "9027b92fd522",
+      "product": "سبروفلوكساسين500",
+      "manufacturer": "Hama Pharma",
+      "candidate": "CIPROFLOXACIN HAMA PARMA",
+      "score": 0.667,
+      "runnerUp": 0.519
+    },
+    {
+      "id": "3a148264eec5",
+      "product": "سبروفلوكساسين750",
+      "manufacturer": "Hama Pharma",
+      "candidate": "CIPROFLOXACIN HAMA PARMA",
+      "score": 0.667,
+      "runnerUp": 0.519
+    },
+    {
+      "id": "73d7cb583fe8",
+      "product": "فالسابيتريل24/26",
+      "manufacturer": "Hama Pharma",
+      "candidate": "VALSABITRIL",
+      "score": 0.769,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "c82b2ab99ff3",
+      "product": "فالسابيتريل49/51",
+      "manufacturer": "Hama Pharma",
+      "candidate": "VALSABITRIL",
+      "score": 0.769,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "bf33273529c0",
+      "product": "فالسابيتريل97/103",
+      "manufacturer": "Hama Pharma",
+      "candidate": "VALSABITRIL",
+      "score": 0.741,
+      "runnerUp": 0.483
+    },
+    {
+      "id": "30c1210cc35a",
+      "product": "فورولاكت20/100",
+      "manufacturer": "Hama Pharma",
+      "candidate": "FUROLACT",
+      "score": 0.762,
+      "runnerUp": 0.526
+    },
+    {
+      "id": "2014340a2304",
+      "product": "فيتامين ث",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRIOVITABIN",
+      "score": 0.632,
+      "runnerUp": 0.625
+    },
+    {
+      "id": "09f31f271756",
+      "product": "فيتامين ث +زد",
+      "manufacturer": "Hama Pharma",
+      "candidate": "TRIOVITABIN",
+      "score": 0.571,
+      "runnerUp": 0.556
+    },
+    {
+      "id": "ef9a9225bac7",
+      "product": "كارديف10/10",
+      "manufacturer": "Hama Pharma",
+      "candidate": "CARDEF",
+      "score": 0.75,
+      "runnerUp": 0.583
+    },
+    {
+      "id": "dfd6a63e98dc",
+      "product": "كارديف10/20",
+      "manufacturer": "Hama Pharma",
+      "candidate": "CARDEF",
+      "score": 0.75,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "5a45934f2314",
+      "product": "كولفيت5000",
+      "manufacturer": "Hama Pharma",
+      "candidate": "CHOLVIT",
+      "score": 0.75,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "8841fdb1850d",
+      "product": "كولفيت50000",
+      "manufacturer": "Hama Pharma",
+      "candidate": "CHOLVIT",
+      "score": 0.706,
+      "runnerUp": 0.471
+    },
+    {
+      "id": "721bb7e5ad90",
+      "product": "ميترونيدلزول 250",
+      "manufacturer": "Hama Pharma",
+      "candidate": "METRONIDAZOLE HAMA PHARMA",
+      "score": 0.611,
+      "runnerUp": 0.564
+    },
+    {
+      "id": "459dc1695b8b",
+      "product": "ميترونيدلزول 500",
+      "manufacturer": "Hama Pharma",
+      "candidate": "METRONIDAZOLE HAMA PHARMA",
+      "score": 0.611,
+      "runnerUp": 0.564
+    },
+    {
+      "id": "17ca4492b8c1",
+      "product": "ميترونيدلزول بلس 250/1.5",
+      "manufacturer": "Hama Pharma",
+      "candidate": "METRONIDAZOLE PLUS HAMA PHARMA",
+      "score": 0.636,
+      "runnerUp": 0.537
+    },
+    {
+      "id": "74cf9e70db1d",
+      "product": "ميترونيدلزول بلس 750000/125",
+      "manufacturer": "Hama Pharma",
+      "candidate": "METRONIDAZOLE PLUS HAMA PHARMA",
+      "score": 0.583,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "ad06123b4e83",
+      "product": "امبروكسول ٣٠ ملغ / اقراص",
+      "manufacturer": "Kimi",
+      "candidate": "AMBROXOL KIMI 30",
+      "score": 0.707,
+      "runnerUp": 0.54
+    },
+    {
+      "id": "0b6446d88acc",
+      "product": "اونداكيم شراب",
+      "manufacturer": "Kimi",
+      "candidate": "ONDAKIM 4",
+      "score": 0.88,
+      "runnerUp": 0.88
+    },
+    {
+      "id": "19954a7fb870",
+      "product": "بيبه كالم شراب",
+      "manufacturer": "Kimi",
+      "candidate": "BEBE CALME",
+      "score": 0.74,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "994163ffa38b",
+      "product": "توسلفان شراب",
+      "manufacturer": "Kimi",
+      "candidate": "TUSOLVAN 100 ml",
+      "score": 0.623,
+      "runnerUp": 0.58
+    },
+    {
+      "id": "2741ff404eb1",
+      "product": "ديكلوفيناك ١٠٠ / ٢٠ كبسولة",
+      "manufacturer": "Kimi",
+      "candidate": "DICLOFENAC KIMI 100",
+      "score": 0.564,
+      "runnerUp": 0.54
+    },
+    {
+      "id": "9aa641ef4db4",
+      "product": "ديكلوفيناك ١٠٠ تحاميل",
+      "manufacturer": "Kimi",
+      "candidate": "DICLOFENAC KIMI 100",
+      "score": 0.762,
+      "runnerUp": 0.546
+    },
+    {
+      "id": "730e261a6dad",
+      "product": "ديكلوفيناك ٢٥ تحاميل",
+      "manufacturer": "Kimi",
+      "candidate": "DICLOFENAC KIMI 25",
+      "score": 0.746,
+      "runnerUp": 0.566
+    },
+    {
+      "id": "8cde69e60d10",
+      "product": "ديكلوفيناك ٥٠ تحاميل",
+      "manufacturer": "Kimi",
+      "candidate": "DICLOFENAC KIMI 50",
+      "score": 0.746,
+      "runnerUp": 0.566
+    },
+    {
+      "id": "ed4a76e24cd1",
+      "product": "ريكتوسيل تحاميل أطفال",
+      "manufacturer": "Kimi",
+      "candidate": "RECTOSIL Adult",
+      "score": 0.646,
+      "runnerUp": 0.573
+    },
+    {
+      "id": "7d5ec9745bfb",
+      "product": "غليسيرين تحاميل كبار",
+      "manufacturer": "Kimi",
+      "candidate": "GLYCERIN Children",
+      "score": 0.685,
+      "runnerUp": 0.665
+    },
+    {
+      "id": "01d46c565254",
+      "product": "فكسودين ١٢٠ أقراص",
+      "manufacturer": "Kimi",
+      "candidate": "FEXODIN 120",
+      "score": 0.809,
+      "runnerUp": 0.769
+    },
+    {
+      "id": "8d8b0f28db9b",
+      "product": "كيمي كوف صغار - شراب",
+      "manufacturer": "Kimi",
+      "candidate": "KIMI COUGH Paediatric",
+      "score": 0.707,
+      "runnerUp": 0.707
+    },
+    {
+      "id": "3975eb2b2c78",
+      "product": "كيمي كوف كبار - شراب",
+      "manufacturer": "Kimi",
+      "candidate": "KIMI COUGH Paediatric",
+      "score": 0.707,
+      "runnerUp": 0.707
+    },
+    {
+      "id": "49686b9616cc",
+      "product": "لينكومايسين ٢٠/٥٠٠ كبسول",
+      "manufacturer": "Kimi",
+      "candidate": "LINCOMYCIN KIMI 500",
+      "score": 0.758,
+      "runnerUp": 0.724
+    },
+    {
+      "id": "8c0d919526f1",
+      "product": "نوسباسم أقراص",
+      "manufacturer": "Kimi",
+      "candidate": "No-SPASME",
+      "score": 0.777,
+      "runnerUp": 0.516
+    },
+    {
+      "id": "e0c37d950b43",
+      "product": "نيو نوكولد اقراص",
+      "manufacturer": "Kimi",
+      "candidate": "NO COLD",
+      "score": 0.64,
+      "runnerUp": 0.48
+    },
+    {
+      "id": "33fab9cbba1b",
+      "product": "نيو نوكولد شراب",
+      "manufacturer": "Kimi",
+      "candidate": "ANTICOQUELUCHEUX",
+      "score": 0.623,
+      "runnerUp": 0.512
+    },
+    {
+      "id": "8ecb325965d3",
+      "product": "ازيترو ٥٠٠أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "أزيترو",
+      "score": 0.64,
+      "runnerUp": 0.525
+    },
+    {
+      "id": "f6ece7d772bb",
+      "product": "اميكا ٥/٥٠٠ أمبول",
+      "manufacturer": "Shifa",
+      "candidate": "أميكا",
+      "score": 0.566,
+      "runnerUp": 0.461
+    },
+    {
+      "id": "7497442ffe50",
+      "product": "اورالوكسيم ١٠٠ شراب جاف",
+      "manufacturer": "Shifa",
+      "candidate": "أورالوكسيم 100",
+      "score": 0.668,
+      "runnerUp": 0.547
+    },
+    {
+      "id": "a827552fc5f1",
+      "product": "بانتين /٥ أمبول",
+      "manufacturer": "Shifa",
+      "candidate": "بانثين",
+      "score": 0.596,
+      "runnerUp": 0.5
+    },
+    {
+      "id": "d8b7a27efa9b",
+      "product": "ديكلوريزم ٥/٧٥ أمبول",
+      "manufacturer": "Shifa",
+      "candidate": "ديكلوريسم",
+      "score": 0.655,
+      "runnerUp": 0.502
+    },
+    {
+      "id": "c20f064e6584",
+      "product": "ديكلوريزم ٥٠ أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "أسيكلوريزم",
+      "score": 0.655,
+      "runnerUp": 0.54
+    },
+    {
+      "id": "257914a2fb1a",
+      "product": "رفين / ٥ أبمول",
+      "manufacturer": "Shifa",
+      "candidate": "فينيكول",
+      "score": 0.588,
+      "runnerUp": 0.588
+    },
+    {
+      "id": "818f189b153a",
+      "product": "سيميتدين /٥ أمبول",
+      "manufacturer": "Shifa",
+      "candidate": "سيميتيدين",
+      "score": 0.736,
+      "runnerUp": 0.463
+    },
+    {
+      "id": "4bb9d88c31e9",
+      "product": "شفاتربتيل ١٠ أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "شيفاتريبتيل",
+      "score": 0.707,
+      "runnerUp": 0.54
+    },
+    {
+      "id": "7850233a0d4a",
+      "product": "شفاتربتيل ٢٥ أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "شيفاتريبتيل",
+      "score": 0.707,
+      "runnerUp": 0.54
+    },
+    {
+      "id": "ff80e325679b",
+      "product": "شفاتوئين /٥ أمبول",
+      "manufacturer": "Shifa",
+      "candidate": "شيفاتوين",
+      "score": 0.676,
+      "runnerUp": 0.475
+    },
+    {
+      "id": "39a88a41bb47",
+      "product": "شفاريد كولد أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "شيفريد كولد",
+      "score": 0.76,
+      "runnerUp": 0.562
+    },
+    {
+      "id": "372bedbaa378",
+      "product": "شفازن فورت أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "شيفازين فورت",
+      "score": 0.76,
+      "runnerUp": 0.516
+    },
+    {
+      "id": "f1f5e4f33df3",
+      "product": "شفافلكس كبسول",
+      "manufacturer": "Shifa",
+      "candidate": "شيفافليكس",
+      "score": 0.707,
+      "runnerUp": 0.566
+    },
+    {
+      "id": "3ea0d21ff0ba",
+      "product": "شفافيت ٢+١ /٥ أمبول",
+      "manufacturer": "Shifa",
+      "candidate": "شيفافيت",
+      "score": 0.611,
+      "runnerUp": 0.516
+    },
+    {
+      "id": "b681761c1916",
+      "product": "فازوسيرك أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "فاسوسيرك",
+      "score": 0.707,
+      "runnerUp": 0.676
+    },
+    {
+      "id": "f3b4d37a37a3",
+      "product": "فيتا ث فوار",
+      "manufacturer": "Shifa",
+      "candidate": "فيتانور",
+      "score": 0.75,
+      "runnerUp": 0.588
+    },
+    {
+      "id": "45cc836fc5fb",
+      "product": "كفو ١/١٠٠٠ فيال",
+      "manufacturer": "Shifa",
+      "candidate": "كلافو 1000",
+      "score": 0.707,
+      "runnerUp": 0.393
+    },
+    {
+      "id": "f506f0774366",
+      "product": "نيولورا أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "نيو لورا",
+      "score": 0.777,
+      "runnerUp": 0.461
+    },
+    {
+      "id": "a473eafc9c5b",
+      "product": "هيبوبريل ١٠ أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "هيبوبرل",
+      "score": 0.676,
+      "runnerUp": 0.6
+    },
+    {
+      "id": "02e540a003d5",
+      "product": "هيبوبريل ٢٠ أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "هيبوبرل",
+      "score": 0.676,
+      "runnerUp": 0.6
+    },
+    {
+      "id": "9e76fbf7af03",
+      "product": "هيوبريل بلس٥٫٣٢أقراص",
+      "manufacturer": "Shifa",
+      "candidate": "هيبوبرل بلس",
+      "score": 0.661,
+      "runnerUp": 0.502
+    },
+    {
+      "id": "fbd4eb0e530f",
+      "product": "Fine Bone 10000 -10 cap",
+      "manufacturer": "Zein Pharma",
+      "candidate": "Fine Bone 10,000 IU",
+      "score": 0.727,
+      "runnerUp": 0.66
+    },
+    {
+      "id": "eed2b369d060",
+      "product": "Fine Bone 5000 -30 cap",
+      "manufacturer": "Zein Pharma",
+      "candidate": "Fine Bone 50,000 IU",
+      "score": 0.757,
+      "runnerUp": 0.717
+    },
+    {
+      "id": "bdb8594936e0",
+      "product": "Fine Bone 50000 -10 cap",
+      "manufacturer": "Zein Pharma",
+      "candidate": "Fine Bone 50,000 IU",
+      "score": 0.727,
+      "runnerUp": 0.688
+    },
+    {
+      "id": "ec0dd2e1b5fd",
+      "product": "Kaltop 500 mg",
+      "manufacturer": "Zein Pharma",
+      "candidate": "Empaphage 12.5/500 mg",
+      "score": 0.667,
+      "runnerUp": 0.667
+    },
+    {
+      "id": "bf79e03da245",
+      "product": "Zefinam10/250",
+      "manufacturer": "Zein Pharma",
+      "candidate": "Zefinam 250/10 mg",
+      "score": 0.769,
+      "runnerUp": 0.589
+    },
+    {
+      "id": "41768b6aa442",
+      "product": "Zefinam20/500",
+      "manufacturer": "Zein Pharma",
+      "candidate": "Zefinam 500/20 mg",
+      "score": 0.769,
+      "runnerUp": 0.666
+    }
+  ]
+}

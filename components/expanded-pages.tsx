@@ -5,11 +5,16 @@ import {
   ArrowDownAZ,
   ArrowRight,
   ArrowUpRight,
+  BadgeCheck,
+  Bot,
   BriefcaseBusiness,
   Building2,
   Check,
   ChevronDown,
+  Clock3,
   Eye,
+  ExternalLink,
+  FlaskConical,
   Handshake,
   HeartPulse,
   Leaf,
@@ -127,6 +132,92 @@ type CatalogProduct = {
   image?: string;
 };
 
+type LocalizedGuideText = { en?: string; ar?: string };
+type MedicineGuide = {
+  status: 'manufacturer-verified' | 'catalogue-verified' | 'under-verification';
+  manufacturer: { en: string; ar: string };
+  activeIngredients?: LocalizedGuideText;
+  strength?: LocalizedGuideText;
+  dosageForm?: LocalizedGuideText;
+  recognizedUse?: LocalizedGuideText;
+  source?: {
+    label: LocalizedGuideText;
+    url?: string;
+    type: 'official-manufacturer' | 'supplied-catalogue';
+    accessed: string;
+  };
+};
+
+function guideText(value: LocalizedGuideText | undefined, lang: 'en' | 'ar') {
+  return value?.[lang] || value?.en || value?.ar || '';
+}
+
+function MedicineGuidePanel({ product, guide, onClose }: { product: CatalogProduct; guide?: MedicineGuide; onClose: () => void }) {
+  const { lang } = useLanguage();
+  const reduce = useReducedMotion();
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const pending = !guide || guide.status === 'under-verification';
+  const manufacturerVerified = guide?.status === 'manufacturer-verified';
+  const copy = lang === 'ar' ? {
+    kicker: 'SAKSOUK INTELLIGENCE', title: 'معلومة دوائية، موثّقة بوضوح.', close: 'إغلاق الدليل',
+    verified: 'موثّق من الشركة المصنّعة', catalogue: 'موثّق من الكتالوج المورّد', pending: 'قيد التحقق العلمي',
+    active: 'المادة الفعالة / التركيب', strength: 'العيار', form: 'الشكل الصيدلاني', use: 'الاستخدام المدرج من الشركة', manufacturer: 'الشركة المصنّعة', source: 'المصدر', viewSource: 'عرض المصدر الرسمي',
+    curated: 'بيانات منسّقة من مصادر الشركة المصنّعة، وليست إجابة مولّدة لحظياً.',
+    pendingTitle: 'نراجع بيانات هذا الصنف الآن.', pendingText: 'لن نعرض تركيبة متوقعة أو مستنتجة. ستظهر المادة الفعالة هنا فقط بعد مطابقة الصنف مع مصدر موثوق.',
+    disclaimerTitle: 'تنبيه صحي', disclaimer: 'هذه معلومات تعريفية عن المنتج وليست وصفة أو نصيحة جرعات، ولا تغني عن استشارة الطبيب أو الصيدلي.',
+  } : {
+    kicker: 'SAKSOUK INTELLIGENCE', title: 'Medicine intelligence, clearly verified.', close: 'Close medicine guide',
+    verified: 'Manufacturer verified', catalogue: 'Verified from supplied catalogue', pending: 'Scientific verification in progress',
+    active: 'Active ingredients / composition', strength: 'Strength', form: 'Dosage form', use: 'Manufacturer-listed use', manufacturer: 'Manufacturer', source: 'Source', viewSource: 'View official source',
+    curated: 'Curated manufacturer-source data—not a live generated answer.',
+    pendingTitle: 'We are reviewing this medicine.', pendingText: 'We never show a guessed or inferred composition. Active ingredients will appear here only after the product is matched to an authoritative source.',
+    disclaimerTitle: 'Health notice', disclaimer: 'This is general product information, not a prescription or dosing advice. It does not replace a doctor or pharmacist.',
+  };
+  const fields = [
+    { key: 'active', label: copy.active, value: guideText(guide?.activeIngredients, lang), icon: FlaskConical, wide: true },
+    { key: 'strength', label: copy.strength, value: guideText(guide?.strength, lang), icon: Sparkles },
+    { key: 'form', label: copy.form, value: guideText(guide?.dosageForm, lang), icon: Pill },
+    { key: 'use', label: copy.use, value: guideText(guide?.recognizedUse, lang), icon: HeartPulse, wide: true },
+  ].filter((field) => field.value);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', closeOnEscape);
+    requestAnimationFrame(() => closeRef.current?.focus());
+    return () => { document.body.style.overflow = previousOverflow; document.removeEventListener('keydown', closeOnEscape); };
+  }, [onClose]);
+
+  return (
+    <motion.div className="medicine-guide-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <motion.dialog open className="medicine-guide-panel" aria-modal="true" aria-labelledby="medicine-guide-title" initial={reduce ? false : { opacity: 0, y: 30, scale: .975 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 22, scale: .985 }} transition={{ duration: .38, ease }}>
+        <header className="medicine-guide-hero">
+          <div className="medicine-guide-orb" aria-hidden><Bot size={30} /><i /><i /></div>
+          <div className="medicine-guide-heading"><span>{copy.kicker}</span><h2 id="medicine-guide-title" dir="auto">{product.name}</h2><p>{copy.title}</p></div>
+          <button ref={closeRef} className="medicine-guide-close" type="button" onClick={onClose} aria-label={copy.close}><X size={19} /></button>
+          <div className="medicine-guide-glow" aria-hidden />
+        </header>
+        <div className="medicine-guide-body">
+          <div className={`medicine-guide-status status-${guide?.status || 'under-verification'}`}>
+            {pending ? <Clock3 size={17} /> : <BadgeCheck size={17} />}
+            <strong>{pending ? copy.pending : manufacturerVerified ? copy.verified : copy.catalogue}</strong>
+            {!pending && <span>{copy.curated}</span>}
+          </div>
+          {pending ? <div className="medicine-guide-pending"><span><Clock3 /></span><div><h3>{copy.pendingTitle}</h3><p>{copy.pendingText}</p></div></div> : <div className="medicine-guide-grid">
+            {fields.map((field, index) => { const Icon = field.icon; return <motion.article className={field.wide ? 'is-wide' : ''} key={field.key} initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 + index * .07, duration: .4, ease }}><i><Icon size={18} /></i><div><span>{field.label}</span><p dir="auto">{field.value}</p></div></motion.article>; })}
+          </div>}
+          <div className="medicine-guide-meta">
+            <div><span>{copy.manufacturer}</span><strong>{product.company[lang]}</strong></div>
+            {guide?.source && <div><span>{copy.source}</span>{guide.source.url ? <a href={guide.source.url} target="_blank" rel="noreferrer">{copy.viewSource}<ExternalLink size={14} /></a> : <strong>{guideText(guide.source.label, lang)}</strong>}</div>}
+          </div>
+          <aside className="medicine-guide-disclaimer"><ShieldCheck size={20} /><div><strong>{copy.disclaimerTitle}</strong><p>{copy.disclaimer}</p></div></aside>
+        </div>
+      </motion.dialog>
+    </motion.div>
+  );
+}
+
 const PRODUCTS_PER_PAGE = 24;
 
 type CatalogueOption = { value: string; label: string };
@@ -189,6 +280,8 @@ function ProductCatalogue({ kind, category }: { kind: ProductKind; category: str
   const [sort, setSort] = useState<'name' | 'company'>('name');
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<CatalogProduct[]>([]);
+  const [medicineGuides, setMedicineGuides] = useState<Record<string, MedicineGuide>>({});
+  const [selectedMedicine, setSelectedMedicine] = useState<CatalogProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const copy = lang === 'ar' ? {
     eyebrow: 'كتالوج المنتجات', title: `استكشف ${category}`, intro: 'ابحث في الأصناف الواردة من الشركات، وصفِّ النتائج حسب الشركة أو الحرف الأول.',
@@ -196,14 +289,14 @@ function ProductCatalogue({ kind, category }: { kind: ProductKind; category: str
     national: 'الشركات الوطنية', cosmetics: 'الكوزمتك', products: 'صنف', reset: 'إعادة ضبط الفلاتر', inquire: 'استفسر عن هذا الصنف',
     noResults: 'لا توجد نتائج مطابقة', noResultsText: 'جرّب تغيير عبارة البحث أو إزالة أحد الفلاتر.',
     emptyTitle: 'لم تتم إضافة أصناف لهذه الفئة', emptyText: 'لم تتضمن الملفات المرفقة قائمة مستقلة لهذه الفئة. تواصل مع فريقنا للاستفسار عن الأصناف المتوفرة.',
-    previous: 'السابق', next: 'التالي', page: 'صفحة', of: 'من', composition: 'التركيب', indication: 'الاستخدام', loading: 'جارٍ تحميل الأصناف…',
+    previous: 'السابق', next: 'التالي', page: 'صفحة', of: 'من', composition: 'التركيب', indication: 'الاستخدام', loading: 'جارٍ تحميل الأصناف…', aiGuide: 'دليل سكسوك الذكي',
   } : {
     eyebrow: 'Product catalogue', title: `Explore ${category}`, intro: 'Search the supplied product lists and filter the catalogue by company or initial letter.',
     search: 'Search by product or company', clearSearch: 'Clear search', companyLabel: 'Company', company: 'All companies', initialLabel: 'Initial', allLetters: 'All letters', sortLabel: 'Sort by', sort: 'Product name', sortCompany: 'Company name', all: 'All',
     national: 'National companies', cosmetics: 'Cosmetics', products: 'products', reset: 'Reset filters', inquire: 'Ask about this product',
     noResults: 'No matching products', noResultsText: 'Try a different search term or clear one of the filters.',
     emptyTitle: 'No products were supplied for this category', emptyText: 'The provided files did not include a separate list for this category. Contact our team to ask what is currently available.',
-    previous: 'Previous', next: 'Next', page: 'Page', of: 'of', composition: 'Composition', indication: 'Use', loading: 'Loading products…',
+    previous: 'Previous', next: 'Next', page: 'Page', of: 'of', composition: 'Composition', indication: 'Use', loading: 'Loading products…', aiGuide: 'Saksouk AI Guide',
   };
   useEffect(() => {
     const controller = new AbortController();
@@ -215,6 +308,15 @@ function ProductCatalogue({ kind, category }: { kind: ProductKind; category: str
       .then((data) => setProducts(data))
       .catch((error: unknown) => { if (!(error instanceof DOMException && error.name === 'AbortError')) setProducts([]); })
       .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
+  }, [kind]);
+  useEffect(() => {
+    if (kind !== 'medicine') return;
+    const controller = new AbortController();
+    fetch(assetUrl('/data/medicine-guides.json'), { signal: controller.signal })
+      .then((response) => response.ok ? response.json() as Promise<Record<string, MedicineGuide>> : {})
+      .then((data) => setMedicineGuides(data))
+      .catch((error: unknown) => { if (!(error instanceof DOMException && error.name === 'AbortError')) setMedicineGuides({}); });
     return () => controller.abort();
   }, [kind]);
   const companies = useMemo(() => Array.from(new Map(products.map((product) => [product.company.en, product.company])).values()).sort((a, b) => a[lang].localeCompare(b[lang], lang)), [lang, products]);
@@ -236,7 +338,7 @@ function ProductCatalogue({ kind, category }: { kind: ProductKind; category: str
   const sortOptions = useMemo<CatalogueOption[]>(() => [{ value: 'name', label: copy.sort }, { value: 'company', label: copy.sortCompany }], [copy.sort, copy.sortCompany]);
   const selectedCompany = companyOptions.find((option) => option.value === company)?.label;
   const hasActiveFilters = Boolean(query || company !== 'all' || letter !== 'all' || sort !== 'name');
-  return (
+  return (<>
     <section className={`catalogue-section section catalogue-${kind}`}>
       <div className="container">
         <div className="catalogue-heading"><div><p className="section-label"><span />{copy.eyebrow}</p><h2>{copy.title}</h2></div><p>{copy.intro}</p></div>
@@ -262,14 +364,15 @@ function ProductCatalogue({ kind, category }: { kind: ProductKind; category: str
             <div className="product-results-head"><div><strong>{filteredProducts.length.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong><span>{copy.products}</span><em>{kind === 'medicine' ? copy.national : copy.cosmetics}</em></div></div>
             {visibleProducts.length > 0 ? <div className="catalogue-product-grid">{visibleProducts.map((product) => { const Icon = productIcons[kind]; const detail = lang === 'ar' ? (product.indication || product.composition || product.description) : (product.composition || product.indication || product.description); const inquiryUrl = `${WHATSAPP_URL}?text=${encodeURIComponent(lang === 'ar' ? `مرحباً، أود الاستفسار عن الصنف: ${product.name}` : `Hello, I would like to ask about: ${product.name}`)}`; return <article className={`catalogue-product-card ${product.image ? 'has-image' : 'no-image'}`} key={product.id}>
               <div className={`product-card-image ${product.image ? '' : 'placeholder'}`}>{product.image ? <img src={assetUrl(product.image)} alt={product.name} loading="lazy" decoding="async" /> : <Icon aria-hidden />}</div>
-              <div className="product-card-copy"><div className="product-card-meta"><span>{product.company[lang]}</span><em>{product.group === 'national' ? copy.national : copy.cosmetics}</em></div><h3 dir="auto">{product.name}</h3>{detail && <p dir="auto">{detail}</p>}<a className="product-inquire" href={inquiryUrl} target="_blank" rel="noreferrer">{copy.inquire}<ArrowUpRight size={15} /></a></div>
+              <div className="product-card-copy"><div className="product-card-meta"><span>{product.company[lang]}</span><em>{product.group === 'national' ? copy.national : copy.cosmetics}</em></div><h3 dir="auto">{product.name}</h3>{detail && <p dir="auto">{detail}</p>}<div className="product-card-actions">{kind === 'medicine' && <button type="button" className="medicine-ai-button" onClick={() => setSelectedMedicine(product)}><span><Bot size={14} /></span>{copy.aiGuide}<Sparkles size={12} /></button>}<a className="product-inquire" href={inquiryUrl} target="_blank" rel="noreferrer">{copy.inquire}<ArrowUpRight size={15} /></a></div></div>
             </article>; })}</div> : <div className="catalogue-no-results"><i><PackageSearch /></i><h3>{copy.noResults}</h3><p>{copy.noResultsText}</p><button type="button" className="catalogue-reset" onClick={reset}><RotateCcw size={15} />{copy.reset}</button></div>}
             {pageCount > 1 && <nav className="catalogue-pagination" aria-label={lang === 'ar' ? 'صفحات المنتجات' : 'Product pages'}><button type="button" onClick={() => { setPage((current) => Math.max(1, current - 1)); window.scrollTo({ top: (document.querySelector('.catalogue-results')?.getBoundingClientRect().top || 0) + window.scrollY - 110, behavior: 'smooth' }); }} disabled={currentPage === 1}>{copy.previous}</button><span>{copy.page} <strong>{currentPage.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong> {copy.of} {pageCount.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</span><button type="button" onClick={() => { setPage((current) => Math.min(pageCount, current + 1)); window.scrollTo({ top: (document.querySelector('.catalogue-results')?.getBoundingClientRect().top || 0) + window.scrollY - 110, behavior: 'smooth' }); }} disabled={currentPage === pageCount}>{copy.next}</button></nav>}
           </div>}
         </div>
       </div>
     </section>
-  );
+    <AnimatePresence>{selectedMedicine && <MedicineGuidePanel product={selectedMedicine} guide={medicineGuides[selectedMedicine.id]} onClose={() => setSelectedMedicine(null)} />}</AnimatePresence>
+  </>);
 }
 
 export function ProductCategoryPage({ kind }: { kind: ProductKind }) {
