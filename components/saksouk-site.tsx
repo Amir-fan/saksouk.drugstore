@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, ArrowUpRight, Award, Check, Compass, Heart, Mail, MapPin, Menu, Minus, Phone, Plus, ShieldCheck, X, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Award, Building2, Check, Compass, FileCheck2, Heart, Mail, MapPin, Menu, Minus, Phone, Plus, ShieldCheck, Snowflake, X, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ import { assetUrl, pageUrl, WHATSAPP_URL } from '@/lib/site-paths';
 const ease = [0.22, 1, 0.36, 1] as const;
 
 function Brand() {
-  return <a className="brand" href={pageUrl('/#home')} aria-label="Saksouk Drugstore home"><img src={assetUrl('/images/logo.png')} alt="Saksouk Drugstore" className="brand-logo" /></a>;
+  return <a className="brand" href={pageUrl('/#home')} aria-label="Saksouk Drugstore home"><img src={assetUrl('/images/logo.png')} alt="Saksouk Drugstore" className="brand-logo" /><span className="brand-slogan">More Than Medicine</span></a>;
 }
 
 export function ArrowLink({ href, children, primary = false }: { href: string; children: React.ReactNode; primary?: boolean }) {
@@ -210,6 +210,42 @@ function Partners() {
   );
 }
 
+function MarketEntry() {
+  const { content, lang } = useLanguage();
+  const featureIcons = [FileCheck2, Building2, Snowflake];
+
+  return (
+    <section className="market-entry section" id="market-entry">
+      <div className="container market-entry-grid">
+        <div className="market-entry-visuals">
+          <ImageReveal className="market-entry-main-image" src="/images/business-partnership.png" alt={lang === 'ar' ? 'اجتماع شراكة أعمال لدخول السوق السورية' : 'Business partners planning a successful Syrian market entry'} />
+          <div className="market-entry-detail-card">
+            <img src={assetUrl('/images/pharma-cold-chain-v3.jpg')} alt={lang === 'ar' ? 'توزيع دوائي مبرد وآمن' : 'Safe refrigerated pharmaceutical distribution'} loading="lazy" decoding="async" />
+            <p>{lang === 'ar' ? 'بنية تحتية تحافظ على جودة وسلامة المنتج.' : 'Infrastructure built to protect product quality and integrity.'}</p>
+          </div>
+        </div>
+        <div className="market-entry-copy">
+          <Reveal>
+            <SectionLabel>{content.marketEntry.eyebrow}</SectionLabel>
+            <ScrollHeading lines={content.marketEntry.title} />
+            <p className="market-entry-intro">{content.marketEntry.intro}</p>
+          </Reveal>
+          <div className="market-entry-features">
+            {content.marketEntry.features.map((feature, index) => {
+              const Icon = featureIcons[index];
+              return <Reveal key={feature} delay={index * .06}><div className="market-entry-feature"><i><Icon size={18} strokeWidth={1.8} /></i><span>{feature}</span></div></Reveal>;
+            })}
+          </div>
+          <div className="market-entry-body">
+            {content.marketEntry.paragraphs.map((paragraph, index) => <Reveal key={paragraph} delay={index * .05}><p>{paragraph}</p></Reveal>)}
+          </div>
+          <Reveal><ArrowLink href={WHATSAPP_URL} primary>{content.marketEntry.cta}</ArrowLink></Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Insights() {
   const { lang } = useLanguage();
   const posts = expandedPages[lang].news.posts;
@@ -313,6 +349,7 @@ export function SaksoukSite() {
       <Metrics />
       <Capabilities />
       <Partners />
+      <MarketEntry />
       <Insights />
       <Operations />
       <Audiences />

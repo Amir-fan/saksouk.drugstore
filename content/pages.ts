@@ -1,11 +1,17 @@
 export const expandedPages = {
   en: {
     about: {
-      eyebrow: 'About Saksouk',
-      title: ['A trusted link in', 'the healthcare chain.'],
-      intro: 'Saksouk Drugstore supports pharmaceutical access through organized distribution, commercial expertise and long-term relationships with healthcare partners across Syria.',
-      storyTitle: 'Built around access, responsibility and trust.',
-      story: ['Our work connects manufacturers and healthcare suppliers with pharmacies, institutions and distributors. Every relationship is supported by clear communication, responsible handling and an understanding of local market needs.', 'As the healthcare landscape evolves, we continue to strengthen the capabilities, people and partnerships that help essential products move reliably.'],
+      eyebrow: 'About Us',
+      title: ['Saksouk —', 'Experience Since 1950'],
+      intro: 'Decades of business experience, local market knowledge and distribution expertise—focused on helping our partners build a strong and sustainable presence in Syria.',
+      storyTitle: 'Experience across industries. A focused future in healthcare.',
+      story: [
+        'We are part of Saksouk International Group, a diversified business group with a business and trading history dating back to 1950. The group operates across a range of sectors, including animal feed manufacturing and trading, aluminum manufacturing and trading, contracting and construction, agriculture, and the trading and import of vehicles and spare parts.',
+        'At the forefront of the group’s activities is Saksouk Pharmaceutical Warehouse, established in 2000, bringing more than two decades of experience in the trade and distribution of pharmaceutical products, supported by extensive knowledge of market requirements, distribution operations, and relationships with companies, suppliers, and customers.',
+        'Throughout its decades of operation, the group has continuously focused on developing its businesses, attracting qualified professionals and experienced talent, and building specialized teams capable of responding to evolving market needs and supporting our partners.',
+        'Today, we continue this journey by expanding our activities and building strategic partnerships with companies and brands seeking to enter the Syrian market or expand their presence within it.',
+        'We offer our partners decades of experience, local market knowledge, distribution expertise, and the infrastructure needed to build a strong and sustainable presence in the Syrian market.',
+      ],
       vision: { label: 'Our vision', title: 'To be the most dependable pharmaceutical distribution partner in Syria.', text: 'We envision a connected healthcare supply chain where quality products reach the organizations and communities that need them with consistency and care.' },
       goal: { label: 'Our goal', title: 'Make access simpler, clearer and more reliable.', text: 'We work to build resilient routes to market, responsive partner support and disciplined operations across every stage of distribution.' },
       teamTitle: 'People behind dependable supply.',
@@ -57,11 +63,17 @@ export const expandedPages = {
   },
   ar: {
     about: {
-      eyebrow: 'عن سكسوك',
-      title: ['حلقة موثوقة في', 'سلسلة الرعاية الصحية.'],
-      intro: 'يدعم مستودع سكسوك وصول المنتجات الدوائية من خلال التوزيع المنظم والخبرة التجارية والعلاقات طويلة الأمد مع شركاء الرعاية الصحية في سوريا.',
-      storyTitle: 'عملٌ قائم على الوصول والمسؤولية والثقة.',
-      story: ['يربط عملنا المصنعين وموردي الرعاية الصحية بالصيدليات والمؤسسات والموزعين. وتستند كل علاقة إلى التواصل الواضح والمناولة المسؤولة وفهم احتياجات السوق المحلي.', 'ومع تطور قطاع الرعاية الصحية، نواصل تعزيز قدراتنا وفريقنا وشراكاتنا لضمان حركة المنتجات الأساسية بموثوقية.'],
+      eyebrow: 'من نحن',
+      title: ['سكسوك —', 'خبرة تمتد منذ عام 1950'],
+      intro: 'خبرة تمتد لعقود، ومعرفة بالسوق، وخبرة في التوزيع، وبنية تحتية تساعد شركاءنا على بناء حضور قوي ومستدام في السوق السورية.',
+      storyTitle: 'خبرة متنوعة ومستقبل يركز على الرعاية الصحية.',
+      story: [
+        'نحن جزء من مجموعة شركات سكسوك العالمية، التي تمتد خبرتها في مجال الأعمال والتجارة منذ عام 1950، وتعمل في مجموعة متنوعة من القطاعات، تشمل صناعة وتجارة الأعلاف، صناعة وتجارة الألمنيوم، المقاولات والبناء، الزراعة، وتجارة واستيراد السيارات وقطع الغيار.',
+        'ويأتي مستودع سكسوك للأدوية في مقدمة أنشطة المجموعة، حيث بدأ نشاطه منذ عام 2000، ليقدم خبرة تمتد لأكثر من عقدين في تجارة وتوزيع المنتجات الدوائية، مع معرفة واسعة بمتطلبات السوق وآليات التوزيع والتعامل مع الشركات والموردين والعملاء.',
+        'وعلى مدى عقود، حرصت المجموعة على تطوير أعمالها باستمرار واستقطاب الخبرات والكفاءات المهنية، وبناء فرق عمل متخصصة قادرة على مواكبة تطورات الأسواق واحتياجات شركائنا.',
+        'واليوم، نواصل مسيرة التطور من خلال توسيع نشاطنا وبناء شراكات استراتيجية مع الشركات والعلامات التجارية الراغبة في دخول السوق السورية أو توسيع حضورها فيها.',
+        'نقدم لشركائنا خبرة تمتد لعقود، ومعرفة بالسوق، وخبرة في التوزيع، وبنية تحتية تساعدهم على بناء حضور قوي ومستدام في السوق السورية.',
+      ],
       vision: { label: 'رؤيتنا', title: 'أن نكون شريك التوزيع الدوائي الأكثر موثوقية في سوريا.', text: 'نتطلع إلى سلسلة إمداد صحية مترابطة تصل فيها المنتجات عالية الجودة إلى المؤسسات والمجتمعات التي تحتاجها باستمرارية وعناية.' },
       goal: { label: 'هدفنا', title: 'جعل الوصول أبسط وأوضح وأكثر موثوقية.', text: 'نعمل على بناء مسارات مرنة إلى السوق ودعم سريع للشركاء وعمليات منضبطة في كل مرحلة من مراحل التوزيع.' },
       teamTitle: 'فريق يقف خلف إمداد موثوق.',

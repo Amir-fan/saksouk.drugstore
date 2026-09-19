@@ -29,6 +29,18 @@ export const siteContent = {
       lead: 'SAKSOUK is one of the fastest-growing companies in Syria\'s healthcare sector.',
       body: 'We distribute and promote a wide range of high-quality generic medicines, in-licensed pharmaceutical products, and nutraceuticals. Driven by our mission to deliver essential healthcare products efficiently, we continuously enhance our capabilities to support better health outcomes.',
     },
+    marketEntry: {
+      eyebrow: 'Market entry partnership',
+      title: ['Your Trusted Partner', 'for Entering the Syrian Market'],
+      intro: 'Looking for a trusted partner to help you enter the Syrian market with ease?',
+      paragraphs: [
+        'We help companies facilitate registration and import procedures and access local distribution channels, supporting them in building a successful and sustainable presence for their products in the Syrian market.',
+        'For companies whose products we distribute, we also provide dedicated offices, equipped warehouses, and refrigerated distribution vehicles, helping maintain product quality, safety, and integrity throughout the storage and distribution process.',
+        'If you are looking for a reliable partner to expand your business and enter the Syrian market, don’t hesitate to contact us. We are ready to explore opportunities for cooperation and partnership with you.',
+      ],
+      features: ['Registration & import support', 'Equipped offices & warehouses', 'Refrigerated distribution fleet'],
+      cta: 'Discuss a partnership',
+    },
     metrics: [
       { value: 3, label: 'Core supply stages', detail: 'Storage · Handling · Distribution' },
       { value: 3, label: 'Healthcare partner groups', detail: 'Pharmacies · Institutions · Industry' },
@@ -133,6 +145,18 @@ export const siteContent = {
       title: ['توفير الأدوية الأساسية', 'بكفاءة وموثوقية.'],
       lead: 'تُعد سكسوك واحدة من أسرع الشركات نمواً في قطاع الرعاية الصحية في سوريا.',
       body: 'نقوم بتوزيع وترويج مجموعة واسعة من الأدوية البشرية عالية الجودة، المنتجات الصيدلانية المرخصة، والمكملات الغذائية. وانطلاقاً من مهمتنا المتمثلة في تقديم منتجات الرعاية الصحية الأساسية بكفاءة، فإننا نعمل باستمرار على تعزيز قدراتنا لدعم نتائج صحية أفضل.',
+    },
+    marketEntry: {
+      eyebrow: 'شراكات دخول السوق',
+      title: ['شريكك الموثوق', 'لدخول السوق السورية'],
+      intro: 'هل تبحث عن شريك موثوق يساعدك على دخول السوق السورية بكل سهولة؟',
+      paragraphs: [
+        'نساعد الشركات على تسهيل إجراءات التسجيل والاستيراد، والوصول إلى قنوات التوزيع المحلية، بما يساهم في بناء حضور ناجح ومستدام لمنتجاتها في السوق السورية.',
+        'كما نوفر للشركات التي نتولى توزيع منتجاتها مكاتب ومستودعات مجهزة، بالإضافة إلى سيارات مبردة مخصصة للتوزيع، لضمان الحفاظ على منتجاتها وجودتها وسلامتها طوال عملية التخزين والتوزيع.',
+        'إذا كنت تبحث عن شريك موثوق لتوسيع أعمالك ودخول السوق السورية، فلا تتردد في التواصل معنا. نحن مستعدون لبحث فرص التعاون والشراكة معكم.',
+      ],
+      features: ['دعم التسجيل والاستيراد', 'مكاتب ومستودعات مجهزة', 'أسطول توزيع مبرد'],
+      cta: 'ناقش فرصة شراكة',
     },
     metrics: [
       { value: 3, label: 'المراحل الأساسية للتوريد', detail: 'التخزين · المناولة · التوزيع' },
