@@ -1,5 +1,6 @@
 import '@fontsource-variable/archivo';
 import '@fontsource-variable/inter';
+import '@fontsource-variable/noto-sans-arabic';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ExpertisePage } from '@/components/expertise-page';

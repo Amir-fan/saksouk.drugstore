@@ -345,11 +345,11 @@ export function SaksoukSite() {
     <main>
       <SiteHeader />
       <Hero />
+      <Partners />
+      <MarketEntry />
       <About />
       <Metrics />
       <Capabilities />
-      <Partners />
-      <MarketEntry />
       <Insights />
       <Operations />
       <Audiences />
