@@ -2,114 +2,155 @@
   "sources": [
     {
       "source": "أصناف أدفانس النهائي.xlsx",
-      "category": "cosmetics",
+      "categoryBreakdown": {
+        "supplements": 12,
+        "cosmetics": 4
+      },
       "extractedRows": 16
     },
     {
       "source": "اصناف المشرق.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 4
+      },
       "extractedRows": 4
     },
     {
       "source": "جميع اصناف ابن حيان.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 116
+      },
       "extractedRows": 116
     },
     {
       "source": "جميع اصناف انفليس كوزمتك.xlsx",
-      "category": "cosmetics",
+      "categoryBreakdown": {
+        "supplements": 10
+      },
       "extractedRows": 10
     },
     {
       "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
-      "category": "cosmetics",
+      "categoryBreakdown": {
+        "cosmetics": 52,
+        "supplements": 8
+      },
       "extractedRows": 60
     },
     {
       "source": "جميع اصناف بيوميد.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 102
+      },
       "extractedRows": 102
     },
     {
       "source": "جميع اصناف تانيوم.docx",
-      "category": "cosmetics",
+      "categoryBreakdown": {
+        "cosmetics": 24
+      },
       "extractedRows": 24
     },
     {
       "source": "جميع اصناف راشا.pdf.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 42
+      },
       "extractedRows": 42
     },
     {
       "source": "جميع اصناف زاروزا كوزمتك.xlsx",
-      "category": "cosmetics",
+      "categoryBreakdown": {
+        "cosmetics": 37,
+        "supplements": 1
+      },
       "extractedRows": 38
     },
     {
       "source": "جميع اصناف زين فارما.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 79
+      },
       "extractedRows": 79
     },
     {
       "source": "جميع اصناف شركة حماه فارما.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 199
+      },
       "extractedRows": 199
     },
     {
       "source": "جميع اصناف شركة ميديكو.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 893
+      },
       "extractedRows": 893
     },
     {
       "source": "جميع اصناف شفا.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 55
+      },
       "extractedRows": 55
     },
     {
       "source": "جميع اصناف كيمي.xlsx",
-      "category": "medicine",
+      "categoryBreakdown": {
+        "medicine": 37
+      },
       "extractedRows": 37
     }
   ],
-  "rawExtractedRows": 1675,
-  "duplicateRowsRemoved": 492,
+  "rawExtractedRows": 1677,
+  "duplicateRowsRemoved": 494,
   "uniqueProducts": 1183,
   "categoryCounts": {
     "medicine": 1041,
-    "cosmetics": 142,
-    "supplements": 0
+    "cosmetics": 111,
+    "supplements": 31
   },
-  "productsWithImages": 122,
+  "productsWithImages": 132,
   "duplicates": [
     {
       "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
       "name": "BIOXCIN BLACK GARLIC SHAMPOO",
-      "keptId": "97d050862c68"
+      "keptId": "0171652dd7ed"
     },
     {
       "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
       "name": "BIOXCIN FORTE SHAMPOO",
-      "keptId": "5b2fedd23298"
+      "keptId": "a39a7408db11"
     },
     {
       "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
       "name": "BIOXCIN KERATIN-ARGAN SHAMPOO",
-      "keptId": "82e6b9c80dac"
+      "keptId": "eff1dcea738d"
+    },
+    {
+      "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
+      "name": "BIOXCIN FORTE SERUM",
+      "keptId": "1d38c03f4ddb"
     },
     {
       "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
       "name": "BIOXCIN SUNCARE ACNE-PRONE SKIN CREAM SPF 50",
-      "keptId": "6d515602a252"
+      "keptId": "9c3973125ff4"
     },
     {
       "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
       "name": "BIOXCIN SUNCARE BLEMISH-PRONE SKIN CREAM SPF 50",
-      "keptId": "d84b903a271d"
+      "keptId": "1121fbcbf79d"
     },
     {
       "source": "جميع اصناف تانيوم.docx",
-      "name": "Tanium Sun",
-      "keptId": "f74e0182be2d"
+      "name": "Tanium Sun SPF 50+ — White Tinted تانيوم سن أبيض",
+      "keptId": "fd4240f7cf8b"
+    },
+    {
+      "source": "جميع اصناف زاروزا كوزمتك.xlsx",
+      "name": "ZAROZA FACE CLEANSING FOAM 150 ml",
+      "keptId": "135bafc30c04"
     },
     {
       "source": "جميع اصناف شركة حماه فارما.xlsx",
@@ -2540,6 +2581,318 @@
       "source": "جميع اصناف شركة ميديكو.xlsx",
       "name": "ميديكو سيبت محلول MEDICO SEPT Solution",
       "keptId": "499e84ad9c75"
+    }
+  ],
+  "suppliedImageMatches": [
+    {
+      "company": "Advance",
+      "product": "بنتازايم",
+      "status": "matched-2"
+    },
+    {
+      "company": "Advance",
+      "product": "ادفا اوفاريا",
+      "status": "matched-2"
+    },
+    {
+      "company": "Advance",
+      "product": "ادفا غار",
+      "status": "matched-2"
+    },
+    {
+      "company": "Advance",
+      "product": "اوزوكير H PLUS",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "ادفانسيد N.A.C",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "اوزوكير M PLUS",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "اوزوكير D PLUS",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "ادفا مغنزيوم بلس",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "الجيا كير",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "اوزوكير R PLUS",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "فومي رايت",
+      "status": "matched-1"
+    },
+    {
+      "company": "Advance",
+      "product": "فيرو كير شراب",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN AQUA THERMAL ANTI DANDRUFF SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN ATOPICARE NOURISHING FACE CREAM",
+      "status": "matched-2"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "بلسم سائل ببالزيوت المغذية يغذي الشعر بعمق ويمنحه نعومة ولمعاًنا.",
+      "status": "matched-2"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN FORTE SERUM",
+      "status": "matched-2"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN BIOTIN SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "COLLAGEN-BIOTIN LIQUID HAIR CONDITIONER",
+      "status": "exact-duplicate-skipped: WhatsApp Image 2026-10-06 at 12.13.11 PM (3).jpeg"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN COLLAGEN-BIOTIN LIQUID HAIR CONDITIONER",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN COLD SKIN FACE CREAM",
+      "status": "matched-2"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN QUANTUM OILY HAIR SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN QUANTUM DRY/NORMAL HAIR SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN COLLAGEN-BIOTIN HAIR CARE CREAM",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN COLLAGEN-BIOTIN HAIR SERUM",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN COLLAGEN-BIOTIN SHAMPOO",
+      "status": "matched-2"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN KERATIN-ARGAN LIQUID CONDITIONER",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "B'OXClN WOMEN'S SKİN TABLET",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "B'OXCIN KERATIN COMPLEX TABLET",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN FORTE SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN MEN+SPORT SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN DRY/NORMAL HAIR SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN BLACK GARLIC SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN KERATIN-ARGAN CARE OIL",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN QUANTUM SERUM",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BlOXClN NOURISHING OILS SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN KERATIN-ARGAN SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN KERATIN-ARGAN HAIR CARE CREAM",
+      "status": "matched-1"
+    },
+    {
+      "company": "Bioxcin",
+      "product": "BIOXCIN DS AQUA THERMAL ANTI DANDRUFF SHAMPOO",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Procapil Hair Serum",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Avokado تانيوم أفوكادو Cream كريم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Retinol تانيوم ريتينول سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Glutathione تانيوم غلوتاثيون سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Caffein تانيوم كافئين سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Protein تانيوم بروتين Shampoo شامبو",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Arbutin تانيوم اربوتين سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Acne Care تانيوم أكتي كير cleanser وجه غسول",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Intensive تانيوم انتينسيف Mouth Wash فموية مضمضة",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Sun SPF 50+ — White Tinted تانيوم سن أبيض",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Hydra Fresh تانيوم هيدرا فريش",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Collagen تانيوم كولاجين سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Intensive تانيوم انتينسيف معجون أسنان Gel",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Niacinamide B3 تانيوم نياسين أميد B3 سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Sure Fresh تانيوم شور فريش Roll on اون رول",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Sun SPF 50+ — Pink Tinted تانيوم سن وردي",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Hyaluronic تانيوم هيالورونيك سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Sun SPF 50+ — Beige Tinted تانيوم سن بيج",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium AHA-BHA تانيوم احماض الفواكة سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Light Skin تانيون لايت سكين",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Gingivel تانيوم جينجيفال معجون أسنان Gel",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Sure Whitning تانيوم شور وايتنينغ Roll on اون رول",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Vitamin-C تانيوم قيتامين C سيروم",
+      "status": "matched-1"
+    },
+    {
+      "company": "Tanium",
+      "product": "Tanium Gingivel تانيوم جينجيفال Mouth Wash فموية مضمضة",
+      "status": "matched-1"
     }
   ]
 }

@@ -38,3 +38,6 @@ next-env.d.ts
 /work/
 /.cache/
 __pycache__/
+
+# Local source photos are imported into optimized, product-linked WebP assets.
+/public/images/products/WhatsApp Image*.jpeg

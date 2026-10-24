@@ -123,13 +123,14 @@ type CatalogProduct = {
   id: string;
   name: string;
   officialName?: string;
-  company: { en: string; ar: string };
-  category: 'medicine' | 'cosmetics';
-  group: 'national' | 'cosmetics';
+  company: { en: string; ar: string; slug: string; logo?: string };
+  category: 'medicine' | 'cosmetics' | 'supplements';
+  group: 'national' | 'cosmetics' | 'supplements';
   description?: string;
   composition?: string;
   indication?: string;
   image?: string;
+  images?: string[];
 };
 
 type LocalizedGuideText = { en?: string; ar?: string };
@@ -272,8 +273,66 @@ function CatalogueFilter({
   );
 }
 
+function catalogueUrl(kind: ProductKind, state: { brand?: string; product?: string } = {}) {
+  const params = new URLSearchParams();
+  if (state.brand) params.set('brand', state.brand);
+  if (state.product) params.set('product', state.product);
+  const query = params.toString();
+  return `${pageUrl(`/products/${kind}`)}${query ? `?${query}` : ''}`;
+}
+
+function ProductCard({ product, kind, lang, copy, onOpen, onGuide }: { product: CatalogProduct; kind: ProductKind; lang: 'en' | 'ar'; copy: Record<string, string>; onOpen: (product: CatalogProduct) => void; onGuide: (product: CatalogProduct) => void }) {
+  const Icon = productIcons[kind];
+  const detail = product.description || (lang === 'ar' ? (product.indication || product.composition) : (product.composition || product.indication));
+  const inquiryUrl = `${WHATSAPP_URL}?text=${encodeURIComponent(lang === 'ar' ? `مرحباً، أود الاستفسار عن الصنف: ${product.name}` : `Hello, I would like to ask about: ${product.name}`)}`;
+  const href = catalogueUrl(kind, { brand: product.company.slug, product: product.id });
+  return <article className={`catalogue-product-card ${product.image ? 'has-image' : 'no-image'}`}>
+    <a className={`product-card-image ${product.image ? '' : 'placeholder'}`} href={href} onClick={(event) => { event.preventDefault(); onOpen(product); }} aria-label={`${copy.viewProduct}: ${product.name}`}>{product.image ? <img src={assetUrl(product.image)} alt={product.name} loading="lazy" decoding="async" /> : <Icon aria-hidden />}</a>
+    <div className="product-card-copy"><div className="product-card-meta"><span>{product.company[lang]}</span><em>{copy[kind]}</em></div><a className="product-card-title" href={href} onClick={(event) => { event.preventDefault(); onOpen(product); }}><h3 dir="auto">{product.name}</h3></a>{detail && detail !== product.name && <p dir="auto">{detail}</p>}<div className="product-card-actions">{kind === 'medicine' && <button type="button" className="medicine-ai-button" onClick={() => onGuide(product)}><span><Bot size={14} /></span>{copy.aiGuide}<Sparkles size={12} /></button>}<a className="product-inquire" href={inquiryUrl} target="_blank" rel="noreferrer">{copy.inquire}<ArrowUpRight size={15} /></a></div></div>
+  </article>;
+}
+
+function ProductDetail({ product, kind, lang, copy, guide, related, onCategory, onBrand, onOpen, onGuide }: { product: CatalogProduct; kind: ProductKind; lang: 'en' | 'ar'; copy: Record<string, string>; guide?: MedicineGuide; related: CatalogProduct[]; onCategory: () => void; onBrand: () => void; onOpen: (product: CatalogProduct) => void; onGuide: (product: CatalogProduct) => void }) {
+  const Icon = productIcons[kind];
+  const gallery = useMemo(() => Array.from(new Set([...(product.images || []), ...(product.image ? [product.image] : [])])), [product]);
+  const [activeImage, setActiveImage] = useState(gallery[0] || '');
+  const inquiryUrl = `${WHATSAPP_URL}?text=${encodeURIComponent(lang === 'ar' ? `مرحباً، أود الاستفسار عن الصنف: ${product.name}` : `Hello, I would like to ask about: ${product.name}`)}`;
+  const guideComposition = guideText(guide?.activeIngredients, lang);
+  const guideUse = guideText(guide?.recognizedUse, lang);
+  const description = product.description && product.description !== product.name ? product.description : '';
+  return <div className="product-detail-view">
+    <nav className="catalogue-breadcrumb" aria-label={copy.breadcrumb}><button type="button" onClick={onCategory}>{categoryLabel(kind, lang)}</button><ArrowRight size={13} /><button type="button" onClick={onBrand}>{product.company[lang]}</button><ArrowRight size={13} /><span dir="auto">{product.name}</span></nav>
+    <div className="product-detail-grid">
+      <div className="product-gallery">
+        <div className={`product-gallery-stage ${activeImage ? '' : 'is-placeholder'}`}>{activeImage ? <img src={assetUrl(activeImage)} alt={product.name} /> : <Icon size={70} aria-hidden />}</div>
+        {gallery.length > 1 && <div className="product-gallery-thumbs">{gallery.map((image, index) => <button key={image} type="button" className={image === activeImage ? 'is-active' : ''} onClick={() => setActiveImage(image)} aria-label={`${copy.image} ${index + 1}`}><img src={assetUrl(image)} alt="" /></button>)}</div>}
+      </div>
+      <div className="product-detail-copy">
+        <button type="button" className="product-brand-chip" onClick={onBrand}>{product.company.logo ? <img src={assetUrl(product.company.logo)} alt="" /> : <span>{product.company[lang].charAt(0)}</span>}<strong>{product.company[lang]}</strong><ArrowRight size={15} /></button>
+        <p className="section-label"><span />{copy[kind]}</p><h2 dir="auto">{product.name}</h2>
+        {description ? <p className="product-detail-description" dir="auto">{description}</p> : <p className="product-detail-description">{copy.catalogueDescription}</p>}
+        <div className="product-fact-grid">
+          {(product.composition || guideComposition) && <article><i><FlaskConical size={18} /></i><div><span>{copy.composition}</span><p dir="auto">{product.composition || guideComposition}</p></div></article>}
+          {(product.indication || guideUse) && <article><i><HeartPulse size={18} /></i><div><span>{copy.indication}</span><p dir="auto">{product.indication || guideUse}</p></div></article>}
+          <article><i><Building2 size={18} /></i><div><span>{copy.companyLabel}</span><p>{product.company[lang]}</p></div></article>
+        </div>
+        <div className="product-detail-actions"><a className="button primary" href={inquiryUrl} target="_blank" rel="noreferrer"><span>{copy.inquire}</span><i><ArrowUpRight size={16} /></i></a>{kind === 'medicine' && <button type="button" className="medicine-ai-button detail-ai-button" onClick={() => onGuide(product)}><span><Bot size={14} /></span>{copy.aiGuide}<Sparkles size={12} /></button>}</div>
+      </div>
+    </div>
+    {related.length > 0 && <div className="related-products"><div className="related-products-head"><div><p className="section-label"><span />{copy.moreFrom}</p><h3>{product.company[lang]}</h3></div><button type="button" onClick={onBrand}>{copy.viewBrand}<ArrowRight size={15} /></button></div><div className="catalogue-product-grid">{related.map((item) => <ProductCard key={item.id} product={item} kind={kind} lang={lang} copy={copy} onOpen={onOpen} onGuide={onGuide} />)}</div></div>}
+  </div>;
+}
+
+function categoryLabel(kind: ProductKind, lang: 'en' | 'ar') {
+  const labels = lang === 'ar' ? { medicine: 'الأدوية البشرية', cosmetics: 'مستحضرات التجميل', supplements: 'المكملات الغذائية' } : { medicine: 'Human medicines', cosmetics: 'Cosmetics', supplements: 'Food supplements' };
+  return labels[kind];
+}
+
 function ProductCatalogue({ kind, category }: { kind: ProductKind; category: string }) {
   const { lang } = useLanguage();
+  const initialParams = useMemo(() => new URLSearchParams(window.location.search), []);
+  const [selectedBrand, setSelectedBrand] = useState(initialParams.get('brand') || '');
+  const [selectedProductId, setSelectedProductId] = useState(initialParams.get('product') || '');
   const [query, setQuery] = useState('');
   const [company, setCompany] = useState('all');
   const [letter, setLetter] = useState('all');
@@ -283,101 +342,72 @@ function ProductCatalogue({ kind, category }: { kind: ProductKind; category: str
   const [medicineGuides, setMedicineGuides] = useState<Record<string, MedicineGuide>>({});
   const [selectedMedicine, setSelectedMedicine] = useState<CatalogProduct | null>(null);
   const [loading, setLoading] = useState(true);
-  const copy = lang === 'ar' ? {
-    eyebrow: 'كتالوج المنتجات', title: `استكشف ${category}`, intro: 'ابحث في الأصناف الواردة من الشركات، وصفِّ النتائج حسب الشركة أو الحرف الأول.',
+  const copy: Record<string, string> = lang === 'ar' ? {
+    eyebrow: 'كتالوج المنتجات', title: `استكشف ${category}`, intro: 'ابدأ بالشركة، ثم تصفّح منتجاتها وافتح صفحة كل منتج للاطلاع على الصور والمعلومات المتاحة.', brandsEyebrow: 'الشركات والعلامات', brandsTitle: 'تصفّح حسب الشركة', brandsIntro: 'كل شركة مرتبطة مباشرة بمنتجاتها ضمن هذه الفئة.', viewBrand: 'عرض منتجات الشركة',
     search: 'ابحث باسم المنتج أو الشركة', clearSearch: 'مسح البحث', companyLabel: 'الشركة', company: 'جميع الشركات', initialLabel: 'الحرف الأول', allLetters: 'كل الحروف', sortLabel: 'الترتيب', sort: 'حسب الاسم', sortCompany: 'حسب الشركة', all: 'الكل',
-    national: 'الشركات الوطنية', cosmetics: 'الكوزمتك', products: 'صنف', reset: 'إعادة ضبط الفلاتر', inquire: 'استفسر عن هذا الصنف',
-    noResults: 'لا توجد نتائج مطابقة', noResultsText: 'جرّب تغيير عبارة البحث أو إزالة أحد الفلاتر.',
-    emptyTitle: 'لم تتم إضافة أصناف لهذه الفئة', emptyText: 'لم تتضمن الملفات المرفقة قائمة مستقلة لهذه الفئة. تواصل مع فريقنا للاستفسار عن الأصناف المتوفرة.',
-    previous: 'السابق', next: 'التالي', page: 'صفحة', of: 'من', composition: 'التركيب', indication: 'الاستخدام', loading: 'جارٍ تحميل الأصناف…', aiGuide: 'دليل سكسوك الذكي',
+    national: 'الشركات الوطنية', medicine: 'دواء بشري', cosmetics: 'مستحضر تجميل', supplements: 'مكمل غذائي', products: 'منتج', reset: 'إعادة ضبط الفلاتر', inquire: 'استفسر عن هذا المنتج', viewProduct: 'عرض المنتج',
+    noResults: 'لا توجد نتائج مطابقة', noResultsText: 'جرّب تغيير عبارة البحث أو إزالة أحد الفلاتر.', emptyTitle: 'لم تتم إضافة منتجات لهذه الفئة', emptyText: 'لم تتضمن الملفات المرفقة قائمة مستقلة لهذه الفئة. تواصل مع فريقنا للاستفسار عن المنتجات المتوفرة.',
+    previous: 'السابق', next: 'التالي', page: 'صفحة', of: 'من', composition: 'التركيب / المكونات', indication: 'الاستخدام المبيّن', loading: 'جارٍ تحميل المنتجات…', aiGuide: 'دليل سكسوك الذكي', back: 'العودة إلى كل الشركات', breadcrumb: 'مسار المنتج', image: 'صورة المنتج', catalogueDescription: 'هذا المنتج مدرج ضمن كتالوج سكسوك المورّد. تواصل معنا للحصول على تفاصيل التوفر والمعلومات التجارية المحدثة.', moreFrom: 'منتجات أخرى من',
   } : {
-    eyebrow: 'Product catalogue', title: `Explore ${category}`, intro: 'Search the supplied product lists and filter the catalogue by company or initial letter.',
+    eyebrow: 'Product catalogue', title: `Explore ${category}`, intro: 'Start with a company, browse its range, then open any product for its supplied imagery and available information.', brandsEyebrow: 'Companies & brands', brandsTitle: 'Browse by company', brandsIntro: 'Every company is connected directly to its products in this category.', viewBrand: 'View company products',
     search: 'Search by product or company', clearSearch: 'Clear search', companyLabel: 'Company', company: 'All companies', initialLabel: 'Initial', allLetters: 'All letters', sortLabel: 'Sort by', sort: 'Product name', sortCompany: 'Company name', all: 'All',
-    national: 'National companies', cosmetics: 'Cosmetics', products: 'products', reset: 'Reset filters', inquire: 'Ask about this product',
-    noResults: 'No matching products', noResultsText: 'Try a different search term or clear one of the filters.',
-    emptyTitle: 'No products were supplied for this category', emptyText: 'The provided files did not include a separate list for this category. Contact our team to ask what is currently available.',
-    previous: 'Previous', next: 'Next', page: 'Page', of: 'of', composition: 'Composition', indication: 'Use', loading: 'Loading products…', aiGuide: 'Saksouk AI Guide',
+    national: 'National companies', medicine: 'Human medicine', cosmetics: 'Cosmetic', supplements: 'Food supplement', products: 'products', reset: 'Reset filters', inquire: 'Ask about this product', viewProduct: 'View product',
+    noResults: 'No matching products', noResultsText: 'Try a different search term or clear one of the filters.', emptyTitle: 'No products were supplied for this category', emptyText: 'The provided files did not include a separate list for this category. Contact our team to ask what is currently available.',
+    previous: 'Previous', next: 'Next', page: 'Page', of: 'of', composition: 'Composition / ingredients', indication: 'Listed use', loading: 'Loading products…', aiGuide: 'Saksouk AI Guide', back: 'Back to all companies', breadcrumb: 'Product path', image: 'Product image', catalogueDescription: 'This product is listed in the supplied Saksouk catalogue. Contact us for current availability and up-to-date commercial information.', moreFrom: 'More from',
   };
   useEffect(() => {
     const controller = new AbortController();
-    fetch(assetUrl(`/data/products-${kind}.json`), { signal: controller.signal })
-      .then((response) => {
-        if (!response.ok) throw new Error(`Unable to load ${kind} products`);
-        return response.json() as Promise<CatalogProduct[]>;
-      })
-      .then((data) => setProducts(data))
-      .catch((error: unknown) => { if (!(error instanceof DOMException && error.name === 'AbortError')) setProducts([]); })
-      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    fetch(assetUrl(`/data/products-${kind}.json`), { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(`Unable to load ${kind} products`); return response.json() as Promise<CatalogProduct[]>; }).then(setProducts).catch((error: unknown) => { if (!(error instanceof DOMException && error.name === 'AbortError')) setProducts([]); }).finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
   }, [kind]);
   useEffect(() => {
     if (kind !== 'medicine') return;
     const controller = new AbortController();
-    fetch(assetUrl('/data/medicine-guides.json'), { signal: controller.signal })
-      .then((response) => response.ok ? response.json() as Promise<Record<string, MedicineGuide>> : {})
-      .then((data) => setMedicineGuides(data))
-      .catch((error: unknown) => { if (!(error instanceof DOMException && error.name === 'AbortError')) setMedicineGuides({}); });
+    fetch(assetUrl('/data/medicine-guides.json'), { signal: controller.signal }).then((response) => response.ok ? response.json() as Promise<Record<string, MedicineGuide>> : {}).then(setMedicineGuides).catch((error: unknown) => { if (!(error instanceof DOMException && error.name === 'AbortError')) setMedicineGuides({}); });
     return () => controller.abort();
   }, [kind]);
-  const companies = useMemo(() => Array.from(new Map(products.map((product) => [product.company.en, product.company])).values()).sort((a, b) => a[lang].localeCompare(b[lang], lang)), [lang, products]);
-  const alphabet = useMemo(() => Array.from(new Set(products.map((product) => product.name.trim().charAt(0).toLocaleUpperCase()).filter(Boolean))).sort((a, b) => a.localeCompare(b, lang)), [lang, products]);
-  const filteredProducts = useMemo(() => {
-    const normalizedQuery = query.trim().toLocaleLowerCase();
-    return products
-      .filter((product) => company === 'all' || product.company.en === company)
-      .filter((product) => letter === 'all' || product.name.trim().charAt(0).toLocaleUpperCase() === letter)
-      .filter((product) => !normalizedQuery || [product.name, product.officialName, product.company.en, product.company.ar, product.description, product.composition, product.indication].filter(Boolean).some((value) => value!.toLocaleLowerCase().includes(normalizedQuery)))
-      .sort((a, b) => sort === 'company' ? a.company[lang].localeCompare(b.company[lang], lang) || a.name.localeCompare(b.name, lang) : a.name.localeCompare(b.name, lang));
-  }, [company, lang, letter, products, query, sort]);
+  useEffect(() => {
+    const onPopState = () => { const params = new URLSearchParams(window.location.search); setSelectedBrand(params.get('brand') || ''); setSelectedProductId(params.get('product') || ''); };
+    window.addEventListener('popstate', onPopState); return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+  const brands = useMemo(() => Array.from(products.reduce((map, product) => { const current = map.get(product.company.slug); if (current) current.count += 1; else map.set(product.company.slug, { ...product.company, count: 1, image: product.image }); return map; }, new Map<string, CatalogProduct['company'] & { count: number; image?: string }>()).values()).sort((a, b) => a[lang].localeCompare(b[lang], lang)), [lang, products]);
+  const activeBrand = brands.find((brand) => brand.slug === selectedBrand);
+  const selectedProduct = products.find((product) => product.id === selectedProductId);
+  const alphabet = useMemo(() => Array.from(new Set(products.filter((product) => !selectedBrand || product.company.slug === selectedBrand).map((product) => product.name.trim().charAt(0).toLocaleUpperCase()).filter(Boolean))).sort((a, b) => a.localeCompare(b, lang)), [lang, products, selectedBrand]);
+  const filteredProducts = useMemo(() => { const normalizedQuery = query.trim().toLocaleLowerCase(); return products.filter((product) => !selectedBrand || product.company.slug === selectedBrand).filter((product) => selectedBrand || company === 'all' || product.company.en === company).filter((product) => letter === 'all' || product.name.trim().charAt(0).toLocaleUpperCase() === letter).filter((product) => !normalizedQuery || [product.name, product.officialName, product.company.en, product.company.ar, product.description, product.composition, product.indication].filter(Boolean).some((value) => value!.toLocaleLowerCase().includes(normalizedQuery))).sort((a, b) => sort === 'company' ? a.company[lang].localeCompare(b.company[lang], lang) || a.name.localeCompare(b.name, lang) : a.name.localeCompare(b.name, lang)); }, [company, lang, letter, products, query, selectedBrand, sort]);
   const pageCount = Math.max(1, Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE));
   const currentPage = Math.min(page, pageCount);
   const visibleProducts = filteredProducts.slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE);
-  const reset = () => { setQuery(''); setCompany('all'); setLetter('all'); setSort('name'); setPage(1); };
-  const companyOptions = useMemo<CatalogueOption[]>(() => [{ value: 'all', label: copy.company }, ...companies.map((item) => ({ value: item.en, label: item[lang] }))], [companies, copy.company, lang]);
+  const companyOptions = useMemo<CatalogueOption[]>(() => [{ value: 'all', label: copy.company }, ...brands.map((item) => ({ value: item.en, label: item[lang] }))], [brands, copy.company, lang]);
   const letterOptions = useMemo<CatalogueOption[]>(() => [{ value: 'all', label: copy.allLetters }, ...alphabet.map((item) => ({ value: item, label: item }))], [alphabet, copy.allLetters]);
   const sortOptions = useMemo<CatalogueOption[]>(() => [{ value: 'name', label: copy.sort }, { value: 'company', label: copy.sortCompany }], [copy.sort, copy.sortCompany]);
   const selectedCompany = companyOptions.find((option) => option.value === company)?.label;
-  const hasActiveFilters = Boolean(query || company !== 'all' || letter !== 'all' || sort !== 'name');
-  return (<>
+  const hasActiveFilters = Boolean(query || (!selectedBrand && company !== 'all') || letter !== 'all' || sort !== 'name');
+  const reset = () => { setQuery(''); setCompany('all'); setLetter('all'); setSort('name'); setPage(1); };
+  const updateView = (state: { brand?: string; product?: string }) => { window.history.pushState({}, '', catalogueUrl(kind, state)); setSelectedBrand(state.brand || ''); setSelectedProductId(state.product || ''); reset(); requestAnimationFrame(() => document.querySelector('.catalogue-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })); };
+  const openProduct = (product: CatalogProduct) => updateView({ brand: product.company.slug, product: product.id });
+  const related = selectedProduct ? products.filter((product) => product.company.slug === selectedProduct.company.slug && product.id !== selectedProduct.id).slice(0, 4) : [];
+  return <>
     <section className={`catalogue-section section catalogue-${kind}`}>
       <div className="container">
-        <div className="catalogue-heading"><div><p className="section-label"><span />{copy.eyebrow}</p><h2>{copy.title}</h2></div><p>{copy.intro}</p></div>
-        <div className="catalogue-shell">
-          <div className="catalogue-toolbar">
-            <label className="catalogue-search"><Search size={18} /><input type="search" autoComplete="off" enterKeyHint="search" value={query} onChange={(event) => { setQuery(event.target.value); setPage(1); }} placeholder={copy.search} aria-label={copy.search} />{query && <button type="button" aria-label={copy.clearSearch} onClick={() => { setQuery(''); setPage(1); }}><X size={15} /></button>}</label>
-            <div className="catalogue-filter-controls">
-              <CatalogueFilter label={copy.companyLabel} value={company} options={companyOptions} icon={Building2} onChange={(value) => { setCompany(value); setPage(1); }} />
-              <CatalogueFilter label={copy.initialLabel} value={letter} options={letterOptions} icon={ArrowDownAZ} onChange={(value) => { setLetter(value); setPage(1); }} menuClassName="catalogue-letter-menu" />
-              <CatalogueFilter label={copy.sortLabel} value={sort} options={sortOptions} icon={SlidersHorizontal} onChange={(value) => { setSort(value as 'name' | 'company'); setPage(1); }} />
-            </div>
+        {!selectedProduct && <div className="catalogue-heading"><div><p className="section-label"><span />{copy.eyebrow}</p><h2>{activeBrand ? activeBrand[lang] : copy.title}</h2></div><p>{activeBrand ? `${filteredProducts.length.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')} ${copy.products}` : copy.intro}</p></div>}
+        {loading ? <div className="catalogue-shell"><div className="catalogue-loading"><span /><span /><span /><p>{copy.loading}</p></div></div> : products.length === 0 ? <div className="catalogue-shell"><div className="catalogue-empty"><i><PackageSearch /></i><p className="section-label"><span />{category}</p><h3>{copy.emptyTitle}</h3><p>{copy.emptyText}</p><div><ArrowLink href={WHATSAPP_URL} primary>{lang === 'ar' ? 'استفسر عن المنتجات' : 'Ask about products'}</ArrowLink></div></div></div> : selectedProduct ? <ProductDetail key={selectedProduct.id} product={selectedProduct} kind={kind} lang={lang} copy={copy} guide={medicineGuides[selectedProduct.id]} related={related} onCategory={() => updateView({})} onBrand={() => updateView({ brand: selectedProduct.company.slug })} onOpen={openProduct} onGuide={setSelectedMedicine} /> : <>
+          {!activeBrand ? <section className="brand-directory"><div className="brand-directory-heading"><div><p className="section-label"><span />{copy.brandsEyebrow}</p><h3>{copy.brandsTitle}</h3></div><p>{copy.brandsIntro}</p></div><div className="brand-directory-grid">{brands.map((brand) => <a key={brand.slug} className="brand-directory-card" href={catalogueUrl(kind, { brand: brand.slug })} onClick={(event) => { event.preventDefault(); updateView({ brand: brand.slug }); }}><div className="brand-logo-frame">{brand.logo ? <img src={assetUrl(brand.logo)} alt={`${brand[lang]} logo`} /> : <strong>{brand[lang].split(' ').map((word) => word.charAt(0)).join('').slice(0, 2)}</strong>}</div><div><h4>{brand[lang]}</h4><p>{brand.count.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')} {copy.products}</p></div><span><ArrowRight size={17} /></span></a>)}</div></section> : <div className="brand-view-banner"><button type="button" onClick={() => updateView({})}><ArrowRight size={15} />{copy.back}</button><div>{activeBrand.logo ? <img src={assetUrl(activeBrand.logo)} alt={`${activeBrand[lang]} logo`} /> : <strong>{activeBrand[lang].charAt(0)}</strong>}<span>{copy.viewBrand}</span><h3>{activeBrand[lang]}</h3></div></div>}
+          <div className="catalogue-shell">
+            <div className="catalogue-toolbar"><label className="catalogue-search"><Search size={18} /><input type="search" autoComplete="off" enterKeyHint="search" value={query} onChange={(event) => { setQuery(event.target.value); setPage(1); }} placeholder={copy.search} aria-label={copy.search} />{query && <button type="button" aria-label={copy.clearSearch} onClick={() => { setQuery(''); setPage(1); }}><X size={15} /></button>}</label><div className={`catalogue-filter-controls ${activeBrand ? 'is-brand-view' : ''}`}>{!activeBrand && <CatalogueFilter label={copy.companyLabel} value={company} options={companyOptions} icon={Building2} onChange={(value) => { setCompany(value); setPage(1); }} />}<CatalogueFilter label={copy.initialLabel} value={letter} options={letterOptions} icon={ArrowDownAZ} onChange={(value) => { setLetter(value); setPage(1); }} menuClassName="catalogue-letter-menu" /><CatalogueFilter label={copy.sortLabel} value={sort} options={sortOptions} icon={SlidersHorizontal} onChange={(value) => { setSort(value as 'name' | 'company'); setPage(1); }} /></div></div>
+            {hasActiveFilters && <div className="catalogue-active-filters"><div>{query && <button type="button" onClick={() => { setQuery(''); setPage(1); }}><Search size={13} /><span dir="auto">{query}</span><X size={13} /></button>}{!activeBrand && company !== 'all' && <button type="button" onClick={() => { setCompany('all'); setPage(1); }}><Building2 size={13} /><span>{selectedCompany}</span><X size={13} /></button>}{letter !== 'all' && <button type="button" onClick={() => { setLetter('all'); setPage(1); }}><ArrowDownAZ size={13} /><span>{letter}</span><X size={13} /></button>}{sort !== 'name' && <button type="button" onClick={() => { setSort('name'); setPage(1); }}><SlidersHorizontal size={13} /><span>{copy.sortCompany}</span><X size={13} /></button>}</div><button type="button" className="catalogue-reset-all" onClick={reset}><RotateCcw size={14} />{copy.reset}</button></div>}
+            <div className="catalogue-results"><div className="product-results-head"><div><strong>{filteredProducts.length.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong><span>{copy.products}</span><em>{copy[kind]}</em></div></div>{visibleProducts.length > 0 ? <div className="catalogue-product-grid">{visibleProducts.map((product) => <ProductCard key={product.id} product={product} kind={kind} lang={lang} copy={copy} onOpen={openProduct} onGuide={setSelectedMedicine} />)}</div> : <div className="catalogue-no-results"><i><PackageSearch /></i><h3>{copy.noResults}</h3><p>{copy.noResultsText}</p><button type="button" className="catalogue-reset" onClick={reset}><RotateCcw size={15} />{copy.reset}</button></div>}{pageCount > 1 && <nav className="catalogue-pagination"><button type="button" onClick={() => setPage((current) => Math.max(1, current - 1))} disabled={currentPage === 1}>{copy.previous}</button><span>{copy.page} <strong>{currentPage.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong> {copy.of} {pageCount.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</span><button type="button" onClick={() => setPage((current) => Math.min(pageCount, current + 1))} disabled={currentPage === pageCount}>{copy.next}</button></nav>}</div>
           </div>
-          {hasActiveFilters && <div className="catalogue-active-filters" aria-label={lang === 'ar' ? 'الفلاتر النشطة' : 'Active filters'}>
-            <div>
-              {query && <button type="button" onClick={() => { setQuery(''); setPage(1); }}><Search size={13} /><span dir="auto">{query}</span><X size={13} /></button>}
-              {company !== 'all' && <button type="button" onClick={() => { setCompany('all'); setPage(1); }}><Building2 size={13} /><span>{selectedCompany}</span><X size={13} /></button>}
-              {letter !== 'all' && <button type="button" onClick={() => { setLetter('all'); setPage(1); }}><ArrowDownAZ size={13} /><span>{letter}</span><X size={13} /></button>}
-              {sort !== 'name' && <button type="button" onClick={() => { setSort('name'); setPage(1); }}><SlidersHorizontal size={13} /><span>{copy.sortCompany}</span><X size={13} /></button>}
-            </div>
-            <button type="button" className="catalogue-reset-all" onClick={reset}><RotateCcw size={14} />{copy.reset}</button>
-          </div>}
-          {loading ? <div className="catalogue-loading"><span /><span /><span /><p>{copy.loading}</p></div> : products.length === 0 ? <div className="catalogue-empty"><i><PackageSearch /></i><p className="section-label"><span />{category}</p><h3>{copy.emptyTitle}</h3><p>{copy.emptyText}</p><div><ArrowLink href={WHATSAPP_URL} primary>{lang === 'ar' ? 'استفسر عن الأصناف' : 'Ask about products'}</ArrowLink></div></div> : <div className="catalogue-results">
-            <div className="product-results-head"><div><strong>{filteredProducts.length.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong><span>{copy.products}</span><em>{kind === 'medicine' ? copy.national : copy.cosmetics}</em></div></div>
-            {visibleProducts.length > 0 ? <div className="catalogue-product-grid">{visibleProducts.map((product) => { const Icon = productIcons[kind]; const detail = lang === 'ar' ? (product.indication || product.composition || product.description) : (product.composition || product.indication || product.description); const inquiryUrl = `${WHATSAPP_URL}?text=${encodeURIComponent(lang === 'ar' ? `مرحباً، أود الاستفسار عن الصنف: ${product.name}` : `Hello, I would like to ask about: ${product.name}`)}`; return <article className={`catalogue-product-card ${product.image ? 'has-image' : 'no-image'}`} key={product.id}>
-              <div className={`product-card-image ${product.image ? '' : 'placeholder'}`}>{product.image ? <img src={assetUrl(product.image)} alt={product.name} loading="lazy" decoding="async" /> : <Icon aria-hidden />}</div>
-              <div className="product-card-copy"><div className="product-card-meta"><span>{product.company[lang]}</span><em>{product.group === 'national' ? copy.national : copy.cosmetics}</em></div><h3 dir="auto">{product.name}</h3>{detail && <p dir="auto">{detail}</p>}<div className="product-card-actions">{kind === 'medicine' && <button type="button" className="medicine-ai-button" onClick={() => setSelectedMedicine(product)}><span><Bot size={14} /></span>{copy.aiGuide}<Sparkles size={12} /></button>}<a className="product-inquire" href={inquiryUrl} target="_blank" rel="noreferrer">{copy.inquire}<ArrowUpRight size={15} /></a></div></div>
-            </article>; })}</div> : <div className="catalogue-no-results"><i><PackageSearch /></i><h3>{copy.noResults}</h3><p>{copy.noResultsText}</p><button type="button" className="catalogue-reset" onClick={reset}><RotateCcw size={15} />{copy.reset}</button></div>}
-            {pageCount > 1 && <nav className="catalogue-pagination" aria-label={lang === 'ar' ? 'صفحات المنتجات' : 'Product pages'}><button type="button" onClick={() => { setPage((current) => Math.max(1, current - 1)); window.scrollTo({ top: (document.querySelector('.catalogue-results')?.getBoundingClientRect().top || 0) + window.scrollY - 110, behavior: 'smooth' }); }} disabled={currentPage === 1}>{copy.previous}</button><span>{copy.page} <strong>{currentPage.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</strong> {copy.of} {pageCount.toLocaleString(lang === 'ar' ? 'ar-SY' : 'en-US')}</span><button type="button" onClick={() => { setPage((current) => Math.min(pageCount, current + 1)); window.scrollTo({ top: (document.querySelector('.catalogue-results')?.getBoundingClientRect().top || 0) + window.scrollY - 110, behavior: 'smooth' }); }} disabled={currentPage === pageCount}>{copy.next}</button></nav>}
-          </div>}
-        </div>
+        </>}
       </div>
     </section>
     <AnimatePresence>{selectedMedicine && <MedicineGuidePanel product={selectedMedicine} guide={medicineGuides[selectedMedicine.id]} onClose={() => setSelectedMedicine(null)} />}</AnimatePresence>
-  </>);
+  </>;
 }
 
 export function ProductCategoryPage({ kind }: { kind: ProductKind }) {
   const { lang } = useLanguage();
   const page = expandedPages[lang].products[kind];
   const Icon = productIcons[kind];
-  return <main><SiteHeader /><PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} /><section className="product-family section"><div className="container product-family-panel"><div className="product-family-image"><img src={assetUrl(page.image)} alt={page.eyebrow} /></div><div className="product-family-copy"><i><Icon /></i><p className="section-label"><span />{lang === 'ar' ? 'ما الذي ندعمه' : 'What we support'}</p><h2>{lang === 'ar' ? 'خبرة عملية عبر دورة المنتج.' : 'Practical expertise across the product journey.'}</h2><ul>{page.points.map((point) => <li key={point}><Check size={17} /><span>{point}</span></li>)}</ul><ArrowLink href="/partners" primary>{lang === 'ar' ? 'ناقش فرصة شراكة' : 'Discuss a partnership'}</ArrowLink></div></div></section><ProductCatalogue kind={kind} category={page.eyebrow} /><PageCta /><SiteFooter /></main>;
+  return <main><SiteHeader /><PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} /><section className="product-family section"><div className={`container product-family-panel product-family-${kind}`}><div className="product-family-image"><img src={assetUrl(page.image)} alt={page.eyebrow} /></div><div className="product-family-copy"><i><Icon /></i><p className="section-label"><span />{lang === 'ar' ? 'ما الذي ندعمه' : 'What we support'}</p><h2>{lang === 'ar' ? 'خبرة عملية عبر دورة المنتج.' : 'Practical expertise across the product journey.'}</h2><ul>{page.points.map((point) => <li key={point}><Check size={17} /><span>{point}</span></li>)}</ul><ArrowLink href="/partners" primary>{lang === 'ar' ? 'ناقش فرصة شراكة' : 'Discuss a partnership'}</ArrowLink></div></div></section><ProductCatalogue kind={kind} category={page.eyebrow} /><PageCta /><SiteFooter /></main>;
 }
