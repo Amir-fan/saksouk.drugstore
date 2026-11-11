@@ -13,18 +13,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "paths": {
       "@/*": ["./*"]
     }
   },
   "include": [
     "src",
-    "components/saksouk-site.tsx",
-    "components/products-page.tsx",
-    "components/expertise-page.tsx",
+    "components/**/*.tsx",
     "content",
-    "lib/site-paths.ts",
+    "lib/**/*.ts",
     "vite.config.ts"
   ],
   "exclude": ["node_modules", "dist"]

@@ -1,11 +1,12 @@
 'use client';
 
-import { ArrowRight, ArrowUpRight, Award, Building2, Check, Compass, FileCheck2, Heart, Mail, MapPin, Menu, Minus, Phone, Plus, ShieldCheck, Snowflake, X, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Award, Building2, Check, ChevronDown, Compass, FileCheck2, Globe2, Heart, Mail, MapPin, Menu, Minus, Phone, Plus, ShieldCheck, Snowflake, X } from 'lucide-react';
 import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
 import { expandedPages } from '@/content/pages';
+import { FANARI_CONTACT, getFanariCopy } from '@/lib/fanari-contact';
 import { assetUrl, pageUrl, WHATSAPP_URL } from '@/lib/site-paths';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -274,6 +275,101 @@ function Contact() {
   return <section className="contact section" id="contact"><div className="container"><div className="contact-banner"><motion.img src={assetUrl('/images/business-partnership.png')} alt={lang === 'ar' ? 'اجتماع شراكة أعمال مع فريق سكسوك' : 'Business partnership meeting with the Saksouk team'} loading="lazy" decoding="async" initial={{ scale: 1.08 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, ease }} /><div className="contact-overlay" /><Reveal className="contact-content"><SectionLabel>{lang === 'ar' ? 'استفسارات الأعمال' : 'Business inquiries'}</SectionLabel><ScrollHeading lines={content.contact.title} /><ScrollText text={content.contact.body} /><ArrowLink href={WHATSAPP_URL} primary>{lang === 'ar' ? 'تواصل مع فريقنا' : 'Contact our team'}</ArrowLink></Reveal></div></div></section>;
 }
 
+function FooterCredit() {
+  const { lang } = useLanguage();
+  const reduce = useReducedMotion();
+  const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const copy = getFanariCopy(lang);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const trigger = triggerRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const focusTimer = window.setTimeout(() => closeRef.current?.focus(), 0);
+    const handleDialogKeys = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const focusable = dialogRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]),a[href]');
+      if (!focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', handleDialogKeys);
+
+    return () => {
+      window.clearTimeout(focusTimer);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleDialogKeys);
+      trigger?.focus();
+    };
+  }, [open]);
+
+  return (
+    <>
+      <button className="footer-credit" type="button" ref={triggerRef} onClick={() => setOpen(true)} aria-haspopup="dialog" aria-expanded={open}>
+        <span>{copy.creditLead}</span>
+        <strong>Fanari Labs</strong>
+        <i aria-hidden />
+        <span>{copy.creditAction}</span>
+        <b aria-hidden><ArrowUpRight size={13} /></b>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fanari-modal-backdrop"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduce ? 0 : .2 }}
+            onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}
+          >
+            <motion.dialog
+              open
+              ref={dialogRef}
+              className="fanari-modal"
+              aria-modal="true"
+              aria-label={copy.dialogTitle}
+              initial={reduce ? false : { opacity: 0, y: 24, scale: .985 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: .99 }}
+              transition={{ duration: reduce ? 0 : .38, ease }}
+            >
+              <button className="fanari-modal-close" type="button" ref={closeRef} onClick={() => setOpen(false)} aria-label={copy.closeLabel}><X size={18} /></button>
+              <div className="fanari-modal-intro">
+                <div className="fanari-wordmark"><strong>fanari</strong><span>labs</span></div>
+                <h2>{copy.tagline}</h2>
+                <p>{copy.description}</p>
+              </div>
+              <div className="fanari-contact-list">
+                <a href={FANARI_CONTACT.website} target="_blank" rel="noreferrer"><span><small>{copy.websiteLabel}</small><strong>fanarilabs.com</strong></span><i><Globe2 size={18} /></i></a>
+                <a href={FANARI_CONTACT.phoneHref}><span><small>{copy.phoneLabel}</small><strong dir="ltr">{FANARI_CONTACT.phoneDisplay}</strong></span><i><Phone size={18} /></i></a>
+                <a href={FANARI_CONTACT.emailHref}><span><small>{copy.emailLabel}</small><strong dir="ltr">{FANARI_CONTACT.email}</strong></span><i><Mail size={18} /></i></a>
+              </div>
+            </motion.dialog>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
 export function SiteFooter() {
   const { content, lang } = useLanguage();
   return (
@@ -284,20 +380,20 @@ export function SiteFooter() {
             <nav aria-label="Discover Saksouk">
               <Brand />
               <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <small style={{ marginBottom: '0' }}>{lang === 'ar' ? 'اكتشف سكسوك' : 'DISCOVER SAKSOUK'}</small>
+                <small style={{ marginBottom: '0' }}>{lang === 'ar' ? 'اكتشف سكسوك' : 'Discover Saksouk'}</small>
                 {content.footer.discover.map(item => <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>)}
               </div>
             </nav>
             <nav aria-label="What We Do">
-              <small>{lang === 'ar' ? 'ما نقوم به' : 'WHAT WE DO'}</small>
+              <small>{lang === 'ar' ? 'ما نقوم به' : 'What we do'}</small>
               {content.footer.whatWeDo.map(item => <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>)}
             </nav>
             <nav aria-label="Useful Links">
-              <small>{lang === 'ar' ? 'روابط مفيدة' : 'USEFUL LINKS'}</small>
+              <small>{lang === 'ar' ? 'روابط مفيدة' : 'Useful links'}</small>
               {content.footer.usefulLinks.map(item => <a href={pageUrl(item.href)} key={item.label}>{item.label}</a>)}
             </nav>
             <div className="footer-contact-info">
-              <small>{lang === 'ar' ? 'تواصل معنا' : 'CONTACT US'}</small>
+              <small>{lang === 'ar' ? 'تواصل معنا' : 'Contact us'}</small>
               <div className="contact-row">
                 <Phone size={16} strokeWidth={2} />
                 <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
@@ -321,7 +417,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Saksouk Drugstore</span>
-          <span>{lang === 'ar' ? 'سيتم تأكيد تفاصيل الشركة' : 'Company details to be confirmed'}</span>
+          <FooterCredit />
           <a href={pageUrl('/#home')}>{lang === 'ar' ? 'العودة للأعلى' : 'Back to top'} <ArrowUpRight size={13} /></a>
         </div>
       </div>

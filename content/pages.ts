@@ -56,7 +56,7 @@ export const expandedPages = {
       ],
     },
     products: {
-      medicine: { eyebrow: 'Human medicines', title: ['Medicines that support', 'everyday healthcare.'], intro: 'Saksouk distributes and promotes high-quality human medicines through professional healthcare channels.', image: '/images/blog-medicine-safety.png', points: ['Finished pharmaceutical products', 'In-licensed medicine opportunities', 'Support for healthcare and pharmacy channels', 'Commercial and distribution coordination'] },
+      medicine: { eyebrow: 'Human medicines', title: ['Medicines that support', 'everyday healthcare'], intro: 'Saksouk distributes and promotes high-quality human medicines through professional healthcare channels.', image: '/images/blog-medicine-safety.png', points: ['Finished pharmaceutical products', 'In-licensed medicine opportunities', 'Support for healthcare and pharmacy channels', 'Commercial and distribution coordination'] },
       cosmetics: { eyebrow: 'Cosmetics', title: ['Care products selected', 'with purpose.'], intro: 'Our cosmetics activity connects relevant personal-care products with professional market knowledge and responsible distribution.', image: '/images/pharma-quality-v3.jpg', points: ['Dermocosmetic and personal-care categories', 'Market-entry and product-development support', 'Professional pharmacy-channel distribution', 'Partner-focused commercial coordination'] },
       supplements: { eyebrow: 'Nutritional supplements', title: ['Quality-led support', 'for everyday wellbeing.'], intro: 'We support the responsible distribution of nutritional supplements through clear product positioning and trusted healthcare channels.', image: '/images/blog-supplement-quality.png', points: ['Vitamins, minerals and selected supplements', 'Clear product and partner communication', 'Pharmacy and healthcare-channel reach', 'Quality-conscious distribution support'] },
     },
@@ -118,7 +118,7 @@ export const expandedPages = {
       ],
     },
     products: {
-      medicine: { eyebrow: 'الأدوية البشرية', title: ['أدوية تدعم', 'الرعاية الصحية اليومية.'], intro: 'تقوم سكسوك بتوزيع وترويج مجموعة من الأدوية البشرية عالية الجودة عبر قنوات الرعاية الصحية المهنية.', image: '/images/blog-medicine-safety.png', points: ['المنتجات الدوائية النهائية', 'فرص الأدوية المرخصة', 'دعم قنوات الرعاية الصحية والصيدليات', 'التنسيق التجاري والتوزيعي'] },
+      medicine: { eyebrow: 'الأدوية البشرية', title: ['أدوية تدعم', 'الرعاية الصحية اليومية'], intro: 'تقوم سكسوك بتوزيع وترويج مجموعة من الأدوية البشرية عالية الجودة عبر قنوات الرعاية الصحية المهنية.', image: '/images/blog-medicine-safety.png', points: ['المنتجات الدوائية النهائية', 'فرص الأدوية المرخصة', 'دعم قنوات الرعاية الصحية والصيدليات', 'التنسيق التجاري والتوزيعي'] },
       cosmetics: { eyebrow: 'مستحضرات التجميل', title: ['منتجات عناية مختارة', 'بعناية وهدف واضح.'], intro: 'يربط نشاطنا في مستحضرات التجميل منتجات العناية المناسبة بمعرفة السوق والتوزيع المسؤول.', image: '/images/pharma-quality-v3.jpg', points: ['فئات العناية الجلدية والشخصية', 'دعم دخول السوق وتطوير المنتجات', 'التوزيع عبر قنوات الصيدليات', 'تنسيق تجاري يركز على الشريك'] },
       supplements: { eyebrow: 'المكملات الغذائية', title: ['دعم قائم على الجودة', 'للعافية اليومية.'], intro: 'ندعم التوزيع المسؤول للمكملات الغذائية من خلال تموضع واضح للمنتجات وقنوات رعاية صحية موثوقة.', image: '/images/blog-supplement-quality.png', points: ['الفيتامينات والمعادن والمكملات المختارة', 'تواصل واضح حول المنتج والشراكة', 'الوصول إلى قنوات الصيدليات والرعاية الصحية', 'دعم توزيع واعٍ للجودة'] },
     },
