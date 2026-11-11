@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+from dataclasses import dataclass
 from io import BytesIO
 import json
 import re
@@ -10,10 +11,12 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+import pdfplumber
 from docx import Document
 from docx.oxml.ns import qn
 from openpyxl import load_workbook
-from PIL import Image, ImageChops, ImageDraw, ImageFilter
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageOps
+from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +28,7 @@ BRAND_DIR = ROOT / "public" / "images" / "brands"
 sys.stdout.reconfigure(encoding="utf-8")
 
 COMPANIES = {
+    "GMP Products": ("Golden Med Pharma", "غولدن ميد فارما", "golden-med-pharma", "golden-med-pharma-logo.jpeg"),
     "أدفانس": ("Advance", "أدفانس", "advance", "companies (2).jpeg"),
     "المشرق": ("Almashreq", "المشرق", "almashreq", ""),
     "ابن حيان": ("Ibn Hayan", "ابن حيان", "ibn-hayan", "companies (9).jpeg"),
@@ -39,11 +43,27 @@ COMPANIES = {
     "ميديكو": ("Medico", "ميديكو", "medico", "companies (1).jpeg"),
     "شفا": ("Shifa", "شفا", "shifa", "companies (10).jpeg"),
     "كيمي": ("Kimi", "كيمي", "kimi", "companies (4).png"),
+    "دومنا": ("Domina Pharmaceuticals", "دومنا للصناعات الدوائية", "domina", "domina-pharmaceuticals-logo.jpeg"),
 }
 
 COSMETIC_COMPANIES = {"Bioxcin", "Tanium", "Zaroza"}
 SUPPLEMENT_BIOXCIN_MARKERS = ("TABLET", "SACHET", "5000MCG", "حبوب للشعر")
 ADVANCE_COSMETIC_MARKERS = ("اوزوكير", "ليلي دوش")
+GOLDEN_MED_SUPPLEMENT_NAMES = {
+    "Joint Build 120 F.C.Tablets",
+    "Joint Build 30 F.C.Tablets",
+    "Bone Aid 30 Caplets",
+    "Amino Acid Golden 300 Caplets",
+    "Body Max BCAA 250 Capsules",
+    "Creatine Golden 250 Capsules",
+    "Glutamine Golden 250 Capsules",
+    "Golden B12 30 Sublingual tablets",
+    "B Mix Golden 30 F.C. Tablets",
+    "Golden Diabevit 30 F.C. Tablets",
+    "Ferbin 30 Slow Release Capsules",
+    "Ferbin Fort 30 Tablets",
+    "Elenatal 30 F.C.Tablets",
+}
 
 # Supplied WhatsApp photos are deliberately mapped to catalogue names instead of
 # relying on OCR. This keeps the import deterministic and makes repeated views a
@@ -111,6 +131,114 @@ SUPPLIED_IMAGE_GROUPS: list[tuple[str, str, list[str]]] = [
     ("Tanium", "Vitamin-C", ["2.35.46 PM (3).jpeg"]),
     ("Tanium", "Gingivel تانيوم جينجيفال Mouth Wash", ["2.35.46 PM.jpeg"]),
 ]
+
+
+@dataclass(frozen=True)
+class SuppliedImageSource:
+    relative_path: str
+    rotation: int = 0
+
+
+# New product photography is mapped explicitly so a catalogue rebuild remains
+# deterministic. The first source in each group is the card/detail primary;
+# following sources are retained as alternate gallery views.
+ADDITIONAL_IMAGE_GROUPS: list[tuple[str, str, list[SuppliedImageSource]]] = [
+    ("Infless", "Magnesio", [SuppliedImageSource("products/infless  (1).jpeg")]),
+    ("Infless", "Inflegard", [SuppliedImageSource("products/infless  (2).jpeg", 90)]),
+    ("Infless", "Digestaz", [SuppliedImageSource("products/infless  (3).jpeg", 90)]),
+    ("Infless", "Acticobal", [SuppliedImageSource("products/infless  (4).jpeg", 90)]),
+    ("Infless", "Cocomega", [SuppliedImageSource("products/infless  (5).jpeg", -90)]),
+    ("Infless", "Infrelax", [SuppliedImageSource("products/infless  (6).jpeg")]),
+    ("Zaroza", "LIGHTENIN EYE SERUM", [
+        SuppliedImageSource("p.zoroza/1_org_zoom (1).webp"),
+        SuppliedImageSource("p.zoroza/schermafbeelding-2024-10-28-141554-high.webp"),
+    ]),
+    ("Zaroza", "3 IN 1 ELIXIR OIL", [SuppliedImageSource("p.zoroza/1_org_zoom (10).webp")]),
+    ("Zaroza", "SENSITIVE SHAMPOO", [
+        SuppliedImageSource("p.zoroza/1_org_zoom (12).webp"),
+        SuppliedImageSource("p.zoroza/sensivite shampoo amz-1.png"),
+    ]),
+    ("Zaroza", "HAIR SPRAY SERUM", [
+        SuppliedImageSource("p.zoroza/1_org_zoom (13).webp"),
+        SuppliedImageSource("p.zoroza/image_1080 (9).webp"),
+        SuppliedImageSource("p.zoroza/images (2).jfif"),
+    ]),
+    ("Zaroza", "HAIR VITAMIN 60", [SuppliedImageSource("p.zoroza/1_org_zoom (14).webp")]),
+    ("Zaroza", "FACE CLEANSING GEL", [SuppliedImageSource("p.zoroza/1_org_zoom (15).webp")]),
+    ("Zaroza", "ANTI-OX HIGHLIGHTER SERUM", [
+        SuppliedImageSource("p.zoroza/1_org_zoom (2).webp"),
+        SuppliedImageSource("p.zoroza/61AmRUgiJ8L.jpg"),
+    ]),
+    ("Zaroza", "FACE WHITENING CREAM", [
+        SuppliedImageSource("p.zoroza/1_org_zoom (3).webp"),
+        SuppliedImageSource("p.zoroza/image_3840 (1).webp"),
+    ]),
+    ("Zaroza", "GOLDEN SERUM", [SuppliedImageSource("p.zoroza/1_org_zoom (7).webp")]),
+    ("Zaroza", "Special for Oily and Mixed Skin", [SuppliedImageSource("p.zoroza/1_org_zoom-25.jpg")]),
+    ("Zaroza", "ANTI - STRETCH CARE CREAM", [SuppliedImageSource("p.zoroza/23.webp")]),
+    ("Zaroza", "LIFTING NIGHT", [
+        SuppliedImageSource("p.zoroza/517gY72b7WL._AC_UF1000,1000_QL80_.jpg"),
+        SuppliedImageSource("p.zoroza/image_1080 (4).webp"),
+    ]),
+    ("Zaroza", "ANTI-AGING CREAM", [
+        SuppliedImageSource("p.zoroza/530fd348-1d34-470f-be24-1bf93abf7e91-1000x1000-YOv0mCDBYi8yAnOT6F3St07L33EQPZvzkU2nN9dE.webp"),
+        SuppliedImageSource("p.zoroza/51yoSsMQJUL._AC_UF1000,1000_QL80_.jpg"),
+    ]),
+    ("Zaroza", "ANTI-ACNE SERUM", [SuppliedImageSource("p.zoroza/61oL5Y93RbL._AC_UF1000,1000_QL80_.jpg")]),
+    ("Zaroza", "LIFTING DAILY", [
+        SuppliedImageSource("p.zoroza/a0ebea49-130f-4d73-b689-f002fd218c97.jpg"),
+        SuppliedImageSource("p.zoroza/image_3840 (2).webp"),
+    ]),
+    ("Zaroza", "ALOE VERA GEL", [SuppliedImageSource("p.zoroza/amazon_aloevera_1 copy.png")]),
+    ("Zaroza", "HAIR LOSS SHAMPOO 200", [SuppliedImageSource("p.zoroza/amazon_anti_hair_loss_1.png")]),
+    ("Zaroza", "ANTIHAIR LOSS SHAMPOO 600", [SuppliedImageSource("p.zoroza/anti hair loss shampoo amz-1 (1).png")]),
+    ("Zaroza", "ANTI-AGING EYE SERUM", [SuppliedImageSource("p.zoroza/b637e4f7-50f6-401d-a9bd-7cac49289f48-thumbnail-500x500-70.jpg")]),
+    ("Zaroza", "COFFE PEELING", [
+        SuppliedImageSource("p.zoroza/image.jfif"),
+        SuppliedImageSource("p.zoroza/ChatGPT Image 26 يونيو 2026، 05_28_48 م.png"),
+    ]),
+    ("Zaroza", "FACE CLEANSING FOAM", [
+        SuppliedImageSource("p.zoroza/face cleasing foam amz-1 copy.png"),
+        SuppliedImageSource("p.zoroza/image_3840 (5).webp"),
+    ]),
+    ("Zaroza", "HAIR CONDITIONER", [SuppliedImageSource("p.zoroza/hair conditioner amz-1 copy.png")]),
+    ("Zaroza", "MASSAGE GEL", [SuppliedImageSource("p.zoroza/image_1080 (5).webp")]),
+    ("Zaroza", "ANTI - CELLULITE", [
+        SuppliedImageSource("p.zoroza/image_1080 (6).webp"),
+        SuppliedImageSource("p.zoroza/zaroza-anti-cellulite-care-gel-732.png"),
+    ]),
+    ("Zaroza", "CURE INTENSE OZONIZED OIL", [SuppliedImageSource("p.zoroza/image_1080 (7).webp")]),
+    ("Zaroza", "OZONIZED HAIR OIL", [SuppliedImageSource("p.zoroza/image_1080 (8).webp")]),
+    ("Zaroza", "PURIFYING TONER", [SuppliedImageSource("p.zoroza/image_3840 (4).webp")]),
+    ("Zaroza", "PORE MINIMIZING SERUM", [SuppliedImageSource("p.zoroza/image_3840.webp")]),
+    ("Zaroza", "ROLLON MEN", [SuppliedImageSource("p.zoroza/rollon men amz-1 copy.png")]),
+    ("Zaroza", "ROLLON WOMEN", [SuppliedImageSource("p.zoroza/rollon women amz-1 copy.png")]),
+    ("Zaroza", "SOOTHING TONER", [SuppliedImageSource("p.zoroza/soothing toner amz-1 (1) copy.png")]),
+    ("Zaroza", "ANTI - WRINKLE & LIFTING SERUM", [
+        SuppliedImageSource("p.zoroza/unnamed (1).png"),
+        SuppliedImageSource("p.zoroza/unnamed.png"),
+    ]),
+    ("Zaroza", "6 MONTHS HAIR CARE SET", [SuppliedImageSource("p.zoroza/ZAROZA_EN-29.jpg")]),
+    ("Zaroza", "Special for Dry Skin", [SuppliedImageSource("p.zoroza/ت.webp")]),
+    ("Zaroza", "ANTI-BLEMISH COLLAGEN WRAPPING GEL MASK", [
+        SuppliedImageSource("p.zoroza/1_org_zoom.webp"),
+        SuppliedImageSource("p.zoroza/image_1080.webp"),
+    ]),
+    ("Zaroza", "COLLAGEN WRAPPING GEL MASK", [
+        SuppliedImageSource("p.zoroza/3.webp"),
+        SuppliedImageSource("p.zoroza/image_1080 (1).webp"),
+    ]),
+    ("Zaroza", "MOISTURISING COLLAGEN WRAPPING GEL MASK", [
+        SuppliedImageSource("p.zoroza/images (1).jfif"),
+        SuppliedImageSource("p.zoroza/MTc3NDk0NDcxNDY5Y2I4MWNhYjVkOWM=.png"),
+    ]),
+    ("Zaroza", "BRIGHTENING COLLAGEN WRAPPING GEL MASK", [
+        SuppliedImageSource("p.zoroza/images.jfif"),
+        SuppliedImageSource("p.zoroza/MTc3NDk0NDYyOTY5Y2I4MTc1MDNjN2Q=.png"),
+    ]),
+    ("Zaroza", "2 MONTHS HAIR CARE SET", [SuppliedImageSource("p.zoroza/ZAROZA_EN-28.jpg")]),
+    ("Zaroza", "SENSITIVE SHAMPOO + 8 AMPOULES", [SuppliedImageSource("p.zoroza/IMG_3659.JPG")]),
+]
 ARABIC_RE = re.compile(r"[\u0600-\u06ff]")
 ZERO_WIDTH_RE = re.compile(r"[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]")
 
@@ -140,6 +268,13 @@ def company_for(path: Path) -> tuple[str, str, str, str]:
 
 def category_for(company_en: str, name: str) -> str:
     upper_name = clean(name).upper()
+    if company_en == "Golden Med Pharma":
+        normalized_name = key_text(name)
+        return (
+            "supplements"
+            if any(normalized_name == key_text(item) for item in GOLDEN_MED_SUPPLEMENT_NAMES)
+            else "medicine"
+        )
     if company_en == "Infless":
         return "supplements"
     if company_en == "Advance":
@@ -351,11 +486,21 @@ def remove_connected_dark_background(source: Image.Image) -> Image.Image:
     return image
 
 
-def optimize_supplied_image(source_path: Path, product: dict[str, Any], index: int) -> str | None:
+def optimize_supplied_image(
+    source_path: Path,
+    product: dict[str, Any],
+    index: int,
+    rotation: int = 0,
+) -> str | None:
     output_name = f"product-{product['id']}-{index + 1}.webp"
     output_path = IMAGE_DIR / output_name
+    if output_path.exists() and output_path.stat().st_mtime >= source_path.stat().st_mtime:
+        return f"/images/products/{output_name}"
     try:
         with Image.open(source_path) as source:
+            source = ImageOps.exif_transpose(source)
+            if rotation:
+                source = source.rotate(rotation, expand=True)
             source = trim_capture_bands(source)
             source = remove_connected_dark_background(source)
             source.thumbnail((1200, 1200), Image.Resampling.LANCZOS)
@@ -370,10 +515,20 @@ def supplied_image_path(suffix: str) -> Path | None:
     return matches[0] if matches else None
 
 
+def explicit_image_path(source: SuppliedImageSource) -> Path | None:
+    path = ROOT / "public" / "images" / source.relative_path
+    return path if path.is_file() else None
+
+
 def attach_supplied_images(products: list[dict[str, Any]]) -> list[dict[str, str]]:
     exact_hashes: set[str] = set()
     audit: list[dict[str, str]] = []
-    for company, product_marker, suffixes in SUPPLIED_IMAGE_GROUPS:
+    image_groups: list[tuple[str, str, list[str | SuppliedImageSource]]] = [
+        (company, marker, list(suffixes))
+        for company, marker, suffixes in SUPPLIED_IMAGE_GROUPS
+    ]
+    image_groups.extend(ADDITIONAL_IMAGE_GROUPS)
+    for company, product_marker, sources in image_groups:
         marker_key = key_text(product_marker)
         candidates = [
             item
@@ -383,36 +538,66 @@ def attach_supplied_images(products: list[dict[str, Any]]) -> list[dict[str, str
         ]
         product = min(
             candidates,
-            key=lambda item: len(key_text(f"{item['name']} {item.get('officialName', '')}")) - len(marker_key),
+            key=lambda item: (
+                0 if marker_key in key_text(item["name"]) else 1,
+                abs(len(key_text(item["name"])) - len(marker_key)),
+                len(key_text(f"{item['name']} {item.get('officialName', '')}")),
+            ),
             default=None,
         )
         if product is None:
             audit.append({"company": company, "product": product_marker, "status": "product-not-found"})
             continue
         supplied: list[str] = []
-        for suffix in suffixes:
-            source = supplied_image_path(suffix)
+        for image_source in sources:
+            explicit = isinstance(image_source, SuppliedImageSource)
+            source = (
+                explicit_image_path(image_source)
+                if explicit
+                else supplied_image_path(image_source)
+            )
+            source_name = (
+                Path(image_source.relative_path).name
+                if explicit
+                else str(image_source)
+            )
             if source is None:
                 existing_name = f"product-{product['id']}-{len(supplied) + 1}.webp"
                 if (IMAGE_DIR / existing_name).exists():
                     supplied.append(f"/images/products/{existing_name}")
-                    audit.append({"company": company, "product": product_marker, "status": f"using-optimized: {existing_name}"})
+                    entry = {"company": company, "product": product_marker, "status": f"using-optimized: {existing_name}"}
                 else:
-                    audit.append({"company": company, "product": product_marker, "status": f"image-not-found: {suffix}"})
+                    status = "image-not-found" if explicit else f"image-not-found: {source_name}"
+                    entry = {"company": company, "product": product_marker, "status": status}
+                if explicit:
+                    entry["source"] = source_name
+                audit.append(entry)
                 continue
             digest = hashlib.sha256(source.read_bytes()).hexdigest()
             if digest in exact_hashes:
-                audit.append({"company": company, "product": product_marker, "status": f"exact-duplicate-skipped: {source.name}"})
+                status = "exact-duplicate-skipped" if explicit else f"exact-duplicate-skipped: {source.name}"
+                entry = {"company": company, "product": product_marker, "status": status}
+                if explicit:
+                    entry["source"] = source_name
+                audit.append(entry)
                 continue
             exact_hashes.add(digest)
-            optimized = optimize_supplied_image(source, product, len(supplied))
+            rotation = image_source.rotation if explicit else 0
+            optimized = optimize_supplied_image(source, product, len(supplied), rotation)
             if optimized:
                 supplied.append(optimized)
+                entry = {"company": company, "product": product_marker, "status": "matched"}
+            else:
+                entry = {"company": company, "product": product_marker, "status": "optimization-failed"}
+            if explicit:
+                entry["source"] = source_name
+                audit.append(entry)
         if supplied:
             embedded = [path for path in product.get("images", []) if path not in supplied]
             product["images"] = supplied + embedded
             product["image"] = supplied[0]
-            audit.append({"company": company, "product": product["name"], "status": f"matched-{len(supplied)}"})
+            if sources and not isinstance(sources[0], SuppliedImageSource):
+                audit.append({"company": company, "product": product["name"], "status": f"matched-{len(supplied)}"})
     return audit
 
 
@@ -426,6 +611,22 @@ def build_brand_logos() -> None:
         output_path = BRAND_DIR / f"{slug}.webp"
         with Image.open(source_path) as source:
             source = source.convert("RGBA")
+            if slug == "golden-med-pharma":
+                rgb = source.convert("RGB")
+                white = Image.new("RGB", rgb.size, "white")
+                difference = ImageChops.difference(rgb, white).convert("L")
+                content_box = difference.point(lambda value: 255 if value > 18 else 0).getbbox()
+                if content_box:
+                    left, top, right, bottom = content_box
+                    pad = max(12, round(max(right - left, bottom - top) * .04))
+                    source = source.crop(
+                        (
+                            max(0, left - pad),
+                            max(0, top - pad),
+                            min(source.width, right + pad),
+                            min(source.height, bottom + pad),
+                        )
+                    )
             source.thumbnail((640, 260), Image.Resampling.LANCZOS)
             background = Image.new("RGBA", source.size, "white")
             background.alpha_composite(source)
@@ -572,6 +773,188 @@ def extract_medico(path: Path) -> list[dict[str, Any]]:
     return products
 
 
+def extract_domina(path: Path) -> list[dict[str, Any]]:
+    rows = first_sheet_rows(path)
+    products = []
+    for row in rows[1:]:
+        values = list(row) + [None] * max(0, 8 - len(row))
+        name = clean(values[1])
+        composition = clean(values[2])
+        if not name or not composition:
+            continue
+        package = clean(values[3])
+        nature = clean(values[4])
+        description_parts = []
+        if package:
+            description_parts.append(f"التعبئة: {package}")
+        if nature:
+            description_parts.append(f"طبيعة الصنف: {nature}")
+        product = make_product(
+            path,
+            name,
+            description=" · ".join(description_parts),
+            composition=composition,
+            indication=values[5],
+        )
+        if product:
+            products.append(product)
+    return products
+
+
+def attach_image_path(product: dict[str, Any], relative_path: str) -> None:
+    product.setdefault("images", [])
+    if relative_path not in product["images"]:
+        product["images"].append(relative_path)
+    product.setdefault("image", relative_path)
+
+
+def save_golden_med_image(
+    image: Any,
+    page_number: int,
+    source_modified_at: float,
+) -> str:
+    image_name = Path(image.name).stem
+    safe_name = re.sub(r"[^a-z0-9]+", "-", image_name.casefold()).strip("-")
+    output_name = f"gmp-p{page_number:02d}-{safe_name}.webp"
+    output_path = IMAGE_DIR / output_name
+    if output_path.exists() and output_path.stat().st_mtime >= source_modified_at:
+        try:
+            with Image.open(output_path) as cached_image:
+                cached_image.verify()
+            return f"/images/products/{output_name}"
+        except Exception:
+            output_path.unlink(missing_ok=True)
+    source = ImageOps.exif_transpose(image.image.copy())
+    source.thumbnail((1200, 1200), Image.Resampling.LANCZOS)
+    if source.mode not in {"RGB", "RGBA"}:
+        source = source.convert("RGBA" if "transparency" in source.info else "RGB")
+    source.save(output_path, "WEBP", quality=90, method=4)
+    return f"/images/products/{output_name}"
+
+
+def golden_med_product_images(
+    plumber_page: Any,
+    pypdf_page: Any,
+    page_number: int,
+    source_modified_at: float,
+) -> list[dict[str, Any]]:
+    embedded_by_name = {
+        Path(image.name).stem: image
+        for image in pypdf_page.images
+    }
+    images = []
+    for placement in plumber_page.images:
+        # The repeated company logo is the only image in the upper-right header.
+        if placement["x0"] > 600 and placement["top"] < 70:
+            continue
+        embedded = embedded_by_name.get(placement.get("name", ""))
+        if embedded is None:
+            continue
+        images.append(
+            {
+                "name": placement["name"],
+                "x0": placement["x0"],
+                "top": placement["top"],
+                "bottom": placement["bottom"],
+                "path": save_golden_med_image(
+                    embedded,
+                    page_number,
+                    source_modified_at,
+                ),
+            }
+        )
+    return images
+
+
+def attach_golden_med_page_images(
+    page_number: int,
+    rows: list[dict[str, Any]],
+    images: list[dict[str, Any]],
+) -> None:
+    remaining_images = list(images)
+    if page_number == 17:
+        flocosept_rows = rows[:4]
+        flocosept_images = [image for image in images if image["bottom"] <= 312.6]
+        flocosept_images.sort(
+            key=lambda image: (
+                0 if image["top"] < 180 else 1,
+                image["x0"],
+            )
+        )
+        if len(flocosept_rows) != 4 or len(flocosept_images) != 4:
+            raise ValueError("Unexpected Golden Med Flocosept image layout on PDF page 17")
+        for row, image in zip(flocosept_rows, flocosept_images):
+            attach_image_path(row["product"], image["path"])
+        remaining_images = [image for image in images if image not in flocosept_images]
+
+    for image in remaining_images:
+        matched_rows = [
+            row
+            for row in rows
+            if image["top"] - 8 <= row["name_center"] <= image["bottom"] + 8
+        ]
+        if not matched_rows:
+            raise ValueError(
+                f"Could not map Golden Med image {image['name']} on PDF page {page_number}"
+            )
+        for row in matched_rows:
+            attach_image_path(row["product"], image["path"])
+
+
+def extract_golden_med(path: Path) -> list[dict[str, Any]]:
+    reader = PdfReader(path)
+    source_modified_at = path.stat().st_mtime
+    products = []
+    with pdfplumber.open(path) as document:
+        for page_number, (plumber_page, pypdf_page) in enumerate(
+            zip(document.pages, reader.pages), start=1
+        ):
+            tables = plumber_page.find_tables()
+            if not tables:
+                raise ValueError(f"Golden Med product table missing on PDF page {page_number}")
+            product_table = max(tables, key=lambda table: table.bbox[2] - table.bbox[0])
+            extracted_rows = product_table.extract()
+            page_rows = []
+            for table_row, values in zip(product_table.rows, extracted_rows):
+                if len(values) < 3:
+                    continue
+                # The last three logical columns are indication, composition,
+                # and product name. Some pages expose a fourth image column.
+                _, raw_composition, raw_name = values[-3:]
+                name = clean(raw_name)
+                composition = clean(raw_composition)
+                if not name or not composition:
+                    continue
+                if name in {"ج تنملا مسا", "اسم المنتج"}:
+                    continue
+                if "Golden Med Pharma" in name or "Pharmaceutical Industries" in name:
+                    continue
+                name_cells = [cell for cell in table_row.cells if cell]
+                if not name_cells:
+                    continue
+                name_cell = max(name_cells, key=lambda cell: cell[0])
+                product = make_product(path, name, composition=composition)
+                if product:
+                    page_rows.append(
+                        {
+                            "product": product,
+                            "name_center": (name_cell[1] + name_cell[3]) / 2,
+                        }
+                    )
+                    products.append(product)
+
+            page_images = golden_med_product_images(
+                plumber_page,
+                pypdf_page,
+                page_number,
+                source_modified_at,
+            )
+            if page_rows and not page_images:
+                raise ValueError(f"Golden Med product images missing on PDF page {page_number}")
+            attach_golden_med_page_images(page_number, page_rows, page_images)
+    return products
+
+
 def extract_simple(path: Path) -> list[dict[str, Any]]:
     rows = first_sheet_rows(path)
     start = 0
@@ -594,6 +977,10 @@ def extract_simple(path: Path) -> list[dict[str, Any]]:
 
 def extract(path: Path) -> list[dict[str, Any]]:
     stem = clean(path.stem)
+    if "GMP Products" in stem:
+        return extract_golden_med(path)
+    if "دومنا" in stem:
+        return extract_domina(path)
     if "أدفانس" in stem:
         return extract_advance(path)
     if path.suffix.lower() == ".docx":
@@ -612,11 +999,8 @@ source_audit: list[dict[str, Any]] = []
 IMAGE_DIR.mkdir(parents=True, exist_ok=True)
 for old_image in IMAGE_DIR.glob("catalog-*.webp"):
     old_image.unlink()
-if any(IMAGE_DIR.glob("WhatsApp Image 2026-10-*.jpeg")):
-    for old_image in IMAGE_DIR.glob("product-*.webp"):
-        old_image.unlink()
 for source_path in sorted(SOURCE_DIR.iterdir(), key=lambda item: item.name):
-    if source_path.suffix.lower() not in {".xlsx", ".docx"}:
+    if source_path.suffix.lower() not in {".xlsx", ".docx", ".pdf"}:
         continue
     extracted = extract(source_path)
     all_products.extend(extracted)
@@ -633,11 +1017,52 @@ for source_path in sorted(SOURCE_DIR.iterdir(), key=lambda item: item.name):
 # formulations or claims that were not provided.
 advance_source = next(path for path in SOURCE_DIR.iterdir() if "أدفانس" in path.stem)
 tanium_source = next(path for path in SOURCE_DIR.iterdir() if "تانيوم" in path.stem)
+zaroza_source = next(path for path in SOURCE_DIR.iterdir() if "زاروزا" in path.stem)
 all_products.extend(
     product
     for product in (
         make_product(advance_source, "اوزوكير D PLUS"),
         make_product(tanium_source, "Tanium Procapil Hair Serum سيروم بروكابيل للشعر"),
+    )
+    if product
+)
+
+# These products are clearly identified by the newly supplied manufacturer
+# packaging but are absent from the spreadsheet. Only label-visible names and
+# ingredients are recorded; no unsupported efficacy claims are introduced.
+all_products.extend(
+    product
+    for product in (
+        make_product(
+            zaroza_source,
+            "ZAROZA ANTI-BLEMISH COLLAGEN WRAPPING GEL MASK 50ml",
+            composition="Mango, Alpha-Arbutin, Botanical Collagen, Hyaluronic Acid",
+        ),
+        make_product(
+            zaroza_source,
+            "ZAROZA COLLAGEN WRAPPING GEL MASK 50ml",
+            composition="Vitamin C, Ceramide NP, Botanical Collagen, Hyaluronic Acid",
+        ),
+        make_product(
+            zaroza_source,
+            "ZAROZA MOISTURISING COLLAGEN WRAPPING GEL MASK 50ml",
+            composition="Blueberry, Botanical Collagen, Hyaluronic Acid",
+        ),
+        make_product(
+            zaroza_source,
+            "ZAROZA BRIGHTENING COLLAGEN WRAPPING GEL MASK 50ml",
+            composition="Lemon, Mandarin, Vitamin C, Botanical Collagen, Hyaluronic Acid",
+        ),
+        make_product(
+            zaroza_source,
+            "ZAROZA 2 MONTHS HAIR CARE SET",
+            description="Two-month Zaroza hair-care set shown in the supplied manufacturer packaging.",
+        ),
+        make_product(
+            zaroza_source,
+            "ZAROZA HAIR CARE SET — SENSITIVE SHAMPOO + 8 AMPOULES",
+            description="Boxed Zaroza hair-care set containing Sensitive Shampoo and eight ampoules.",
+        ),
     )
     if product
 )
@@ -689,6 +1114,10 @@ for generated_image in IMAGE_DIR.glob("catalog-*.webp"):
     if relative_image not in referenced_images:
         generated_image.unlink()
 for generated_image in IMAGE_DIR.glob("product-*.webp"):
+    relative_image = f"/images/products/{generated_image.name}"
+    if relative_image not in referenced_images:
+        generated_image.unlink()
+for generated_image in IMAGE_DIR.glob("gmp-*.webp"):
     relative_image = f"/images/products/{generated_image.name}"
     if relative_image not in referenced_images:
         generated_image.unlink()

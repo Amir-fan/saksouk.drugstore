@@ -1,6 +1,14 @@
 {
   "sources": [
     {
+      "source": "GMP Products Arabic.pdf",
+      "categoryBreakdown": {
+        "medicine": 100,
+        "supplements": 13
+      },
+      "extractedRows": 113
+    },
+    {
       "source": "أصناف أدفانس النهائي.xlsx",
       "categoryBreakdown": {
         "supplements": 12,
@@ -100,17 +108,24 @@
         "medicine": 37
       },
       "extractedRows": 37
+    },
+    {
+      "source": "لائحة أصناف دومنا 3-11-2026.xlsx",
+      "categoryBreakdown": {
+        "medicine": 274
+      },
+      "extractedRows": 274
     }
   ],
-  "rawExtractedRows": 1677,
+  "rawExtractedRows": 2070,
   "duplicateRowsRemoved": 494,
-  "uniqueProducts": 1183,
+  "uniqueProducts": 1576,
   "categoryCounts": {
-    "medicine": 1041,
-    "cosmetics": 111,
-    "supplements": 31
+    "medicine": 1415,
+    "cosmetics": 117,
+    "supplements": 44
   },
-  "productsWithImages": 132,
+  "productsWithImages": 252,
   "duplicates": [
     {
       "source": "جميع اصناف بيوكسين كوزمتك.xlsx",
@@ -2893,6 +2908,384 @@
       "company": "Tanium",
       "product": "Tanium Gingivel تانيوم جينجيفال Mouth Wash فموية مضمضة",
       "status": "matched-1"
+    },
+    {
+      "company": "Infless",
+      "product": "Magnesio",
+      "status": "matched",
+      "source": "infless  (1).jpeg"
+    },
+    {
+      "company": "Infless",
+      "product": "Inflegard",
+      "status": "matched",
+      "source": "infless  (2).jpeg"
+    },
+    {
+      "company": "Infless",
+      "product": "Digestaz",
+      "status": "matched",
+      "source": "infless  (3).jpeg"
+    },
+    {
+      "company": "Infless",
+      "product": "Acticobal",
+      "status": "matched",
+      "source": "infless  (4).jpeg"
+    },
+    {
+      "company": "Infless",
+      "product": "Cocomega",
+      "status": "matched",
+      "source": "infless  (5).jpeg"
+    },
+    {
+      "company": "Infless",
+      "product": "Infrelax",
+      "status": "matched",
+      "source": "infless  (6).jpeg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "LIGHTENIN EYE SERUM",
+      "status": "matched",
+      "source": "1_org_zoom (1).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "LIGHTENIN EYE SERUM",
+      "status": "matched",
+      "source": "schermafbeelding-2024-10-28-141554-high.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "3 IN 1 ELIXIR OIL",
+      "status": "matched",
+      "source": "1_org_zoom (10).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "SENSITIVE SHAMPOO",
+      "status": "matched",
+      "source": "1_org_zoom (12).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "SENSITIVE SHAMPOO",
+      "status": "matched",
+      "source": "sensivite shampoo amz-1.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "HAIR SPRAY SERUM",
+      "status": "matched",
+      "source": "1_org_zoom (13).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "HAIR SPRAY SERUM",
+      "status": "matched",
+      "source": "image_1080 (9).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "HAIR SPRAY SERUM",
+      "status": "matched",
+      "source": "images (2).jfif"
+    },
+    {
+      "company": "Zaroza",
+      "product": "HAIR VITAMIN 60",
+      "status": "matched",
+      "source": "1_org_zoom (14).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "FACE CLEANSING GEL",
+      "status": "matched",
+      "source": "1_org_zoom (15).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-OX HIGHLIGHTER SERUM",
+      "status": "matched",
+      "source": "1_org_zoom (2).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-OX HIGHLIGHTER SERUM",
+      "status": "matched",
+      "source": "61AmRUgiJ8L.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "FACE WHITENING CREAM",
+      "status": "matched",
+      "source": "1_org_zoom (3).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "FACE WHITENING CREAM",
+      "status": "matched",
+      "source": "image_3840 (1).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "GOLDEN SERUM",
+      "status": "matched",
+      "source": "1_org_zoom (7).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "Special for Oily and Mixed Skin",
+      "status": "matched",
+      "source": "1_org_zoom-25.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI - STRETCH CARE CREAM",
+      "status": "matched",
+      "source": "23.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "LIFTING NIGHT",
+      "status": "matched",
+      "source": "517gY72b7WL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "LIFTING NIGHT",
+      "status": "matched",
+      "source": "image_1080 (4).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-AGING CREAM",
+      "status": "matched",
+      "source": "530fd348-1d34-470f-be24-1bf93abf7e91-1000x1000-YOv0mCDBYi8yAnOT6F3St07L33EQPZvzkU2nN9dE.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-AGING CREAM",
+      "status": "matched",
+      "source": "51yoSsMQJUL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-ACNE SERUM",
+      "status": "matched",
+      "source": "61oL5Y93RbL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "LIFTING DAILY",
+      "status": "matched",
+      "source": "a0ebea49-130f-4d73-b689-f002fd218c97.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "LIFTING DAILY",
+      "status": "matched",
+      "source": "image_3840 (2).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ALOE VERA GEL",
+      "status": "matched",
+      "source": "amazon_aloevera_1 copy.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "HAIR LOSS SHAMPOO 200",
+      "status": "matched",
+      "source": "amazon_anti_hair_loss_1.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTIHAIR LOSS SHAMPOO 600",
+      "status": "matched",
+      "source": "anti hair loss shampoo amz-1 (1).png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-AGING EYE SERUM",
+      "status": "matched",
+      "source": "b637e4f7-50f6-401d-a9bd-7cac49289f48-thumbnail-500x500-70.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "COFFE PEELING",
+      "status": "matched",
+      "source": "image.jfif"
+    },
+    {
+      "company": "Zaroza",
+      "product": "COFFE PEELING",
+      "status": "matched",
+      "source": "ChatGPT Image 26 يونيو 2026، 05_28_48 م.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "FACE CLEANSING FOAM",
+      "status": "matched",
+      "source": "face cleasing foam amz-1 copy.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "FACE CLEANSING FOAM",
+      "status": "matched",
+      "source": "image_3840 (5).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "HAIR CONDITIONER",
+      "status": "matched",
+      "source": "hair conditioner amz-1 copy.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "MASSAGE GEL",
+      "status": "matched",
+      "source": "image_1080 (5).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI - CELLULITE",
+      "status": "matched",
+      "source": "image_1080 (6).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI - CELLULITE",
+      "status": "matched",
+      "source": "zaroza-anti-cellulite-care-gel-732.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "CURE INTENSE OZONIZED OIL",
+      "status": "matched",
+      "source": "image_1080 (7).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "OZONIZED HAIR OIL",
+      "status": "matched",
+      "source": "image_1080 (8).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "PURIFYING TONER",
+      "status": "matched",
+      "source": "image_3840 (4).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "PORE MINIMIZING SERUM",
+      "status": "matched",
+      "source": "image_3840.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ROLLON MEN",
+      "status": "matched",
+      "source": "rollon men amz-1 copy.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ROLLON WOMEN",
+      "status": "matched",
+      "source": "rollon women amz-1 copy.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "SOOTHING TONER",
+      "status": "matched",
+      "source": "soothing toner amz-1 (1) copy.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI - WRINKLE & LIFTING SERUM",
+      "status": "matched",
+      "source": "unnamed (1).png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI - WRINKLE & LIFTING SERUM",
+      "status": "exact-duplicate-skipped",
+      "source": "unnamed.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "6 MONTHS HAIR CARE SET",
+      "status": "matched",
+      "source": "ZAROZA_EN-29.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "Special for Dry Skin",
+      "status": "matched",
+      "source": "ت.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-BLEMISH COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "1_org_zoom.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "ANTI-BLEMISH COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "image_1080.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "3.webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "image_1080 (1).webp"
+    },
+    {
+      "company": "Zaroza",
+      "product": "MOISTURISING COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "images (1).jfif"
+    },
+    {
+      "company": "Zaroza",
+      "product": "MOISTURISING COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "MTc3NDk0NDcxNDY5Y2I4MWNhYjVkOWM=.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "BRIGHTENING COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "images.jfif"
+    },
+    {
+      "company": "Zaroza",
+      "product": "BRIGHTENING COLLAGEN WRAPPING GEL MASK",
+      "status": "matched",
+      "source": "MTc3NDk0NDYyOTY5Y2I4MTc1MDNjN2Q=.png"
+    },
+    {
+      "company": "Zaroza",
+      "product": "2 MONTHS HAIR CARE SET",
+      "status": "matched",
+      "source": "ZAROZA_EN-28.jpg"
+    },
+    {
+      "company": "Zaroza",
+      "product": "SENSITIVE SHAMPOO + 8 AMPOULES",
+      "status": "matched",
+      "source": "IMG_3659.JPG"
     }
   ]
 }
