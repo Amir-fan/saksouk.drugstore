@@ -1246,11 +1246,11 @@ img { display:block; width:100%; height:auto; max-width:100%; }
 .product-card-image,
 .catalogue-cosmetics .catalogue-product-card.has-image .product-card-image { position:relative; height:244px; padding:0; border-bottom:1px solid #e1e3e8; background:#f3f3ef; }
 .product-card-image:before { inset:13px; border-color:#e2e3e0; border-radius:10px; background:#fcfcf9; }
-.product-image-canvas { position:absolute; inset:14px; z-index:1; padding:18px; display:grid; place-items:center; overflow:hidden; border-radius:9px; }
+.product-image-canvas { position:absolute; inset:14px; z-index:1; padding:clamp(18px,2.4vw,26px); display:grid; place-items:center; overflow:hidden; border-radius:9px; }
 .product-card-image img,
 .catalogue-cosmetics .catalogue-product-card.has-image .product-card-image img { width:100%; height:100%; max-width:100%; max-height:100%; object-fit:contain; object-position:center; mix-blend-mode:normal; filter:drop-shadow(0 13px 16px rgba(20,24,41,.09)); transition:transform .32s ease; }
 .catalogue-product-card:hover .product-card-image img,
-.catalogue-cosmetics .catalogue-product-card.has-image:hover .product-card-image img { transform:translateY(-2px) scale(1.01); }
+.catalogue-cosmetics .catalogue-product-card.has-image:hover .product-card-image img { transform:translateY(-2px); }
 .product-card-image.placeholder,
 .catalogue-cosmetics .catalogue-product-card.has-image .product-card-image.placeholder { height:244px; background:#f3f3ef; color:#5967d8; }
 .product-card-image.placeholder svg { width:34px; height:34px; stroke-width:1.25; }
@@ -1281,7 +1281,7 @@ img { display:block; width:100%; height:auto; max-width:100%; }
 .product-gallery-canvas { position:absolute; inset:20px; z-index:1; padding:clamp(22px,4vw,50px); display:grid; place-items:center; overflow:hidden; border-radius:11px; }
 .product-gallery-stage img { width:100%; height:100%; max-width:100%; max-height:100%; object-fit:contain; border-radius:0; filter:drop-shadow(0 20px 24px rgba(20,24,41,.11)); }
 .product-gallery-stage.is-placeholder { color:#5967d8; }
-.product-gallery-thumbs button { border-color:#dee1e7; border-radius:9px; background:#fcfcf9; }
+.product-gallery-thumbs button { padding:10px; border-color:#dee1e7; border-radius:9px; background:#fcfcf9; }
 .product-gallery-thumbs button.is-active { border-color:#5967d8; box-shadow:0 0 0 2px rgba(89,103,216,.12); }
 .product-gallery-thumbs img { mix-blend-mode:normal; }
 .product-brand-chip { border-color:#dee1e7; border-radius:11px; background:#f5f5f1; }
@@ -1346,7 +1346,7 @@ img { display:block; width:100%; height:auto; max-width:100%; }
   .product-card-image,
   .product-card-image.placeholder,
   .catalogue-cosmetics .catalogue-product-card.has-image .product-card-image { height:260px; }
-  .product-image-canvas { inset:13px; padding:17px; }
+  .product-image-canvas { inset:12px; padding:clamp(16px,5vw,22px); }
   .product-card-copy { padding:17px; }
   .product-card-actions { align-items:center; flex-direction:row; }
   .product-detail-view { padding:12px; border-radius:15px; }

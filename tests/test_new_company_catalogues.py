@@ -63,10 +63,19 @@ class NewCompanyCatalogueTest(unittest.TestCase):
         counts = Counter(product["category"] for product in products)
         self.assertEqual({"medicine": 113}, dict(counts))
 
-    def test_public_supplements_catalogue_contains_advance_only(self) -> None:
+    def test_advance_products_are_published_only_as_supplements(self) -> None:
         supplements = self.by_category["supplements"]
         self.assertEqual({"Advance"}, {product["company"]["en"] for product in supplements})
-        self.assertEqual(12, len(supplements))
+        self.assertEqual(17, len(supplements))
+        self.assertEqual(
+            [],
+            [
+                product["name"]
+                for category in ("medicine", "cosmetics")
+                for product in self.by_category[category]
+                if product["company"]["en"] == "Advance"
+            ],
+        )
 
     def test_keeps_golden_med_medicinal_vitamins_in_medicine(self) -> None:
         medicine_names = {
@@ -105,6 +114,42 @@ class NewCompanyCatalogueTest(unittest.TestCase):
             self.assertTrue(products)
             self.assertEqual({logo}, {product["company"].get("logo") for product in products})
             self.assertTrue((ROOT / "public" / logo.lstrip("/")).is_file())
+
+    def test_supplied_tanium_and_advance_images_have_a_safe_outer_frame(self) -> None:
+        products = [
+            product
+            for company in ("Tanium", "Advance")
+            for product in self.company_products(company)
+            if product.get("image") and Path(product["image"]).name.startswith("product-")
+        ]
+        self.assertGreaterEqual(len(products), 30)
+
+        for product in products:
+            image_path = ROOT / "public" / product["image"].lstrip("/")
+            with Image.open(image_path).convert("RGBA") as image:
+                border = []
+                for inset in range(2):
+                    border.extend(image.crop((inset, inset, image.width - inset, inset + 1)).get_flattened_data())
+                    border.extend(image.crop((inset, image.height - inset - 1, image.width - inset, image.height - inset)).get_flattened_data())
+                    border.extend(image.crop((inset, inset, inset + 1, image.height - inset)).get_flattened_data())
+                    border.extend(image.crop((image.width - inset - 1, inset, image.width - inset, image.height - inset)).get_flattened_data())
+
+                channel_spread = [max(pixel[channel] for pixel in border) - min(pixel[channel] for pixel in border) for channel in range(4)]
+                self.assertLessEqual(
+                    max(channel_spread),
+                    8,
+                    f"{product['company']['en']} image touches or varies across its outer frame: {image_path.name}",
+                )
+
+    def test_advance_sheet_images_show_the_product_not_the_full_catalogue_page(self) -> None:
+        advance = {product["name"]: product for product in self.company_products("Advance")}
+        for name in ("اوميغا 3 شراب", "ليلي دوش باكنغ صودا"):
+            image_path = ROOT / "public" / advance[name]["image"].lstrip("/")
+            with Image.open(image_path) as image:
+                self.assertGreaterEqual(image.width, 400, name)
+                self.assertGreaterEqual(image.height, 360, name)
+                self.assertGreaterEqual(image.width / image.height, 0.85, name)
+                self.assertLessEqual(image.width / image.height, 1.4, name)
 
     def test_extracts_and_resolves_every_golden_med_product_image(self) -> None:
         products = self.company_products("Golden Med Pharma")

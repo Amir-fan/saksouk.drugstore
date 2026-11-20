@@ -15,7 +15,7 @@ test('footer addresses list Damascus above Idlib in both languages', () => {
     'سوريا، دمشق، مشروع دمر\nسوريا، إدلب، شارع القصور\nقرب فندق كارلتون',
   );
 });
-test('trusted partner and social metadata uses supplied assets without guessed links', async () => {
+test('trusted partner and social metadata uses supplied assets and exact social links', async () => {
   const moduleUrl = new URL('../lib/site-presentation.ts', import.meta.url);
   assert.ok(
     existsSync(fileURLToPath(moduleUrl)),
@@ -44,8 +44,16 @@ test('trusted partner and social metadata uses supplied assets without guessed l
     TRUSTED_PARTNER_LOGOS.length,
   );
   assert.deepEqual(SOCIAL_CHANNELS, [
-    { id: 'facebook', label: 'Facebook', href: null },
-    { id: 'instagram', label: 'Instagram', href: null },
+    {
+      id: 'facebook',
+      label: 'Facebook',
+      href: 'https://www.facebook.com/share/1ACkatqqrW/',
+    },
+    {
+      id: 'instagram',
+      label: 'Instagram',
+      href: 'https://www.instagram.com/saksok_drugstore?dmpr=MWszMzZkcm82eGVqdw==',
+    },
     { id: 'linkedin', label: 'LinkedIn', href: null },
     { id: 'youtube', label: 'YouTube', href: null },
   ]);

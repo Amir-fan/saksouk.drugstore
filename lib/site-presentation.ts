@@ -30,8 +30,16 @@ type SocialChannel = {
 };
 
 export const SOCIAL_CHANNELS: readonly SocialChannel[] = [
-  { id: 'facebook', label: 'Facebook', href: null },
-  { id: 'instagram', label: 'Instagram', href: null },
+  {
+    id: 'facebook',
+    label: 'Facebook',
+    href: 'https://www.facebook.com/share/1ACkatqqrW/',
+  },
+  {
+    id: 'instagram',
+    label: 'Instagram',
+    href: 'https://www.instagram.com/saksok_drugstore?dmpr=MWszMzZkcm82eGVqdw==',
+  },
   { id: 'linkedin', label: 'LinkedIn', href: null },
   { id: 'youtube', label: 'YouTube', href: null },
 ];

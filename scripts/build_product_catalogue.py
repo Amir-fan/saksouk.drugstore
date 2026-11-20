@@ -48,7 +48,6 @@ COMPANIES = {
 
 COSMETIC_COMPANIES = {"Bioxcin", "Tanium", "Zaroza"}
 SUPPLEMENT_BIOXCIN_MARKERS = ("TABLET", "SACHET", "5000MCG", "حبوب للشعر")
-ADVANCE_COSMETIC_MARKERS = ("اوزوكير", "ليلي دوش")
 PUBLIC_SUPPLEMENT_COMPANY = "Advance"
 
 # Supplied WhatsApp photos are deliberately mapped to catalogue names instead of
@@ -259,7 +258,7 @@ def category_for(company_en: str, name: str) -> str:
     if company_en == "Infless":
         return "supplements"
     if company_en == "Advance":
-        return "cosmetics" if any(marker in clean(name) for marker in ADVANCE_COSMETIC_MARKERS) else "supplements"
+        return "supplements"
     if company_en == "Bioxcin":
         return "supplements" if any(marker in upper_name for marker in SUPPLEMENT_BIOXCIN_MARKERS) else "cosmetics"
     if company_en == "Zaroza" and "HAIR VITAMIN" in upper_name:
@@ -353,6 +352,22 @@ def attach_image(product: dict[str, Any] | None, image_bytes: bytes | None) -> N
     output_path = ROOT / "public" / relative_path.lstrip("/")
     try:
         with Image.open(BytesIO(image_bytes)) as source:
+            advance_sheet_crops = {
+                key_text("اوميغا 3 شراب"): (0.685, 0.25, 0.905, 0.39),
+                key_text("ليلي دوش باكنغ صودا"): (0.685, 0.55, 0.905, 0.685),
+            }
+            crop = advance_sheet_crops.get(key_text(product["name"]))
+            if product["company"]["en"] == "Advance" and crop and source.height > source.width:
+                left, top, right, bottom = crop
+                source = source.crop(
+                    (
+                        round(source.width * left),
+                        round(source.height * top),
+                        round(source.width * right),
+                        round(source.height * bottom),
+                    )
+                )
+                source = source.resize((560, 500), Image.Resampling.LANCZOS)
             source.thumbnail((720, 720), Image.Resampling.LANCZOS)
             if source.mode not in {"RGB", "RGBA"}:
                 source = source.convert("RGBA" if "transparency" in source.info else "RGB")
@@ -476,7 +491,19 @@ def optimize_supplied_image(
     output_name = f"product-{product['id']}-{index + 1}.webp"
     output_path = IMAGE_DIR / output_name
     if output_path.exists() and output_path.stat().st_mtime >= source_path.stat().st_mtime:
-        return f"/images/products/{output_name}"
+        try:
+            with Image.open(output_path).convert("RGBA") as cached:
+                border = []
+                for inset in range(2):
+                    border.extend(cached.crop((inset, inset, cached.width - inset, inset + 1)).get_flattened_data())
+                    border.extend(cached.crop((inset, cached.height - inset - 1, cached.width - inset, cached.height - inset)).get_flattened_data())
+                    border.extend(cached.crop((inset, inset, inset + 1, cached.height - inset)).get_flattened_data())
+                    border.extend(cached.crop((cached.width - inset - 1, inset, cached.width - inset, cached.height - inset)).get_flattened_data())
+                spread = [max(pixel[channel] for pixel in border) - min(pixel[channel] for pixel in border) for channel in range(4)]
+                if max(spread) <= 8:
+                    return f"/images/products/{output_name}"
+        except (OSError, ValueError):
+            pass
     try:
         with Image.open(source_path) as source:
             source = ImageOps.exif_transpose(source)
@@ -484,8 +511,18 @@ def optimize_supplied_image(
                 source = source.rotate(rotation, expand=True)
             source = trim_capture_bands(source)
             source = remove_connected_dark_background(source)
-            source.thumbnail((1200, 1200), Image.Resampling.LANCZOS)
-            source.save(output_path, "WEBP", quality=88, method=6)
+            source.thumbnail((1050, 1050), Image.Resampling.LANCZOS)
+
+            # Supplied pack shots are often trimmed directly against one or
+            # more source edges. Give every asset its own safety canvas so the
+            # complete package remains visually separate from the UI frame.
+            source = source.convert("RGBA")
+            margin = max(16, round(max(source.size) * 0.07))
+            has_transparency = source.getchannel("A").getextrema()[0] < 255
+            background = (255, 255, 255, 0 if has_transparency else 255)
+            framed = Image.new("RGBA", (source.width + margin * 2, source.height + margin * 2), background)
+            framed.alpha_composite(source, (margin, margin))
+            framed.save(output_path, "WEBP", quality=88, method=6)
         return f"/images/products/{output_name}"
     except Exception:
         return None

@@ -10,8 +10,7 @@
     {
       "source": "أصناف أدفانس النهائي.xlsx",
       "categoryBreakdown": {
-        "supplements": 12,
-        "cosmetics": 4
+        "supplements": 16
       },
       "extractedRows": 16
     },
@@ -121,8 +120,8 @@
   "uniqueProducts": 1576,
   "categoryCounts": {
     "medicine": 1428,
-    "cosmetics": 117,
-    "supplements": 12
+    "cosmetics": 112,
+    "supplements": 17
   },
   "hiddenFromPublicCatalogue": {
     "count": 19,
