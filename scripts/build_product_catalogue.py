@@ -49,21 +49,7 @@ COMPANIES = {
 COSMETIC_COMPANIES = {"Bioxcin", "Tanium", "Zaroza"}
 SUPPLEMENT_BIOXCIN_MARKERS = ("TABLET", "SACHET", "5000MCG", "حبوب للشعر")
 ADVANCE_COSMETIC_MARKERS = ("اوزوكير", "ليلي دوش")
-GOLDEN_MED_SUPPLEMENT_NAMES = {
-    "Joint Build 120 F.C.Tablets",
-    "Joint Build 30 F.C.Tablets",
-    "Bone Aid 30 Caplets",
-    "Amino Acid Golden 300 Caplets",
-    "Body Max BCAA 250 Capsules",
-    "Creatine Golden 250 Capsules",
-    "Glutamine Golden 250 Capsules",
-    "Golden B12 30 Sublingual tablets",
-    "B Mix Golden 30 F.C. Tablets",
-    "Golden Diabevit 30 F.C. Tablets",
-    "Ferbin 30 Slow Release Capsules",
-    "Ferbin Fort 30 Tablets",
-    "Elenatal 30 F.C.Tablets",
-}
+PUBLIC_SUPPLEMENT_COMPANY = "Advance"
 
 # Supplied WhatsApp photos are deliberately mapped to catalogue names instead of
 # relying on OCR. This keeps the import deterministic and makes repeated views a
@@ -269,12 +255,7 @@ def company_for(path: Path) -> tuple[str, str, str, str]:
 def category_for(company_en: str, name: str) -> str:
     upper_name = clean(name).upper()
     if company_en == "Golden Med Pharma":
-        normalized_name = key_text(name)
-        return (
-            "supplements"
-            if any(normalized_name == key_text(item) for item in GOLDEN_MED_SUPPLEMENT_NAMES)
-            else "medicine"
-        )
+        return "medicine"
     if company_en == "Infless":
         return "supplements"
     if company_en == "Advance":
@@ -564,8 +545,9 @@ def attach_supplied_images(products: list[dict[str, Any]]) -> list[dict[str, str
             if source is None:
                 existing_name = f"product-{product['id']}-{len(supplied) + 1}.webp"
                 if (IMAGE_DIR / existing_name).exists():
-                    supplied.append(f"/images/products/{existing_name}")
-                    entry = {"company": company, "product": product_marker, "status": f"using-optimized: {existing_name}"}
+                    existing_path = f"/images/products/{existing_name}"
+                    supplied.append(existing_path)
+                    entry = {"company": company, "product": product_marker, "status": f"using-optimized: {existing_name}", "output": existing_path}
                 else:
                     status = "image-not-found" if explicit else f"image-not-found: {source_name}"
                     entry = {"company": company, "product": product_marker, "status": status}
@@ -586,7 +568,7 @@ def attach_supplied_images(products: list[dict[str, Any]]) -> list[dict[str, str
             optimized = optimize_supplied_image(source, product, len(supplied), rotation)
             if optimized:
                 supplied.append(optimized)
-                entry = {"company": company, "product": product_marker, "status": "matched"}
+                entry = {"company": company, "product": product_marker, "status": "matched", "output": optimized}
             else:
                 entry = {"company": company, "product": product_marker, "status": "optimization-failed"}
             if explicit:
@@ -1123,10 +1105,21 @@ for generated_image in IMAGE_DIR.glob("gmp-*.webp"):
         generated_image.unlink()
 
 deduplicated.sort(key=lambda product: (product["category"], product["company"]["en"], product["name"].casefold()))
+hidden_supplements = [
+    product
+    for product in deduplicated
+    if product["category"] == "supplements"
+    and product["company"]["en"] != PUBLIC_SUPPLEMENT_COMPANY
+]
 catalogue = {
     "medicine": [product for product in deduplicated if product["category"] == "medicine"],
     "cosmetics": [product for product in deduplicated if product["category"] == "cosmetics"],
-    "supplements": [product for product in deduplicated if product["category"] == "supplements"],
+    "supplements": [
+        product
+        for product in deduplicated
+        if product["category"] == "supplements"
+        and product["company"]["en"] == PUBLIC_SUPPLEMENT_COMPANY
+    ],
 }
 audit = {
     "sources": source_audit,
@@ -1134,6 +1127,10 @@ audit = {
     "duplicateRowsRemoved": len(duplicates),
     "uniqueProducts": len(deduplicated),
     "categoryCounts": {category: len(products) for category, products in catalogue.items()},
+    "hiddenFromPublicCatalogue": {
+        "count": len(hidden_supplements),
+        "byCompany": dict(Counter(product["company"]["en"] for product in hidden_supplements)),
+    },
     "productsWithImages": sum(1 for product in deduplicated if product.get("image")),
     "duplicates": duplicates,
     "suppliedImageMatches": image_matches,

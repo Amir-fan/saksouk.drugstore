@@ -13,7 +13,8 @@ The generated catalogue is based on the files in `public/medecines` and the supp
 - Ingestible **Advance** formulas are under **Food supplements**. Supplied OzoCare topical products and Lily Douche remain under **Cosmetics**, based on the supplied compositions, indications, and packaging.
 - Supplied **Tanium** products are topical skin, hair, oral-care, sun-care, or roll-on products and remain under **Cosmetics**.
 - All 274 supplied **Domina Pharmaceuticals** rows remain under **Human medicines**. The source workbook identifies them as pharmaceutical products, supplies a composition for every row, and supplies an indication for 273 rows. The one blank source indication is preserved as blank rather than inferred.
-- The **Golden Med Pharma** PDF contributes 113 variants: 100 remain under **Human medicines**, while 13 are assigned to **Food supplements** because their source packaging or indication explicitly identifies them as dietary/food supplements. Medicinal vitamin products carrying prescription or therapeutic labeling remain under Human medicines.
+- The **Golden Med Pharma** PDF contributes 113 variants. Per Saksouk's current commercial catalogue structure, all 113 are published under **Human medicines**.
+- The public **Food supplements** catalogue is limited to **Advance**. Other supplied supplement records remain preserved in their original source files and classification audit, but are not published in that storefront.
 
 ## Source integrity
 

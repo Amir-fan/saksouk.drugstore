@@ -15,23 +15,6 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "public" / "data"
 
-GOLDEN_MED_SUPPLEMENTS = {
-    "Joint Build 120 F.C.Tablets",
-    "Joint Build 30 F.C.Tablets",
-    "Bone Aid 30 Caplets",
-    "Amino Acid Golden 300 Caplets",
-    "Body Max BCAA 250 Capsules",
-    "Creatine Golden 250 Capsules",
-    "Glutamine Golden 250 Capsules",
-    "Golden B12 30 Sublingual tablets",
-    "B Mix Golden 30 F.C. Tablets",
-    "Golden Diabevit 30 F.C. Tablets",
-    "Ferbin 30 Slow Release Capsules",
-    "Ferbin Fort 30 Tablets",
-    "Elenatal 30 F.C.Tablets",
-}
-
-
 def normalized(value: str) -> str:
     value = unicodedata.normalize("NFKC", value).casefold()
     value = value.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
@@ -74,17 +57,16 @@ class NewCompanyCatalogueTest(unittest.TestCase):
         self.assertTrue(all(product.get("composition") for product in products))
         self.assertEqual(273, sum(bool(product.get("indication")) for product in products))
 
-    def test_imports_every_golden_med_variant_into_source_supported_category(self) -> None:
+    def test_imports_every_golden_med_variant_as_human_medicine(self) -> None:
         products = self.company_products("Golden Med Pharma")
         self.assertEqual(113, len(products))
         counts = Counter(product["category"] for product in products)
-        self.assertEqual({"medicine": 100, "supplements": 13}, dict(counts))
-        supplement_names = {
-            product["name"]
-            for product in products
-            if product["category"] == "supplements"
-        }
-        self.assertEqual(GOLDEN_MED_SUPPLEMENTS, supplement_names)
+        self.assertEqual({"medicine": 113}, dict(counts))
+
+    def test_public_supplements_catalogue_contains_advance_only(self) -> None:
+        supplements = self.by_category["supplements"]
+        self.assertEqual({"Advance"}, {product["company"]["en"] for product in supplements})
+        self.assertEqual(12, len(supplements))
 
     def test_keeps_golden_med_medicinal_vitamins_in_medicine(self) -> None:
         medicine_names = {
@@ -189,9 +171,18 @@ class NewCompanyCatalogueTest(unittest.TestCase):
         gmp = next(item for name, item in source_rows.items() if "GMP" in name)
         domina = next(item for name, item in source_rows.items() if "دومنا" in name)
         self.assertEqual(113, gmp["extractedRows"])
-        self.assertEqual({"medicine": 100, "supplements": 13}, gmp["categoryBreakdown"])
+        self.assertEqual({"medicine": 113}, gmp["categoryBreakdown"])
         self.assertEqual(274, domina["extractedRows"])
         self.assertEqual({"medicine": 274}, domina["categoryBreakdown"])
+
+    def test_audit_accounts_for_preserved_non_public_supplements(self) -> None:
+        self.assertEqual(
+            {
+                "count": 19,
+                "byCompany": {"Bioxcin": 8, "Infless": 10, "Zaroza": 1},
+            },
+            self.audit.get("hiddenFromPublicCatalogue"),
+        )
 
 
 if __name__ == "__main__":

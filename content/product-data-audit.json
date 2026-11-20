@@ -3,8 +3,7 @@
     {
       "source": "GMP Products Arabic.pdf",
       "categoryBreakdown": {
-        "medicine": 100,
-        "supplements": 13
+        "medicine": 113
       },
       "extractedRows": 113
     },
@@ -121,9 +120,17 @@
   "duplicateRowsRemoved": 494,
   "uniqueProducts": 1576,
   "categoryCounts": {
-    "medicine": 1415,
+    "medicine": 1428,
     "cosmetics": 117,
-    "supplements": 44
+    "supplements": 12
+  },
+  "hiddenFromPublicCatalogue": {
+    "count": 19,
+    "byCompany": {
+      "Bioxcin": 8,
+      "Infless": 10,
+      "Zaroza": 1
+    }
   },
   "productsWithImages": 252,
   "duplicates": [
@@ -2913,300 +2920,350 @@
       "company": "Infless",
       "product": "Magnesio",
       "status": "matched",
+      "output": "/images/products/product-1b9b57fd9c8a-1.webp",
       "source": "infless  (1).jpeg"
     },
     {
       "company": "Infless",
       "product": "Inflegard",
       "status": "matched",
+      "output": "/images/products/product-46a37dc0f839-1.webp",
       "source": "infless  (2).jpeg"
     },
     {
       "company": "Infless",
       "product": "Digestaz",
       "status": "matched",
+      "output": "/images/products/product-43f78af778cf-1.webp",
       "source": "infless  (3).jpeg"
     },
     {
       "company": "Infless",
       "product": "Acticobal",
       "status": "matched",
+      "output": "/images/products/product-f42989d9ed3c-1.webp",
       "source": "infless  (4).jpeg"
     },
     {
       "company": "Infless",
       "product": "Cocomega",
       "status": "matched",
+      "output": "/images/products/product-2f0a84d45304-1.webp",
       "source": "infless  (5).jpeg"
     },
     {
       "company": "Infless",
       "product": "Infrelax",
       "status": "matched",
+      "output": "/images/products/product-502243d28add-1.webp",
       "source": "infless  (6).jpeg"
     },
     {
       "company": "Zaroza",
       "product": "LIGHTENIN EYE SERUM",
       "status": "matched",
+      "output": "/images/products/product-5c58ca32049a-1.webp",
       "source": "1_org_zoom (1).webp"
     },
     {
       "company": "Zaroza",
       "product": "LIGHTENIN EYE SERUM",
       "status": "matched",
+      "output": "/images/products/product-5c58ca32049a-2.webp",
       "source": "schermafbeelding-2024-10-28-141554-high.webp"
     },
     {
       "company": "Zaroza",
       "product": "3 IN 1 ELIXIR OIL",
       "status": "matched",
+      "output": "/images/products/product-347f51289ac0-1.webp",
       "source": "1_org_zoom (10).webp"
     },
     {
       "company": "Zaroza",
       "product": "SENSITIVE SHAMPOO",
       "status": "matched",
+      "output": "/images/products/product-b1a93176897a-1.webp",
       "source": "1_org_zoom (12).webp"
     },
     {
       "company": "Zaroza",
       "product": "SENSITIVE SHAMPOO",
       "status": "matched",
+      "output": "/images/products/product-b1a93176897a-2.webp",
       "source": "sensivite shampoo amz-1.png"
     },
     {
       "company": "Zaroza",
       "product": "HAIR SPRAY SERUM",
       "status": "matched",
+      "output": "/images/products/product-66dc6efa2dc8-1.webp",
       "source": "1_org_zoom (13).webp"
     },
     {
       "company": "Zaroza",
       "product": "HAIR SPRAY SERUM",
       "status": "matched",
+      "output": "/images/products/product-66dc6efa2dc8-2.webp",
       "source": "image_1080 (9).webp"
     },
     {
       "company": "Zaroza",
       "product": "HAIR SPRAY SERUM",
       "status": "matched",
+      "output": "/images/products/product-66dc6efa2dc8-3.webp",
       "source": "images (2).jfif"
     },
     {
       "company": "Zaroza",
       "product": "HAIR VITAMIN 60",
       "status": "matched",
+      "output": "/images/products/product-9854b491c244-1.webp",
       "source": "1_org_zoom (14).webp"
     },
     {
       "company": "Zaroza",
       "product": "FACE CLEANSING GEL",
       "status": "matched",
+      "output": "/images/products/product-1ca7f1590b1d-1.webp",
       "source": "1_org_zoom (15).webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-OX HIGHLIGHTER SERUM",
       "status": "matched",
+      "output": "/images/products/product-726c23bc07db-1.webp",
       "source": "1_org_zoom (2).webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-OX HIGHLIGHTER SERUM",
       "status": "matched",
+      "output": "/images/products/product-726c23bc07db-2.webp",
       "source": "61AmRUgiJ8L.jpg"
     },
     {
       "company": "Zaroza",
       "product": "FACE WHITENING CREAM",
       "status": "matched",
+      "output": "/images/products/product-54585994780a-1.webp",
       "source": "1_org_zoom (3).webp"
     },
     {
       "company": "Zaroza",
       "product": "FACE WHITENING CREAM",
       "status": "matched",
+      "output": "/images/products/product-54585994780a-2.webp",
       "source": "image_3840 (1).webp"
     },
     {
       "company": "Zaroza",
       "product": "GOLDEN SERUM",
       "status": "matched",
+      "output": "/images/products/product-8b002f35e96a-1.webp",
       "source": "1_org_zoom (7).webp"
     },
     {
       "company": "Zaroza",
       "product": "Special for Oily and Mixed Skin",
       "status": "matched",
+      "output": "/images/products/product-5fd8fe2f3d8a-1.webp",
       "source": "1_org_zoom-25.jpg"
     },
     {
       "company": "Zaroza",
       "product": "ANTI - STRETCH CARE CREAM",
       "status": "matched",
+      "output": "/images/products/product-0ef2f38d1ae0-1.webp",
       "source": "23.webp"
     },
     {
       "company": "Zaroza",
       "product": "LIFTING NIGHT",
       "status": "matched",
+      "output": "/images/products/product-80995329d5a8-1.webp",
       "source": "517gY72b7WL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "company": "Zaroza",
       "product": "LIFTING NIGHT",
       "status": "matched",
+      "output": "/images/products/product-80995329d5a8-2.webp",
       "source": "image_1080 (4).webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-AGING CREAM",
       "status": "matched",
+      "output": "/images/products/product-895f4faf8d46-1.webp",
       "source": "530fd348-1d34-470f-be24-1bf93abf7e91-1000x1000-YOv0mCDBYi8yAnOT6F3St07L33EQPZvzkU2nN9dE.webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-AGING CREAM",
       "status": "matched",
+      "output": "/images/products/product-895f4faf8d46-2.webp",
       "source": "51yoSsMQJUL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-ACNE SERUM",
       "status": "matched",
+      "output": "/images/products/product-9e138dd3f40d-1.webp",
       "source": "61oL5Y93RbL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "company": "Zaroza",
       "product": "LIFTING DAILY",
       "status": "matched",
+      "output": "/images/products/product-1fcc79d2915f-1.webp",
       "source": "a0ebea49-130f-4d73-b689-f002fd218c97.jpg"
     },
     {
       "company": "Zaroza",
       "product": "LIFTING DAILY",
       "status": "matched",
+      "output": "/images/products/product-1fcc79d2915f-2.webp",
       "source": "image_3840 (2).webp"
     },
     {
       "company": "Zaroza",
       "product": "ALOE VERA GEL",
       "status": "matched",
+      "output": "/images/products/product-56528a005a52-1.webp",
       "source": "amazon_aloevera_1 copy.png"
     },
     {
       "company": "Zaroza",
       "product": "HAIR LOSS SHAMPOO 200",
       "status": "matched",
+      "output": "/images/products/product-f93751c4d885-1.webp",
       "source": "amazon_anti_hair_loss_1.png"
     },
     {
       "company": "Zaroza",
       "product": "ANTIHAIR LOSS SHAMPOO 600",
       "status": "matched",
+      "output": "/images/products/product-0162027a2dab-1.webp",
       "source": "anti hair loss shampoo amz-1 (1).png"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-AGING EYE SERUM",
       "status": "matched",
+      "output": "/images/products/product-893711bda531-1.webp",
       "source": "b637e4f7-50f6-401d-a9bd-7cac49289f48-thumbnail-500x500-70.jpg"
     },
     {
       "company": "Zaroza",
       "product": "COFFE PEELING",
       "status": "matched",
+      "output": "/images/products/product-beb3e0c04b6c-1.webp",
       "source": "image.jfif"
     },
     {
       "company": "Zaroza",
       "product": "COFFE PEELING",
       "status": "matched",
+      "output": "/images/products/product-beb3e0c04b6c-2.webp",
       "source": "ChatGPT Image 26 يونيو 2026، 05_28_48 م.png"
     },
     {
       "company": "Zaroza",
       "product": "FACE CLEANSING FOAM",
       "status": "matched",
+      "output": "/images/products/product-135bafc30c04-1.webp",
       "source": "face cleasing foam amz-1 copy.png"
     },
     {
       "company": "Zaroza",
       "product": "FACE CLEANSING FOAM",
       "status": "matched",
+      "output": "/images/products/product-135bafc30c04-2.webp",
       "source": "image_3840 (5).webp"
     },
     {
       "company": "Zaroza",
       "product": "HAIR CONDITIONER",
       "status": "matched",
+      "output": "/images/products/product-feb089ea6d8a-1.webp",
       "source": "hair conditioner amz-1 copy.png"
     },
     {
       "company": "Zaroza",
       "product": "MASSAGE GEL",
       "status": "matched",
+      "output": "/images/products/product-d401cae59cff-1.webp",
       "source": "image_1080 (5).webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI - CELLULITE",
       "status": "matched",
+      "output": "/images/products/product-32d50eaf8761-1.webp",
       "source": "image_1080 (6).webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI - CELLULITE",
       "status": "matched",
+      "output": "/images/products/product-32d50eaf8761-2.webp",
       "source": "zaroza-anti-cellulite-care-gel-732.png"
     },
     {
       "company": "Zaroza",
       "product": "CURE INTENSE OZONIZED OIL",
       "status": "matched",
+      "output": "/images/products/product-e586388d450b-1.webp",
       "source": "image_1080 (7).webp"
     },
     {
       "company": "Zaroza",
       "product": "OZONIZED HAIR OIL",
       "status": "matched",
+      "output": "/images/products/product-fd376959b817-1.webp",
       "source": "image_1080 (8).webp"
     },
     {
       "company": "Zaroza",
       "product": "PURIFYING TONER",
       "status": "matched",
+      "output": "/images/products/product-642e0934c512-1.webp",
       "source": "image_3840 (4).webp"
     },
     {
       "company": "Zaroza",
       "product": "PORE MINIMIZING SERUM",
       "status": "matched",
+      "output": "/images/products/product-5de08fba4cea-1.webp",
       "source": "image_3840.webp"
     },
     {
       "company": "Zaroza",
       "product": "ROLLON MEN",
       "status": "matched",
+      "output": "/images/products/product-8c9e140031ac-1.webp",
       "source": "rollon men amz-1 copy.png"
     },
     {
       "company": "Zaroza",
       "product": "ROLLON WOMEN",
       "status": "matched",
+      "output": "/images/products/product-ac3440acf7e9-1.webp",
       "source": "rollon women amz-1 copy.png"
     },
     {
       "company": "Zaroza",
       "product": "SOOTHING TONER",
       "status": "matched",
+      "output": "/images/products/product-b93387d2bb55-1.webp",
       "source": "soothing toner amz-1 (1) copy.png"
     },
     {
       "company": "Zaroza",
       "product": "ANTI - WRINKLE & LIFTING SERUM",
       "status": "matched",
+      "output": "/images/products/product-4e22d5b77957-1.webp",
       "source": "unnamed (1).png"
     },
     {
@@ -3219,72 +3276,84 @@
       "company": "Zaroza",
       "product": "6 MONTHS HAIR CARE SET",
       "status": "matched",
+      "output": "/images/products/product-3a1214b3064d-1.webp",
       "source": "ZAROZA_EN-29.jpg"
     },
     {
       "company": "Zaroza",
       "product": "Special for Dry Skin",
       "status": "matched",
+      "output": "/images/products/product-7dcd6495e8ff-1.webp",
       "source": "ت.webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-BLEMISH COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-f6a27296b5be-1.webp",
       "source": "1_org_zoom.webp"
     },
     {
       "company": "Zaroza",
       "product": "ANTI-BLEMISH COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-f6a27296b5be-2.webp",
       "source": "image_1080.webp"
     },
     {
       "company": "Zaroza",
       "product": "COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-898ad861950e-1.webp",
       "source": "3.webp"
     },
     {
       "company": "Zaroza",
       "product": "COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-898ad861950e-2.webp",
       "source": "image_1080 (1).webp"
     },
     {
       "company": "Zaroza",
       "product": "MOISTURISING COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-b777aac1af08-1.webp",
       "source": "images (1).jfif"
     },
     {
       "company": "Zaroza",
       "product": "MOISTURISING COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-b777aac1af08-2.webp",
       "source": "MTc3NDk0NDcxNDY5Y2I4MWNhYjVkOWM=.png"
     },
     {
       "company": "Zaroza",
       "product": "BRIGHTENING COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-2b67504fa898-1.webp",
       "source": "images.jfif"
     },
     {
       "company": "Zaroza",
       "product": "BRIGHTENING COLLAGEN WRAPPING GEL MASK",
       "status": "matched",
+      "output": "/images/products/product-2b67504fa898-2.webp",
       "source": "MTc3NDk0NDYyOTY5Y2I4MTc1MDNjN2Q=.png"
     },
     {
       "company": "Zaroza",
       "product": "2 MONTHS HAIR CARE SET",
       "status": "matched",
+      "output": "/images/products/product-99f15ea2c18e-1.webp",
       "source": "ZAROZA_EN-28.jpg"
     },
     {
       "company": "Zaroza",
       "product": "SENSITIVE SHAMPOO + 8 AMPOULES",
       "status": "matched",
+      "output": "/images/products/product-aa91f1de3792-1.webp",
       "source": "IMG_3659.JPG"
     }
   ]

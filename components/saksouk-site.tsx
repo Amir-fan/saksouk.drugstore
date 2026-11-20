@@ -7,12 +7,21 @@ import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
 import { expandedPages } from '@/content/pages';
 import { FANARI_CONTACT, getFanariCopy } from '@/lib/fanari-contact';
+import { SOCIAL_CHANNELS, TRUSTED_PARTNER_LOGOS, type SocialChannelId } from '@/lib/site-presentation';
 import { assetUrl, pageUrl, WHATSAPP_URL } from '@/lib/site-paths';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 function Brand() {
   return <a className="brand" href={pageUrl('/#home')} aria-label="Saksouk Drugstore home"><img src={assetUrl('/images/logo.png')} alt="Saksouk Drugstore" className="brand-logo" /><span className="brand-slogan">More Than Medicine</span></a>;
+}
+
+function SocialMark({ channel }: { channel: SocialChannelId }) {
+  const shared = { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true };
+  if (channel === 'facebook') return <svg {...shared}><path d="M14 8.5h3V5h-3.4C10.5 5 9 6.8 9 9.6V12H6v3.5h3V22h4v-6.5h3.4L17 12h-4V9.8c0-.9.3-1.3 1-1.3Z" /></svg>;
+  if (channel === 'instagram') return <svg {...shared}><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".75" fill="currentColor" stroke="none" /></svg>;
+  if (channel === 'linkedin') return <svg {...shared}><path d="M6.5 9.5V18M6.5 6.2v.1M10.5 18v-8.5M10.5 13.2c.7-2.3 5.8-2.8 5.8 1.4V18" /><rect x="3" y="3" width="18" height="18" rx="3" /></svg>;
+  return <svg {...shared}><path d="M21 12c0 2.2-.2 3.8-.6 4.7-.2.5-.6.9-1.1 1.1-1 .4-3.4.5-7.3.5s-6.3-.1-7.3-.5c-.5-.2-.9-.6-1.1-1.1C3.2 15.8 3 14.2 3 12s.2-3.8.6-4.7c.2-.5.6-.9 1.1-1.1 1-.4 3.4-.5 7.3-.5s6.3.1 7.3.5c.5.2.9.6 1.1 1.1.4.9.6 2.5.6 4.7Z" /><path d="m10 9 5 3-5 3V9Z" /></svg>;
 }
 
 export function ArrowLink({ href, children, primary = false }: { href: string; children: React.ReactNode; primary?: boolean }) {
@@ -185,10 +194,6 @@ function Capabilities() {
 
 function Partners() {
   const { lang } = useLanguage();
-  const PARTNER_LOGOS = [
-    ...Array.from({ length: 5 }, (_, index) => `/images/companies (${index + 1}).png`),
-    ...Array.from({ length: 10 }, (_, index) => `/images/companies (${index + 1}).jpeg`),
-  ];
   return (
     <section className="partners section" id="partners" aria-label="Our Partners">
       <div className="container">
@@ -200,9 +205,9 @@ function Partners() {
       </div>
       <div className="container">
         <div className="partners-grid">
-          {PARTNER_LOGOS.map((logo, index) => (
-            <div className="partner-card" key={logo}>
-              <img src={assetUrl(logo)} alt={lang === 'ar' ? `شعار الشركة الشريكة ${index + 1}` : `Partner company logo ${index + 1}`} loading="lazy" decoding="async" />
+          {TRUSTED_PARTNER_LOGOS.map((partner) => (
+            <div className="partner-card" key={partner.logo}>
+              <img src={assetUrl(partner.logo)} alt={`${lang === 'ar' ? partner.nameAr : partner.name} ${lang === 'ar' ? 'شعار' : 'logo'}`} loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
@@ -403,11 +408,26 @@ export function SiteFooter() {
               </div>
               <div className="contact-row">
                 <MapPin size={16} strokeWidth={2} />
-                <span style={{ whiteSpace: 'pre-line', lineHeight: 1.6 }}>{content.footer.address}</span>
+                <span className="footer-address">{content.footer.address}</span>
               </div>
               <div className="contact-row">
                 <Mail size={16} strokeWidth={2} />
                 <a href={`mailto:${content.contact.email}`} dir="ltr">{content.contact.email}</a>
+              </div>
+              <div className="footer-socials">
+                <span>{lang === 'ar' ? 'تابعنا' : 'Follow us'}</span>
+                <div className="footer-social-list" aria-label={lang === 'ar' ? 'قنوات التواصل الاجتماعي — الروابط ستتوفر قريباً' : 'Social channels — links coming soon'}>
+                  {SOCIAL_CHANNELS.map((channel) => (
+                    channel.href ? (
+                      <a className="footer-social-link" href={channel.href} target="_blank" rel="noreferrer" aria-label={channel.label} key={channel.id}><SocialMark channel={channel.id} /></a>
+                    ) : (
+                      <span className="footer-social-link is-disabled" title={`${channel.label} — ${lang === 'ar' ? 'قريباً' : 'coming soon'}`} key={channel.id}>
+                        <SocialMark channel={channel.id} />
+                        <span className="footer-social-name">{channel.label} — {lang === 'ar' ? 'قريباً' : 'coming soon'}</span>
+                      </span>
+                    )
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -133,11 +133,17 @@ class ProductCatalogueImageTest(unittest.TestCase):
                 self.assertTrue((ROOT / "public" / relative_path.lstrip("/")).is_file())
 
     def test_infless_photos_are_normalized_to_portrait_orientation(self) -> None:
-        for name in INFLess_PRODUCTS:
-            product = self.product("Infless", name)
-            image_path = ROOT / "public" / product["image"].lstrip("/")
+        records = [
+            item
+            for item in self.audit["suppliedImageMatches"]
+            if item.get("company") == "Infless" and item.get("status") == "matched"
+        ]
+        self.assertEqual(INFLess_PRODUCTS, {item["product"] for item in records})
+        for item in records:
+            self.assertIn("output", item)
+            image_path = ROOT / "public" / item["output"].lstrip("/")
             with Image.open(image_path) as image:
-                self.assertGreaterEqual(image.height, image.width, name)
+                self.assertGreaterEqual(image.height, image.width, item["product"])
 
     def test_exact_duplicate_source_is_not_added_twice(self) -> None:
         product = self.product("Zaroza", "ZAROZA ANTI - WRINKLE & LIFTING SERUM 30ml")
