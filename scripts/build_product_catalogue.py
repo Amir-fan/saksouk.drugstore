@@ -482,6 +482,29 @@ def remove_connected_dark_background(source: Image.Image) -> Image.Image:
     return image
 
 
+def trim_product_canvas(source: Image.Image) -> Image.Image:
+    """Trim empty transparency or a near-white studio canvas around a pack shot."""
+    image = source.convert("RGBA")
+    alpha = image.getchannel("A")
+    if alpha.getextrema()[0] < 255:
+        content_mask = alpha.point(lambda value: 255 if value > 10 else 0)
+    else:
+        white = Image.new("RGB", image.size, (255, 255, 255))
+        difference = ImageChops.difference(image.convert("RGB"), white).convert("L")
+        content_mask = difference.point(lambda value: 255 if value > 12 else 0)
+
+    bounds = content_mask.getbbox()
+    if not bounds:
+        return image
+
+    left, top, right, bottom = bounds
+    if right - left < 30 or bottom - top < 30:
+        return image
+
+    removed_fraction = 1 - ((right - left) * (bottom - top)) / (image.width * image.height)
+    return image.crop(bounds) if removed_fraction >= .04 else image
+
+
 def optimize_supplied_image(
     source_path: Path,
     product: dict[str, Any],
@@ -511,6 +534,8 @@ def optimize_supplied_image(
                 source = source.rotate(rotation, expand=True)
             source = trim_capture_bands(source)
             source = remove_connected_dark_background(source)
+            if product["company"]["en"] == "Tanium":
+                source = trim_product_canvas(source)
             source.thumbnail((1050, 1050), Image.Resampling.LANCZOS)
 
             # Supplied pack shots are often trimmed directly against one or

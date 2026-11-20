@@ -33,7 +33,7 @@ export const SOCIAL_CHANNELS: readonly SocialChannel[] = [
   {
     id: 'facebook',
     label: 'Facebook',
-    href: 'https://www.facebook.com/share/1ACkatqqrW/',
+    href: 'https://www.facebook.com/profile.php?id=61576383062865',
   },
   {
     id: 'instagram',

@@ -187,6 +187,50 @@ function About() {
   return <section className="about section" id="about"><div className="container"><div className="about-composition"><Reveal className="about-copy"><SectionLabel>{content.about.eyebrow}</SectionLabel><ScrollHeading lines={content.about.title} /><ScrollText text={content.about.lead} /><p>{content.about.body}</p><a href="#capabilities" className="text-link">{content.navigation.find(n => n.href.includes('product'))?.label || 'Explore'} <ArrowRight size={17} /></a></Reveal><div className="about-images"><ImageReveal className="about-image-large" src="/images/pharma-automation-v3.jpg" alt="Modern automated medicine picking station" /><ImageReveal className="about-image-small" src="/images/pharma-quality-v3.jpg" alt="Pharmaceutical batch verification with a barcode scanner" /></div></div></div></section>;
 }
 
+function PharmacyFilm() {
+  const { lang } = useLanguage();
+  const reduce = useReducedMotion();
+  const title = lang === 'ar' ? 'حيث تلتقي المنتجات بالناس' : 'Where products meet people';
+  const body = lang === 'ar'
+    ? 'نظرة أقرب إلى بيئة الصيدلية، حيث يجتمع توفر المنتجات، والعرض الواضح، والخدمة الموثوقة لتلبية احتياجات الناس اليومية.'
+    : 'A closer look at the pharmacy setting, where product availability, clear presentation and trusted service support everyday needs.';
+
+  return (
+    <section className="pharmacy-film section" aria-labelledby="pharmacy-film-title">
+      <div className="container">
+        <div className="pharmacy-film-panel">
+          <Reveal className="pharmacy-film-copy">
+            <SectionLabel>{lang === 'ar' ? 'من التوزيع إلى رف الصيدلية' : 'From distribution to the pharmacy shelf'}</SectionLabel>
+            <h2 id="pharmacy-film-title">{title}</h2>
+            <p>{body}</p>
+          </Reveal>
+          <motion.div
+            className="pharmacy-film-media"
+            initial={reduce ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-8%' }}
+            transition={{ duration: .85, ease }}
+          >
+            <video
+              autoPlay={!reduce}
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+              poster={assetUrl('/images/pharmacy-walkthrough-poster.webp')}
+              aria-label={lang === 'ar' ? 'جولة مصورة داخل صيدلية حديثة' : 'Video walkthrough of a modern pharmacy'}
+            >
+              <source src={assetUrl('/media/pharmacy-walkthrough.mp4')} type="video/mp4" />
+              {lang === 'ar' ? 'لا يدعم متصفحك تشغيل الفيديو.' : 'Your browser does not support this video.'}
+            </video>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Capabilities() {
   const { content, lang } = useLanguage();
   return <section className="capabilities section" id="capabilities"><div className="container"><Reveal className="section-heading centered"><SectionLabel>{lang === 'ar' ? 'ما نقوم به' : 'What we do'}</SectionLabel><ScrollHeading lines={[lang === 'ar' ? 'القدرات' : 'Capabilities']} /><p>{lang === 'ar' ? 'دعم تخزين وتوريد وتوزيع الأدوية.' : 'Pharmaceutical storage, supply and distribution support.'}</p></Reveal><div className="capability-grid">{content.capabilities.map((item, index) => <Reveal key={item.title} delay={index * .07}><motion.article className="capability-card" whileHover={{ y: -8 }} transition={{ duration: .35, ease }}><div className="capability-image"><motion.img src={assetUrl(item.image)} alt={item.alt} loading="lazy" decoding="async" whileHover={{ scale: 1.045 }} transition={{ duration: .6, ease }} /></div><div className="capability-content"><div><h3>{item.title}</h3><p>{item.description}</p></div><a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label={`Inquire about ${item.title}`}><ArrowUpRight size={19} /></a></div></motion.article></Reveal>)}</div></div></section>;
@@ -464,6 +508,7 @@ export function SaksoukSite() {
       <Partners />
       <MarketEntry />
       <About />
+      <PharmacyFilm />
       <Metrics />
       <Capabilities />
       <Insights />

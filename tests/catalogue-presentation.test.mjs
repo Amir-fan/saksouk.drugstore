@@ -15,6 +15,11 @@ test('product imagery uses contain framing with a responsive safe inset', () => 
   );
   assert.match(
     css,
+    /\.product-card-image img,[^{]*\{[^}]*width:auto;[^}]*height:auto;[^}]*max-width:100%;[^}]*max-height:100%/s,
+    'portrait product photos must size from their intrinsic aspect ratio instead of overflowing the card frame',
+  );
+  assert.match(
+    css,
     /\.product-gallery-stage img\s*\{[^}]*object-fit:contain/s,
   );
   assert.match(
