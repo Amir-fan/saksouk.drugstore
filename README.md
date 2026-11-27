@@ -18,4 +18,4 @@ npm run build
 npm run preview
 ```
 
-The production build is configured for the GitHub Pages project path `/saksouk.drugstore/`. Pushes to `main` deploy the generated `dist` directory through the included GitHub Actions workflow.
+The production build is configured for the custom domain root `/` (`https://saksouk-drugstore.com/`). Pushes to `main` deploy the generated `dist` directory through the included GitHub Actions workflow.

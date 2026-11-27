@@ -4,8 +4,8 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // GitHub project pages are served from this repository subpath.
-  base: '/saksouk.drugstore/',
+  // Served from the root of the custom domain (https://saksouk-drugstore.com/).
+  base: '/',
   css: { postcss: { plugins: [tailwindcss()] } },
   plugins: [react()],
   resolve: {
