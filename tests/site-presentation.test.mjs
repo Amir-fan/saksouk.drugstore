@@ -1,9 +1,23 @@
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 import { siteContent } from '../content/site.ts';
+
+test('footer contact includes landline number in both languages', async () => {
+  assert.equal(siteContent.en.contact.landline, '+963 23 255100');
+  assert.equal(siteContent.ar.contact.landline, '+963 23 255100');
+
+  const component = await readFile(
+    new URL('../components/saksouk-site.tsx', import.meta.url),
+    'utf8',
+  );
+  assert.match(component, /content\.contact\.landline/);
+  assert.match(component, /تلفون أرضي/);
+  assert.match(component, /Landline/);
+});
 
 test('footer addresses list Damascus above Idlib in both languages', () => {
   assert.equal(

@@ -71,7 +71,9 @@ export const siteContent = {
     contact: {
       title: ["Let's keep healthcare", 'moving.'],
       body: 'For supply, distribution or partnership inquiries, get in touch with the Saksouk team.',
-      phone: '+963 930 035 040', email: 'kh.ph.dr777@gmail.com',
+      phone: '+963 930 035 040',
+      landline: '+963 23 255100',
+      email: 'kh.ph.dr777@gmail.com',
     },
     footer: {
       discover: [
@@ -188,7 +190,9 @@ export const siteContent = {
     contact: {
       title: ["لنُبقِ الرعاية الصحية", 'في تقدم مستمر.'],
       body: 'للاستفسارات المتعلقة بالتوريد، التوزيع أو الشراكات، يرجى التواصل مع فريق سكسوك.',
-      phone: '+963 930 035 040', email: 'kh.ph.dr777@gmail.com',
+      phone: '+963 930 035 040',
+      landline: '+963 23 255100',
+      email: 'kh.ph.dr777@gmail.com',
     },
     footer: {
       discover: [

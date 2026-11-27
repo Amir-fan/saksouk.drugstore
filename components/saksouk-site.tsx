@@ -451,6 +451,13 @@ export function SiteFooter() {
                 </a>
               </div>
               <div className="contact-row">
+                <Phone size={16} strokeWidth={2} />
+                <a href={`tel:${content.contact.landline.replace(/\s+/g, '')}`}>
+                  <span dir="ltr">{content.contact.landline}</span>
+                  <span style={{ display: 'block', color: '#858da4', fontSize: '12px', marginTop: '4px' }}>{lang === 'ar' ? 'تلفون أرضي' : 'Landline'}</span>
+                </a>
+              </div>
+              <div className="contact-row">
                 <MapPin size={16} strokeWidth={2} />
                 <span className="footer-address">{content.footer.address}</span>
               </div>
